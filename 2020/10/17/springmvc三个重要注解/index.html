@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        RequestMapping注解 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping%E6%B3%A8%E8%A7%A3"><span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestParam"><span class="toc-text">RequestParam</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestBody"><span class="toc-text">RequestBody</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVaribale"><span class="toc-text">PathVaribale</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        RequestMapping注解
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-10-17 10:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#框架学习" title="框架学习">框架学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="RequestMapping注解"><a href="#RequestMapping注解" class="headerlink" title="RequestMapping注解"></a>RequestMapping注解</h2><p><strong>作用：</strong> 用于建立请求URL和处理请求方法之间的对应关系。<br><strong>出现位置：</strong>  </p>
+<ul>
+<li><strong>类上：</strong><br>请求URL的第一级访问目录。此处不写的话，就相当于应用的根目录。写的话需要以/开头。 它出现的目的是为了使我们的URL可以按照模块化管理:  <ul>
+<li>例如：<br>账户模块：  </li>
+</ul>
+</li>
+</ul>
+<p>*/account/*add<br>        */account/*update<br>        */account/*delete …<br>订单模块:<br> */order/*add<br>*/order/*update<br>*/order/*delete<br>*/…/*的部分就是把RequsetMappding写在类上，使我们的URL更加精细。  </p>
+<ul>
+<li><strong>方法上：</strong><br>请求URL的第二级访问目录。</li>
+</ul>
+<p><strong>属性：</strong>  </p>
+<ul>
+<li>value：用于指定请求的URL。它和path属性的作用是一样的。</li>
+<li>method：用于指定请求的方式。(eg:get请求/post请求)</li>
+<li>params：用于指定限制请求参数的条件。它支持简单的表达式。要求请求参数的key和value必须和配置的<strong>一模一样!!!</strong>  <ul>
+<li>例如：<br>params = {“accountName”}，表示请求参数必须有accountName<br>params = {“moeny!100”}，表示请求参数中money不能是100。</li>
+</ul>
+</li>
+<li>headers：用于指定限制请求消息头的条件。<br>注意： 以上四个属性只要出现2个或以上时，他们的关系是与的关系。</li>
+</ul>
+<p><strong>使用示例：</strong></p>
+<ul>
+<li>出现位置的示例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*RequestMapping 注解出现的位置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Controller(&quot;accountController&quot;)</span> <span class="meta">@RequestMapping(&quot;/account&quot;)</span><span class="comment">//RequestMapping作用于类上</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountController</span> </span>&#123;</span><br><span class="line"><span class="meta">@RequestMapping(&quot;/findAccount&quot;)</span><span class="comment">//RequestMapping作用于方法上</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">findAccount</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        System.out.println(<span class="string">&quot;查询了账户。。。。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">jsp 中的代码：</span><br><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>requestmapping 的使用<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 第一种访问方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/account/findAccount&quot;</span>&gt;</span>查询账户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 第二种访问方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;account/findAccount&quot;</span>&gt;</span>查询账户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">注意：</span><br><span class="line">当我们使用此种方式配置时，在 jsp 中第二种写法时，不要在访问 URL 前面加/，否则无法找到资源。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>method 属性的示例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">控制器代码：</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*保存账户</span></span><br><span class="line"><span class="comment">*<span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/saveAccount&quot;,method=RequestMethod.POST)</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">saveAccount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;保存了账户&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jsp 代码：</span><br><span class="line"><span class="comment">&lt;!-- 请求方式的示例 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;account/saveAccount&quot;</span>&gt;</span>保存账户，get 请求<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;account/saveAccount&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;保存账户，post 请求&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">当使用 get 请求时，提示错误信息是 405，信息是方法不支持 get 方式请求</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>params 属性的示例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">控制器的代码：</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*	删除账户</span></span><br><span class="line"><span class="comment">*	<span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/removeAccount&quot;,params= &#123;&quot;accountName&quot;,&quot;money&gt;100&quot;&#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">removeAccount</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        System.out.println(<span class="string">&quot;删除了账户&quot;</span>); </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">jsp 中的代码：</span><br><span class="line"><span class="comment">&lt;!-- 请求参数的示例 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;account/removeAccount?accountName=aaa&amp;money&gt;100&quot;</span>&gt;</span>删除账户，金额 100<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;account/removeAccount?accountName=aaa&amp;money&gt;150&quot;</span>&gt;</span>删除账户，金额 150<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">注意：</span><br><span class="line">当我们点击第一个超链接时,可以访问成功。</span><br><span class="line">当我们点击第二个超链接时，提示错误信息是 400,无法访问。</span><br></pre></td></tr></table></figure>
+
+<h2 id="RequestParam"><a href="#RequestParam" class="headerlink" title="RequestParam"></a>RequestParam</h2><p><strong>作用：</strong><br>把请求中指定名称的参数给控制器中的形参赋值。<br><strong>属性：</strong></p>
+<ul>
+<li>value：请求参数中的名称。</li>
+<li>required：请求参数中是否必须提供此参数。默认值：true。表示必须提供，如果不提供将报错。  </li>
+</ul>
+<p><strong>使用示例：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jsp 中的代码：</span><br><span class="line"><span class="comment">&lt;!-- requestParams 注解的使用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;springmvc/useRequestParam?name=test&quot;</span>&gt;</span>requestParam 注解<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">控制器中的代码：</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*requestParams 注解的使用</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment">*<span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/useRequestParam&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">useRequestParam</span><span class="params">(<span class="meta">@RequestParam(&quot;name&quot;)</span>String username,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="meta">@RequestParam(value=&quot;age&quot;,required=false)</span>Integer age)</span></span>&#123; </span><br><span class="line">        System.out.println(username+<span class="string">&quot;,&quot;</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="RequestBody"><a href="#RequestBody" class="headerlink" title="RequestBody"></a>RequestBody</h2><p><strong>作用：</strong> 用于获取请求体内容。直接使用得到是 key=value&amp;key=value…结构的数据。get 请求方式不适用。<br><strong>属性：</strong>  </p>
+<ul>
+<li>required：是否必须有请求体。默认值是:true。当取值为 true 时,get 请求方式会报错。如果取值为 false，get 请求得到是 null。</li>
+</ul>
+<p><strong>使用示例：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">post 请求 jsp 代码：</span><br><span class="line"><span class="comment">&lt;!-- request body 注解 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;springmvc/useRequestBody&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">用户名称：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">用户密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">用户年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> &gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;保存&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">get 请求 jsp 代码：（得到是空）</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;springmvc/use</span></span></span><br><span class="line"><span class="tag"><span class="string">RequestBody?body=test&quot;</span>&gt;</span>requestBody 注解 get 请求<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">控制器代码：</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*RequestBody 注解</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">*<span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span> <span class="meta">@RequestMapping(&quot;/useRequestBody&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">useRequestBody</span><span class="params">(<span class="meta">@RequestBody(required=false)</span> String body)</span> </span>&#123; </span><br><span class="line">        System.out.println(body);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="PathVaribale"><a href="#PathVaribale" class="headerlink" title="PathVaribale"></a>PathVaribale</h2><p><strong>作用：</strong> 用于绑定 url 中的占位符。</p>
+<ul>
+<li>例如：请求 url 中 /delete/{id}，这个{id}就是 url 占位符。url 支持占位符是 spring3.0 之后加入的。是 springmvc 支持 rest 风格 URL 的一个重要标志。  </li>
+</ul>
+<p><strong>属性：</strong></p>
+<ul>
+<li>value：用于指定 url 中占位符名称。</li>
+<li>required：是否必须提供占位符。</li>
+</ul>
+<p><strong>使用示例:</strong>  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jsp 代码：</span><br><span class="line"><span class="comment">&lt;!-- PathVariable 注解 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;springmvc/usePathVariable/100&quot;</span>&gt;</span>pathVariable 注解<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<pre><code class="java">控制器代码：
+/**
+*PathVariable 注解
+*@param user
+* @return
+*/ @RequestMapping(&quot;/usePathVariable/&#123;id&#125;&quot;)
+public String    usePathVariable(@PathVariable(&quot;id&quot;) Integer id) &#123;
+        System.out.println(id);
+        return &quot;success&quot;;
+&#125;
+</code></pre>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

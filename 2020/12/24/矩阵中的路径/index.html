@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        矩阵中的路径 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text">矩阵中的路径</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        矩阵中的路径
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-12-24 10:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Leetcode" title="Leetcode">Leetcode</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="矩阵中的路径"><a href="#矩阵中的路径" class="headerlink" title="矩阵中的路径"></a><strong>矩阵中的路径</strong></h1><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。<br>路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。<br>如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。<br>例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。</p>
+<pre><code>    [[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;e&quot;],
+    [&quot;s&quot;,&quot;f&quot;,&quot;c&quot;,&quot;s&quot;],
+    [&quot;a&quot;,&quot;d&quot;,&quot;e&quot;,&quot;e&quot;]]
+</code></pre>
+<p>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p>
+<p><strong>一开始做题思路偏差，想到的是递归，但没想到DFS，这道题和岛屿问题其实很像</strong></p>
+<p>调整思路：</p>
+<ol>
+<li><p>双for循环遍历每一格，当匹配到与某字符串第一个字符相同的字符时开始DFS</p>
+</li>
+<li><p>void DFS（char[][] board, String word，r，c，）：</p>
+<ul>
+<li><p>判断该格是否在矩阵内，是否遍历过（定义一个二维数组记录）</p>
+</li>
+<li><p>if（charAt！=current）{return ；}</p>
+</li>
+<li><p>else if（最后一个字符）{set true；return； }</p>
+</li>
+<li><p>else{四个方向遍历}</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>查看答案后总结：</p>
+<ol>
+<li><p>关于判断一个结点是否被访问过，我使用一个二维数组来做记录，需要自己控制它的回溯，不断传参，非常麻烦，答案用了一个非常巧妙的方法，遍历过后把那里的值设置为”\0”,先污染，代表访问过，在最后用<code>board[i][j] = word[k]</code>进行”治理”，以便下一次遍历可以正常使用。</p>
+</li>
+<li><p>每匹配到一个符合的char，需要记录是第几个char，我使用每次单独执行<code>word_current++</code>的方法，还放错了位置，其实只要每次传递的时候传递<code>word_current</code>的时候直接传<code>word_current++</code>，这样的写法减少了代码量，下次在递归里面写到判断相关的语句的时候都要仔细思考，什么时候判断，能不能用这种简洁方法判断！！</p>
+</li>
+<li><p>关于找到所有字符后，如何返回这个信息，我的方法是定义一个全局变量，找到之后修改这个全局变量，在DFS完了之后对这个变量进行判断，答案用的方法是“先污染”，我思考过，但想到“治理”的问题觉得麻烦—-我设定的DFS是没有返回值的，所以没用，当时的想法是，有返回值的话不知道如何处理，但显然这个方法更便捷。 也学到了处理返回值的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> res = DFS(board, word, r-<span class="number">1</span>, c, w++)|| DFS(board, word, r+<span class="number">1</span>, c, w++)||</span><br><span class="line">                    DFS(board, word, r, c-<span class="number">1</span>, w++)|| DFS(board, word, r, c+<span class="number">1</span>, w++);</span><br><span class="line">board[r][c] = word.charAt(w++);</span><br><span class="line"><span class="keyword">return</span> res;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>w++</code>和<code>w+1</code>的区别：要注意，值传递的时候，一定要使用后者，使用前者就改变了w的值！</p>
+</li>
+<li><p>不断的修改使得代码乱得一塌糊涂，调试过程没有善用“运行到鼠标处”，运行的时候总想着一步一步执行，浪费了大量时间，应该直接运行到最后一部查看参数找出问题。</p>
+</li>
+</ol>
+<p>回顾：</p>
+<p>其实解题的大致思路我是懂的，但是细节上仍然处理得不好。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

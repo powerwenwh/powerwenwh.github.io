@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        static关键字 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#static%E5%8F%98%E9%87%8F"><span class="toc-text">static变量</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        static关键字
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-10-17 10:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p><strong>概念</strong></p>
+<p>static有三种用法：static变量，static方法，static代码块</p>
+<h2 id="static变量"><a href="#static变量" class="headerlink" title="static变量"></a>static变量</h2><p>在类中，使用 static 修饰符修饰的属性（成员变量）称为静态变量，也可以称为类变量，常量称为静态常量，方法称为静态方法或类方法，它们统称为静态成员，归整个类所有。</p>
+<p>静态成员不依赖于类的特定实例，被类的所有实例共享，就是说 static 修饰的方法或者变量不需要依赖于对象来进行访问，只要这个类被加载，Java 虚拟机就可以根据类名找到它们。</p>
+<p>调用静态成员的语法形式如下：<br>类名.静态成员<br>注意：<br>static 修饰的成员变量和方法，从属于类。<br>普通变量和方法从属于对象。<br>静态方法不能调用非静态成员，编译会报错。</p>
+<p>静态变量<br>类的成员变量可以分为以下两种：<br>静态变量（或称为类变量），指被 static 修饰的成员变量。<br>实例变量，指没有被 static 修饰的成员变量。</p>
+<p>静态变量与实例变量的区别如下：</p>
+<p>1）静态变量<br>运行时，Java 虚拟机只为静态变量分配一次内存，在加载类的过程中完成静态变量的内存分配。<br>在类的内部，可以在任何方法内直接访问静态变量。<br>在其他类中，可以通过类名访问该类中的静态变量。</p>
+<p>2）实例变量<br>每创建一个实例，Java 虚拟机就会为实例变量分配一次内存。<br>在类的内部，可以在非静态方法中直接访问实例变量。<br>在本类的静态方法或其他类中则需要通过类的实例对象进行访问。</p>
+<p>静态变量在类中的作用如下：<br><strong>静态变量可以被类的所有实例共享，因此静态变量可以作为实例之间的共享数据，增加实例之间的交互性。</strong><br>如果类的所有实例都包含一个相同的常量属性，则可以把这个属性定义为静态常量类型，从而<strong>节省内存空间</strong>。例如，在类中定义一个静态常量 PI。</p>
+<p>从运行结果可以看出，在类中定义静态的属性（成员变量），在 main() 方法中可以直接访问，也可以通过类名访问，还可以通过类的实例对象来访问。</p>
+<p>注意：静态变量是被多个实例所共享的。</p>
+<p>静态方法<br>与成员变量类似，成员方法也可以分为以下两种：<br>静态方法（或称为类方法），指被 static 修饰的成员方法。<br>实例方法，指没有被 static 修饰的成员方法。</p>
+<p>静态方法与实例方法的区别如下：<br><strong>静态方法不需要通过它所属的类的任何实例就可以被调用</strong>，因此在静态方法中<strong>不能使用 this 关键字</strong>，<strong>也不能直接访问所属类的实例变量和实例方法</strong>，但是可以直接访问所属类的静态变量和静态方法。另外，和 this 关键字一样，super 关键字也与类的特定实例相关，所以在静态方法中也<strong>不能使用 super 关键字。</strong><br>在实例方法中可以直接访问所属类的静态变量、静态方法、实例变量和实例方法。</p>
+<p>java中的static关键字主要用于内存管理。我们可以应用java static关键字在变量，方法，块和嵌套类中。 static关键字属于类，而不是类的实例。<br>静态(static)可以是：</p>
+<p>变量(也称为类变量)方法(也称为类方法)代码块嵌套类</p>
+<ol>
+<li>Java静态变量如果将一个变量声明为static，它就是所谓的静态变量了。</li>
+</ol>
+<p>静态变量可以用于引用所有对象的公共属性(对于每个对象不是唯一的)。如：员工公司名称，学生所在的大学名称。<br>静态变量的优点：</p>
+<p>它能使程序存储器高效(即它节省内存)。<br>理解不使用静态变量的问题<br>class Student{<br>     int rollno;<br>     String name;<br>     String college=”ITS”;<br>}<br>Java<br>假设在一所学校有500名学生，现在所有实例数据成员将在每次创建对象时获取内存。所有学生都有其唯一的注册ID：rollno和　name ，因此实例数据成员没有什么问题。college 指的是所有对象的共同属性。如果使它静态化(使用static关键字修饲)，这个字段将只获得内存一次。</p>
+<p>Java静态属性被共享给所有对象。</p>
+<p>静态变量的示例<br>//Program of static variable  </p>
+<p>class Student8 {<br>    int rollno;<br>    String name;<br>    static String college = “ITS”;</p>
+<pre><code>Student8(int r, String n) &#123;
+    rollno = r;
+    name = n;
+&#125;
+
+void display() &#123;
+    System.out.println(rollno + &quot; &quot; + name + &quot; &quot; + college);
+&#125;
+
+public static void main(String args[]) &#123;
+    Student8 s1 = new Student8(111, &quot;Karan&quot;);
+    Student8 s2 = new Student8(222, &quot;Aryan&quot;);
+
+    s1.display();
+    s2.display();
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行结果如下 -<br>111 Karan ITS<br>222 Aryan ITS<br>Java<br>创建对象示例图如下所示 -</p>
+<p>不使用静态变量的计数器程序<br>在这个例子中，我们创建了一个名为count的实例变量用来统计创建对象的数目，它在构造函数中执行递增。 由于实例变量在创建对象时要获取内存，每个对象都将具有实例变量的副本，如果它被递增了，它也不会反映到其他对象中。所以每个对象在count变量中的值还是1。<br>class Counter {<br>    int count = 0;// will get memory when instance is created</p>
+<pre><code>Counter() &#123;
+    count++;
+    System.out.println(count);
+&#125;
+
+public static void main(String args[]) &#123;
+
+    Counter c1 = new Counter();
+    Counter c2 = new Counter();
+    Counter c3 = new Counter();
+
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行结果如下 -<br>1<br>1<br>1<br>Java<br>计数器静态变量的程序如上所述，静态变量将只获取一次内存，如果任何对象更改静态变量的值，它将保留其值，所有实例均可访问同一变量值。<br>class Counter2 {<br>    static int count = 0;// will get memory only once and retain its value</p>
+<pre><code>Counter2() &#123;
+    count++;
+    System.out.println(count);
+&#125;
+
+public static void main(String args[]) &#123;
+
+    Counter2 c1 = new Counter2();
+    Counter2 c2 = new Counter2();
+    Counter2 c3 = new Counter2();
+
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行结果如下 -<br>1<br>2<br>3<br>Java<br>2. Java静态方法如果在任何方法上应用static关键字，此方法称为静态方法。</p>
+<p>静态方法属于类，而不属于类的对象。可以直接调用静态方法，而无需创建类的实例。静态方法可以访问静态数据成员，并可以更改静态数据成员的值。<br>静态方法的示例<br>//Program of changing the common property of all objects(static field).  </p>
+<p>class Student9 {<br>    int rollno;<br>    String name;<br>    static String college = “ITS”;</p>
+<pre><code>static void change() &#123;
+    college = &quot;BBDIT&quot;;
+&#125;
+
+Student9(int r, String n) &#123;
+    rollno = r;
+    name = n;
+&#125;
+
+void display() &#123;
+    System.out.println(rollno + &quot; &quot; + name + &quot; &quot; + college);
+&#125;
+
+public static void main(String args[]) &#123;
+    Student9.change();
+
+    Student9 s1 = new Student9(111, &quot;Karan&quot;);
+    Student9 s2 = new Student9(222, &quot;Aryan&quot;);
+    Student9 s3 = new Student9(333, &quot;Sonoo&quot;);
+
+    s1.display();
+    s2.display();
+    s3.display();
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行输出以下结果 -<br>111 Karan BBDIT<br>222 Aryan BBDIT<br>333 Sonoo BBDIT<br>Java<br>执行正常计算的静态方法的另一个示例:<br>//Program to get cube of a given number by static method  </p>
+<p>class Calculate {<br>    static int cube(int x) {<br>        return x * x * x;<br>    }</p>
+<pre><code>public static void main(String args[]) &#123;
+    int result = Calculate.cube(5);
+    System.out.println(result);
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行输出以下结果 -<br>125<br>Java<br>静态方法的限制<br>静态方法有两个主要限制。它们分别是：</p>
+<p>静态方法不能直接使用非静态数据成员或调用非静态方法。this和super两个关键字不能在静态上下文中使用。<br>class A {<br>    int a = 40;// non static</p>
+<pre><code>public static void main(String args[]) &#123;
+    System.out.println(a);
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行输出以下结果 -<br>[编译错误！]Compile Time Error<br>Java<br>为什么java main方法是静态的？<br>这是因为对象不需要调用静态方法，如果它是非静态方法，jvm首先要创建对象，然后调用main()方法，这将导致额外的内存分配的问题。<br>3. Java静态块Java中的静态块主要有两个作用：</p>
+<p>用于初始化静态数据成员。它在类加载时在main方法之前执行。<br>静态块的示例<br>class A2 {<br>    static {<br>        System.out.println(“static block is invoked”);<br>    }</p>
+<pre><code>public static void main(String args[]) &#123;
+    System.out.println(&quot;Hello main&quot;);
+&#125;
+</code></pre>
+<p>}<br>Java<br>上面代码执行输出以下结果 -<br>static block is invoked<br>Hello main<br>Java<br>可以执行程序没有main()方法吗？答：是的，一种方式是静态块，但在以前旧的JDK版本中，不是在JDK 1.7。<br>class A3 {<br>    static {<br>        System.out.println(“static block is invoked”);<br>        System.exit(0);<br>    }<br>}<br>Java<br>上面代码执行输出以下结果 -<br>static block is invoked<br>Java<br>在JDK7及以上版本中，输出将为：<br>错误: 在类 Main 中找不到 main 方法, 请将 main 方法定义为:<br>   public static void main(String[] args)//原文出自【易百教程】，商业转载请联系作者获得授权，非商业请保留原文链接：<a target="_blank" rel="noopener" href="https://www.yiibai.com/java/static-keyword-in-java.html">https://www.yiibai.com/java/static-keyword-in-java.html</a></p>
+<p>Java中的static关键字解析</p>
+<p>　　static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：</p>
+<p>　　一.static关键字的用途</p>
+<p>　　二.static关键字的误区</p>
+<p>　　三.常见的笔试面试题</p>
+<p>　　若有不正之处，希望谅解并欢迎批评指正。</p>
+<p>　　请尊重作者劳动成果，转载请标明原文链接：</p>
+<p>　　<a target="_blank" rel="noopener" href="http://www.cnblogs.com/dolphin0520/p/3799052.html">http://www.cnblogs.com/dolphin0520/p/3799052.html</a></p>
+<p>一.static关键字的用途<br>　　在《Java编程思想》P86页有这样一段话：</p>
+<p>　　“static方法就是没有this的方法。在static方法内部不能调用非静态方法，反过来是可以的。而且可以在没有创建任何对象的前提下，仅仅通过类本身来调用static方法。这实际上正是static方法的主要用途。”</p>
+<p>　　这段话虽然只是说明了static方法的特殊之处，但是可以看出static关键字的基本作用，简而言之，一句话来描述就是：</p>
+<p>　　方便在没有创建对象的情况下来进行调用（方法/变量）。</p>
+<p>　　很显然，被static关键字修饰的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问。</p>
+<p>　　static可以用来修饰类的成员方法、类的成员变量，另外可以编写static代码块来优化程序性能。</p>
+<p>1）static方法</p>
+<p>　　static方法一般称作静态方法，由于静态方法不依赖于任何对象就可以进行访问，因此对于静态方法来说，是没有this的，因为它不依附于任何对象，既然都没有对象，就谈不上this了。并且由于这个特性，在静态方法中不能访问类的非静态成员变量和非静态成员方法，因为非静态成员方法/变量都是必须依赖具体的对象才能够被调用。</p>
+<p>　　但是要注意的是，虽然在静态方法中不能访问非静态成员方法和非静态成员变量，但是在非静态成员方法中是可以访问静态成员方法/变量的。举个简单的例子：</p>
+<p>　　在上面的代码中，由于print2方法是独立于对象存在的，可以直接用过类名调用。假如说可以在静态方法中访问非静态方法/变量的话，那么如果在main方法中有下面一条语句：</p>
+<p>　　MyObject.print2();</p>
+<p>　　此时对象都没有，str2根本就不存在，所以就会产生矛盾了。同样对于方法也是一样，由于你无法预知在print1方法中是否访问了非静态成员变量，所以也禁止在静态成员方法中访问非静态成员方法。</p>
+<p>　　而对于非静态成员方法，它访问静态成员方法/变量显然是毫无限制的。</p>
+<p>　　因此，如果说想在不创建对象的情况下调用某个方法，就可以将这个方法设置为static。我们最常见的static方法就是main方法，至于为什么main方法必须是static的，现在就很清楚了。因为程序在执行main方法的时候没有创建任何对象，因此只有通过类名来访问。</p>
+<p>　　另外记住，关于构造器是否是static方法可参考：<a target="_blank" rel="noopener" href="http://blog.csdn.net/qq_17864929/article/details/48006835">http://blog.csdn.net/qq_17864929/article/details/48006835</a></p>
+<p>2）static变量</p>
+<p>　　static变量也称作静态变量，静态变量和非静态变量的区别是：静态变量被所有的对象所共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化。而非静态变量是对象所拥有的，在创建对象的时候被初始化，存在多个副本，各个对象拥有的副本互不影响。</p>
+<p>　　static成员变量的初始化顺序按照定义的顺序进行初始化。</p>
+<p>3）static代码块</p>
+<p>　　static关键字还有一个比较关键的作用就是 用来形成静态代码块以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次。</p>
+<p>　　为什么说static块可以用来优化程序性能，是因为它的特性:只会在类加载的时候执行一次。下面看个例子:</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>class Person{<br>    private Date birthDate;</p>
+<pre><code>public Person(Date birthDate) &#123;
+    this.birthDate = birthDate;
+&#125;
+ 
+boolean isBornBoomer() &#123;
+    Date startDate = Date.valueOf(&quot;1946&quot;);
+    Date endDate = Date.valueOf(&quot;1964&quot;);
+    return birthDate.compareTo(startDate)&gt;=0 &amp;&amp; birthDate.compareTo(endDate) &lt; 0;
+&#125;
+</code></pre>
+<p>}<br>　　isBornBoomer是用来这个人是否是1946-1964年出生的，而每次isBornBoomer被调用的时候，都会生成startDate和birthDate两个对象，造成了空间浪费，如果改成这样效率会更好：</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>class Person{<br>    private Date birthDate;<br>    private static Date startDate,endDate;<br>    static{<br>        startDate = Date.valueOf(“1946”);<br>        endDate = Date.valueOf(“1964”);<br>    }</p>
+<pre><code>public Person(Date birthDate) &#123;
+    this.birthDate = birthDate;
+&#125;
+ 
+boolean isBornBoomer() &#123;
+    return birthDate.compareTo(startDate)&gt;=0 &amp;&amp; birthDate.compareTo(endDate) &lt; 0;
+&#125;
+</code></pre>
+<p>}<br>　　因此，很多时候会将一些只需要进行一次的初始化操作都放在static代码块中进行。</p>
+<p>二.static关键字的误区<br>1.static关键字会改变类中成员的访问权限吗？</p>
+<p>　　有些初学的朋友会将java中的static与C/C++中的static关键字的功能混淆了。在这里只需要记住一点：与C/C++中的static不同，Java中的static关键字不会影响到变量或者方法的作用域。在Java中能够影响到访问权限的只有private、public、protected（包括包访问权限）这几个关键字。看下面的例子就明白了：</p>
+<p>　　提示错误”Person.age 不可视”，这说明static关键字并不会改变变量和方法的访问权限。</p>
+<p>2.能通过this访问静态成员变量吗？</p>
+<p>　　虽然对于静态方法来说没有this，那么在非静态方法中能够通过this访问静态成员变量吗？先看下面的一个例子，这段代码输出的结果是什么？</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>public class Main {　　<br>    static int value = 33;</p>
+<pre><code>public static void main(String[] args) throws Exception&#123;
+    new Main().printValue();
+&#125;
+
+private void printValue()&#123;
+    int value = 3;
+    System.out.println(this.value);
+&#125;
+</code></pre>
+<p>}</p>
+<p>33<br>　　这里面主要考察队this和static的理解。this代表什么？this代表当前对象，那么通过new Main()来调用printValue的话，当前对象就是通过new Main()生成的对象。而static变量是被对象所享有的，因此在printValue中的this.value的值毫无疑问是33。在printValue方法内部的value是局部变量，根本不可能与this关联，所以输出结果是33。在这里永远要记住一点：静态成员变量虽然独立于对象，但是不代表不可以通过对象去访问，所有的静态方法和静态变量都可以通过对象访问（只要访问权限足够）。</p>
+<p>3.static能作用于局部变量么？</p>
+<p>　　在C/C++中static是可以作用域局部变量的，但是在Java中切记：static是不允许用来修饰局部变量。不要问为什么，这是Java语法的规定。</p>
+<p>　　具体原因可以参考这篇博文的讨论：<a target="_blank" rel="noopener" href="http://www.debugease.com/j2se/178932.html">http://www.debugease.com/j2se/178932.html</a></p>
+<p>三.常见的笔试面试题<br>　　下面列举一些面试笔试中经常遇到的关于static关键字的题目，仅供参考，如有补充欢迎下方留言。</p>
+<p>1.下面这段代码的输出结果是什么？</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>public class Test extends Base{</p>
+<pre><code>static&#123;
+    System.out.println(&quot;test static&quot;);
+&#125;
+ 
+public Test()&#123;
+    System.out.println(&quot;test constructor&quot;);
+&#125;
+ 
+public static void main(String[] args) &#123;
+    new Test();
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Base{</p>
+<pre><code>static&#123;
+    System.out.println(&quot;base static&quot;);
+&#125;
+ 
+public Base()&#123;
+    System.out.println(&quot;base constructor&quot;);
+&#125;
+</code></pre>
+<p>}</p>
+<p>base static<br>test static<br>base constructor<br>test constructor<br>　　至于为什么是这个结果，我们先不讨论，先来想一下这段代码具体的执行过程，在执行开始，先要寻找到main方法，因为main方法是程序的入口，但是在执行main方法之前，必须先加载Test类，而在加载Test类的时候发现Test类继承自Base类，因此会转去先加载Base类，在加载Base类的时候，发现有static块，便执行了static块。在Base类加载完成之后，便继续加载Test类，然后发现Test类中也有static块，便执行static块。在加载完所需的类之后，便开始执行main方法。在main方法中执行new Test()的时候会先调用父类的构造器，然后再调用自身的构造器。因此，便出现了上面的输出结果。</p>
+<p>2.这段代码的输出结果是什么？</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>public class Test {<br>    Person person = new Person(“Test”);<br>    static{<br>        System.out.println(“test static”);<br>    }</p>
+<pre><code>public Test() &#123;
+    System.out.println(&quot;test constructor&quot;);
+&#125;
+ 
+public static void main(String[] args) &#123;
+    new MyClass();
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Person{<br>    static{<br>        System.out.println(“person static”);<br>    }<br>    public Person(String str) {<br>        System.out.println(“person “+str);<br>    }<br>}</p>
+<p>class MyClass extends Test {<br>    Person person = new Person(“MyClass”);<br>    static{<br>        System.out.println(“myclass static”);<br>    }</p>
+<pre><code>public MyClass() &#123;
+    System.out.println(&quot;myclass constructor&quot;);
+&#125;
+</code></pre>
+<p>}<br> View Code<br>　　类似地，我们还是来想一下这段代码的具体执行过程。首先加载Test类，因此会执行Test类中的static块。接着执行new MyClass()，而MyClass类还没有被加载，因此需要加载MyClass类。在加载MyClass类的时候，发现MyClass类继承自Test类，但是由于Test类已经被加载了，所以只需要加载MyClass类，那么就会执行MyClass类的中的static块。在加载完之后，就通过构造器来生成对象。而在生成对象的时候，必须先初始化父类的成员变量，因此会执行Test中的Person person = new Person()，而Person类还没有被加载过，因此会先加载Person类并执行Person类中的static块，接着执行父类的构造器，完成了父类的初始化，然后就来初始化自身了，因此会接着执行MyClass中的Person person = new Person()，最后执行MyClass的构造器。</p>
+<p>3.这段代码的输出结果是什么？</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>public class Test {</p>
+<pre><code>static&#123;
+    System.out.println(&quot;test static 1&quot;);
+&#125;
+public static void main(String[] args) &#123;
+     
+&#125;
+ 
+static&#123;
+    System.out.println(&quot;test static 2&quot;);
+&#125;
+</code></pre>
+<p>}</p>
+<p>test static 1<br>test static 2<br>　　虽然在main方法中没有任何语句，但是还是会输出，原因上面已经讲述过了。另外，static块可以出现类中的任何地方（只要不是方法内部，记住，任何方法内部都不行），并且执行是按照static块的顺序执行的。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

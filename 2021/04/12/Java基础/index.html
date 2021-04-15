@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Java的一些基础知识点 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">hashmap如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReentrantLock%E4%B8%8Esynchronized%EF%BC%88%E5%90%8C%E6%AD%A5%E9%94%81%EF%BC%89%E9%94%81"><span class="toc-text">ReentrantLock与synchronized（同步锁）锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E4%B8%AD%E7%9A%84%E9%94%81%E5%88%86%E7%B1%BB"><span class="toc-text">Java中的锁分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B9%90%E8%A7%82%E9%94%81-amp-%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">1、乐观锁 &amp; 悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%8B%AC%E4%BA%AB%E9%94%81-amp-%E5%85%B1%E4%BA%AB%E9%94%81"><span class="toc-text">2、独享锁 &amp; 共享锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%BA%92%E6%96%A5%E9%94%81-amp-%E8%AF%BB%E5%86%99%E9%94%81"><span class="toc-text">3、互斥锁 &amp; 读写锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="toc-text">4、可重入锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%85%AC%E5%B9%B3%E9%94%81-amp-%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="toc-text">5、公平锁 &amp; 非公平锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%88%86%E6%AE%B5%E9%94%81"><span class="toc-text">6、分段锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%81%8F%E5%90%91%E9%94%81-amp-%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81-amp-%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">7、偏向锁 &amp; 轻量级锁 &amp; 重量级锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">Java数组和链表的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E4%B8%BE%E4%B8%A4%E7%A7%8D%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-text">列举两种单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B"><span class="toc-text">饿汉式单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B"><span class="toc-text">懒汉式单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9A"><span class="toc-text">1、线程安全：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%80%A7%E8%83%BD%EF%BC%9A"><span class="toc-text">2、资源加载和性能：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">为什么要用单例模式？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">重写和重载的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%BD%BD"><span class="toc-text">重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%86%99"><span class="toc-text">重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="toc-text">面向对象三大特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%81%E8%A3%85-Encapsulation"><span class="toc-text">(1)封装(Encapsulation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%A7%E6%89%BF-Inheritance"><span class="toc-text">(2)继承(Inheritance)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E6%80%81-Polymorphism"><span class="toc-text">(3)多态(Polymorphism)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E4%B8%A4%E7%A7%8D%E5%BC%95%E6%93%8E"><span class="toc-text">MySQL两种引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="toc-text">预防死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-VS-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-VS-Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">JVM内存结构 VS Java内存模型 VS Java对象模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="toc-text">JVM内存结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">Java内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">Java对象模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Java的一些基础知识点
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-04-12 23:11:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="hashmap如何实现"><a href="#hashmap如何实现" class="headerlink" title="hashmap如何实现"></a>hashmap如何实现</h2><p>HashMap是使用<strong>hash算法</strong>,然后基于<strong>数组+链表+红黑树</strong>来实现的,或许还知道HashMap内部数组的初始长度为<strong>16</strong>,并且还能<strong>自动扩容</strong>.</p>
+<p><strong>简单来说，HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度为O(n)，首先遍历链表，存在即覆盖，否则新增；对于查找操作来讲，仍需遍历链表，然后通过key对象的equals方法逐一比对查找。所以，性能考虑，HashMap中的链表出现越少，性能才会越好。</strong></p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C1024555-20161113235348670-746615111.png" alt="img"></p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C1292434-20171210003109576-1016700625.jpg" alt="img"></p>
+<p>我们可以看到12和0的位置冲突了，然后我们把该数组的每一个元素变成了一个链表头，冲突的元素放在了链表中，这样在找到对应的链表头之后会顺着链表找下去，至于<strong>为什么采用链表，是为了节省空间，链表在内存中并不是连续存储</strong>，所以我们可以更充分地使用内存。</p>
+<h2 id="ReentrantLock与synchronized（同步锁）锁"><a href="#ReentrantLock与synchronized（同步锁）锁" class="headerlink" title="ReentrantLock与synchronized（同步锁）锁"></a>ReentrantLock与synchronized（同步锁）锁</h2><p><strong>线程不同步的原因</strong></p>
+<p>线程之所以会不同步，<strong>本质原因在于每个线程的高速缓存区</strong>。每个线程在创建后会有自己的一个缓存区，在线程要访问主存中的变量的时候会先将主存中的变量加入缓存，然后进行操作，这样可以避免主存访问过于频繁，可以加快线程的执行效率（类似于cache）。但问题在于每个线程的缓存区之间不可见，如果载入的是主存中的同一个变量，分别进行了更改，就会出现线程不同步的问题。</p>
+<p><strong>synchronized是如何实现同步的##</strong></p>
+<p>好吧其实很简单，比较机智的读者可能已经猜到了，他其实是使各个线程之间的高速缓存区失效了，然后线程要获取该变量的时候需要在主存中读写，这个时候对该变量的操作对于各个线程之间是可见的，然后操作结束之后再刷新其缓存区，</p>
+<p><strong>reentrantlock</strong></p>
+<p>synchonized的缺点。一是不灵活，<strong>synchonized在锁定之后必须要代码块结束之后才能释放锁</strong>，然后被其他线程获得。那么如果获取到锁的这个线程要执行非常长的时间呢，那其他的线程不是会一直阻塞在这里，这时如果有哪个线程生气了不想等了怎么办？抱歉不可以，需要一直等待。另一方面，同步锁的<strong>释放顺序也很固定</strong>，必须是加锁的反顺序，很不潇洒等等。。。</p>
+<p>声明了ReentrantLock对象后只需调用其中的lock方法便可直接加锁，而释放锁需要unlock方法。这样一是很灵活，<strong>不需要代码块结束再释放</strong>，还有就是 ReentrantLock是可中断的，如果等待的线程不想等了，好说，interrupt掉就好了，另外， <strong>ReentrantLock可以设为悲观锁和乐观锁，而synchonized则默认为悲观锁</strong>，不可改变，不够灵活。所以综上，ReentrantLock更加灵活多变。但大家在使用时一定要记得unlock，最好写在finally里面防止忘记，不然就会造成其他线程阻塞。</p>
+<h2 id="Java中的锁分类"><a href="#Java中的锁分类" class="headerlink" title="Java中的锁分类"></a>Java中的锁分类</h2><p>Java中锁分为以下几种：</p>
+<ul>
+<li>乐观锁、悲观锁</li>
+<li>独享锁、共享锁</li>
+<li>公平锁、非公平锁</li>
+<li>互斥锁、读写锁</li>
+<li>可重入锁</li>
+<li>分段锁</li>
+<li>锁升级(无锁 -&gt; 偏向锁 -&gt; 轻量级锁 -&gt; 重量级锁) JDK1.6</li>
+</ul>
+<p>这些锁的分类并不全是指锁的状态，有的指<strong>锁的特性，有的指锁的设计</strong>，下面总结的内容是对每个锁的名词进行一定的解释。</p>
+<h3 id="1、乐观锁-amp-悲观锁"><a href="#1、乐观锁-amp-悲观锁" class="headerlink" title="1、乐观锁 &amp; 悲观锁"></a>1、乐观锁 &amp; 悲观锁</h3><p>两种锁只是一种概念</p>
+<p><strong>乐观锁：</strong>乐观锁认为一个线程去拿数据的时候不会有其他线程对数据进行更改，所以不会上锁。</p>
+<p>实现方式：CAS机制、版本号机制</p>
+<p><strong>悲观锁：</strong>悲观锁认为一个线程去拿数据时一定会有其他线程对数据进行更改。所以一个线程在拿数据的时候都会顺便加锁，这样别的线程此时想拿这个数据就会阻塞。比如Java里面的synchronized关键字的实现就是悲观锁。实现方式：就是加锁。</p>
+<h3 id="2、独享锁-amp-共享锁"><a href="#2、独享锁-amp-共享锁" class="headerlink" title="2、独享锁 &amp; 共享锁"></a>2、独享锁 &amp; 共享锁</h3><p>两种锁只是一种概念</p>
+<p><strong>独享锁：</strong>该锁一次只能被一个线程所持有</p>
+<p><strong>共享锁：</strong>该锁可以被多个线程所持有</p>
+<p>举例：</p>
+<p>synchronized是独享锁；</p>
+<p>可重入锁ReentrantLock是独享锁；</p>
+<p>读写锁ReentrantReadWriteLock中的读锁ReadLock是共享锁，写锁WriteLock是独享锁。</p>
+<p>独享锁与共享锁通过AQS(AbstractQueuedSynchronizer)来实现的，通过实现不同的方法，来实现独享或者共享。</p>
+<h3 id="3、互斥锁-amp-读写锁"><a href="#3、互斥锁-amp-读写锁" class="headerlink" title="3、互斥锁 &amp; 读写锁"></a>3、互斥锁 &amp; 读写锁</h3><p>上面讲的独享锁/共享锁就是一种概念，互斥锁/读写锁是具体的实现。</p>
+<p><strong>互斥锁</strong>的具体实现就是synchronized、ReentrantLock。ReentrantLock是JDK1.5的新特性，采用ReentrantLock可以完全替代替换synchronized传统的锁机制，更加灵活。</p>
+<p><strong>读写锁</strong>的具体实现就是读写锁ReadWriteLock。</p>
+<h3 id="4、可重入锁"><a href="#4、可重入锁" class="headerlink" title="4、可重入锁"></a>4、可重入锁</h3><p>定义：对于同一个线程在外层方法获取锁的时候，在进入内层方法时也会自动获取锁。</p>
+<p>优点：避免死锁</p>
+<p>举例：ReentrantLock、synchronized</p>
+<h3 id="5、公平锁-amp-非公平锁"><a href="#5、公平锁-amp-非公平锁" class="headerlink" title="5、公平锁 &amp; 非公平锁"></a>5、公平锁 &amp; 非公平锁</h3><p><strong>公平锁：</strong>多个线程相互竞争时要排队，多个线程按照申请锁的顺序来获取锁。</p>
+<p><strong>非公平锁：</strong>多个线程相互竞争时，先尝试插队，插队失败再排队，比如：synchronized、ReentrantLock</p>
+<h3 id="6、分段锁"><a href="#6、分段锁" class="headerlink" title="6、分段锁"></a>6、分段锁</h3><p>分段锁并不是具体的一种锁，只是一种锁的设计。</p>
+<p>分段锁的设计目的是细化锁的粒度，当操作不需要更新整个数组的时候，就仅仅针对数组中的一项进行加锁操作。CurrentHashMap底层就用了分段锁，使用Segment，就可以进行并发使用了，而HashMap确实非线程安全的，就差在了分段锁上。</p>
+<h3 id="7、偏向锁-amp-轻量级锁-amp-重量级锁"><a href="#7、偏向锁-amp-轻量级锁-amp-重量级锁" class="headerlink" title="7、偏向锁 &amp; 轻量级锁 &amp; 重量级锁"></a>7、偏向锁 &amp; 轻量级锁 &amp; 重量级锁</h3><p>JDK 1.6 为了减少获得锁和释放锁所带来的性能消耗，在JDK 1.6里引入了4种锁的状态：<strong>无锁、偏向锁、轻量级锁和重量级锁</strong>，它会随着多线程的竞争情况逐渐升级，但不能降级。</p>
+<p>研究发现大多数情况下，锁不仅不存在多线程竞争，而且总是由同一线程多次获得，为了不让这个线程每次获得锁都需要CAS操作的性能消耗，就引入了偏向锁。当一个线程访问对象并获取锁时，会在对象头里存储锁偏向的这个线程的ID，以后该线程再访问该对象时只需判断对象头的Mark Word里是否有这个线程的ID，如果有就不需要进行CAS操作，这就是偏向锁。当线程竞争更激烈时，偏向锁就会升级为轻量级锁，轻量级锁认为虽然竞争是存在的，但是理想情况下竞争的程度很低，通过自旋方式等待一会儿上一个线程就会释放锁，但是当自旋超过了一定次数，或者一个线程持有锁，一个线程在自旋，又来了第三个线程访问时（反正就是竞争继续加大了），轻量级锁就会膨胀为重量级锁，重量级锁就是Synchronized,重量级锁会使除了此时拥有锁的线程以外的线程都阻塞。</p>
+<h2 id="Java数组和链表的区别"><a href="#Java数组和链表的区别" class="headerlink" title="Java数组和链表的区别"></a>Java数组和链表的区别</h2><p>从数据结构上说，数组的<strong>内存空间是连续的</strong>，我们创建数组的时候系统就会为我们开辟固定数目的内存空间，如果内存不足，就会创建失败，例如创建数组的两种方式：<br>int[] a=new int[3];<br>int[] b=new int[]{1,2,3};<br>可以看到我们创建数组的时候已经指定了数组的大小，且不能动态更改数组的大小，是因为创建时候已经分配了连续的固定内存空间，每个元素占用两个字节，这样我们就可以通过连续的内存，去访问数组的元素；</p>
+<p><strong>链表的内存分配是动态的</strong>，链表的元素占用的空间包含元素占用的空间，还有指向上一个或者下一个元素的指针（双链表，单链表）；</p>
+<p>这样我们可以得出各自的优缺点：</p>
+<p>数组链表的优缺点：<br><strong>数组占用空间小</strong>，链表元素还要包涵上一元素和下一个元素的的信息<br><strong>数组的访问速度快</strong>，因为内存是连续的<br><strong>数组内部元素可以随机访问</strong>，而链表依赖于上一个元素的信息</p>
+<p>链表的插入删除操作由于数组，因为内存不连续，只需要更改元素的前后节点信息就行了，并不需要更改元素内存地址，而数组的连续内存想要插入和删除的话就要移动所有的内存地址<br>链表的<strong>内存利用率高于数组</strong>，链表内存是分散的一个元素占用一块空间，数组元素少于内存空间的话，会有部分的内存浪费；<br>链表的<strong>扩展性强</strong>，数组的创建完成内存大小就确定了，满了就没法扩展只能再次创建新的数组，而链表可以随意的增加扩展</p>
+<p>效率：数组查询效率高，链表增，删效率高</p>
+<h2 id="列举两种单例模式"><a href="#列举两种单例模式" class="headerlink" title="列举两种单例模式"></a>列举两种单例模式</h2><p>Java中单例模式是一种常见的设计模式，单例模式的写法有好几种，这里主要介绍懒汉式单例、饿汉式单例.</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h3><p>意图：保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+<p>主要解决：一个全局使用的类频繁地创建与销毁。</p>
+<p>何时使用：当您<strong>想控制实例数目，节省系统资源的时候。</strong></p>
+<p>如何解决：判断系统是否已经有这个单例，如果有则返回，如果没有则创建。</p>
+<p>关键代码：构造函数是私有的。</p>
+<p>应用实例： 1、一个党只能有一个书记。 2、Windows 是多进程多线程的，在操作一个文件的时候，就不可避免地出现多个进程或线程同时操作一个文件的现象，所以所有文件的处理必须通过唯一的实例来进行。 3、一些设备管理器常常设计为单例模式，比如一个电脑有两台打印机，在输出的时候就要处理不能两台打印机打印同一个文件。</p>
+<p>优点： 1、在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。 2、避免对资源的多重占用（比如写文件操作）。</p>
+<p>缺点：没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
+<p>使用场景： 1、要求生产唯一序列号。 2、WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。 3、创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</p>
+<p>特点：</p>
+<ol>
+<li>单例模式只能有一个实例。</li>
+<li>单例模式必须自己创建自己的唯一实例。</li>
+<li>单例模式的构造器必须是私有，不允许外界通过构造器构建对象。</li>
+<li>单例模式只能通过公开的静态方法向外界返回类的唯一实例。</li>
+</ol>
+<h3 id="饿汉式单例"><a href="#饿汉式单例" class="headerlink" title="饿汉式单例"></a><strong>饿汉式单例</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonEH</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *是否 Lazy 初始化：否</span></span><br><span class="line"><span class="comment">     *是否多线程安全：是</span></span><br><span class="line"><span class="comment">     *实现难度：易</span></span><br><span class="line"><span class="comment">     *描述：这种方式比较常用，但容易产生垃圾对象。</span></span><br><span class="line"><span class="comment">     *优点：没有加锁，执行效率会提高。</span></span><br><span class="line"><span class="comment">     *缺点：类加载时就初始化，浪费内存。</span></span><br><span class="line"><span class="comment">     *它基于 classloder 机制避免了多线程的同步问题，</span></span><br><span class="line"><span class="comment">     * 不过，instance 在类装载时就实例化，虽然导致类装载的原因有很多种，</span></span><br><span class="line"><span class="comment">    * 在单例模式中大多数都是调用 getInstance 方法，</span></span><br><span class="line"><span class="comment">     * 但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，</span></span><br><span class="line"><span class="comment">     * 这时候初始化 instance 显然没有达到 lazy loading 的效果。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonEH instance = <span class="keyword">new</span> SingletonEH();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonEH</span> <span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonEH <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;instance:&quot;</span>+instance);</span><br><span class="line">        System.out.println(<span class="string">&quot;加载饿汉式....&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>饿汉就是类一旦加载，就把单例初始化完成，保证getInstance的时候，单例是已经存在的了。</p>
+<h3 id="懒汉式单例"><a href="#懒汉式单例" class="headerlink" title="懒汉式单例"></a><strong>懒汉式单例</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonLH</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *是否 Lazy 初始化：是</span></span><br><span class="line"><span class="comment">     *是否多线程安全：否</span></span><br><span class="line"><span class="comment">     *实现难度：易</span></span><br><span class="line"><span class="comment">     *描述：这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁 synchronized，所以严格意义上它并不算单例模式。</span></span><br><span class="line"><span class="comment">     *这种方式 lazy loading 很明显，不要求线程安全，在多线程不能正常工作。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonLH instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonLH</span> <span class="params">()</span></span>&#123;&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonLH <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonLH();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而懒汉比较懒，只有当调用getInstance的时候，才回去初始化这个单例。</p>
+<h3 id="1、线程安全："><a href="#1、线程安全：" class="headerlink" title="1、线程安全："></a><strong>1、线程安全：</strong></h3><p>饿汉式天生就是线程安全的，可以直接用于多线程而不会出现问题，</p>
+<p>懒汉式本身是非线程安全的，为了实现线程安全有几种写法。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonLHsyn</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *是否 Lazy 初始化：是</span></span><br><span class="line"><span class="comment">     *是否多线程安全：是</span></span><br><span class="line"><span class="comment">     *实现难度：易</span></span><br><span class="line"><span class="comment">     *描述：这种方式具备很好的 lazy loading，能够在多线程中很好的工作，但是，效率很低，99% 情况下不需要同步。</span></span><br><span class="line"><span class="comment">     *优点：第一次调用才初始化，避免内存浪费。</span></span><br><span class="line"><span class="comment">     *缺点：必须加锁 synchronized 才能保证单例，但加锁会影响效率。</span></span><br><span class="line"><span class="comment">     *getInstance() 的性能对应用程序不是很关键（该方法使用不太频繁）。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonLHsyn instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonLHsyn</span> <span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingletonLHsyn <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonLHsyn();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、资源加载和性能："><a href="#2、资源加载和性能：" class="headerlink" title="2、资源加载和性能："></a><strong>2、资源加载和性能：</strong></h3><p>饿汉式在类创建的同时就实例化一个静态对象出来，不管之后会不会使用这个单例，都会占据一定的内存，但是相应的，在第一次调用时速度也会更快，因为其资源已经初始化完成。</p>
+<p>而懒汉式顾名思义，会延迟加载，在第一次使用该单例的时候才会实例化对象出来，第一次调用时要做初始化，如果要做的工作比较多，性能上会有些延迟，之后就和饿汉式一样了。</p>
+<h3 id="为什么要用单例模式？"><a href="#为什么要用单例模式？" class="headerlink" title="为什么要用单例模式？"></a><strong>为什么要用单例模式？</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Printer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Printer printer =<span class="keyword">null</span>;<span class="comment">//创建一个私有的全局变量</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 如果有多线程并发访问时，上锁，让其排队等候，一次只能一人用。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Printer <span class="title">getPrinter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(printer==<span class="keyword">null</span>)&#123;<span class="comment">//如果为空，创建本实例</span></span><br><span class="line">            printer = <span class="keyword">new</span> Printer();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> printer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 构造私有化，保证在系统的使用中，只有一个实例</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Printer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从代码上来分析，单例模式，首先向外提供了一个可被访问的实例化的对象，如果没有此对象时，该printer类创建一个。如果遇到多线程并发访问，加上关键字Synchronized，上锁让没有持有该对象的类处于等待状态。当前持有该printer的线程任务结束之后，处于等待中的线程才能逐个去持有该实例，去操作其方法。这样的一个过程 在编程中被称为单例模式。<br>如果在系统中不使用单例模式的话，在碰到多线程访问的时候，<u>printer就会给要请求的类，分别在内存中new出一个printer对象</u>，让这些请求的类去做print方法。这样<u>大量占有内存，就会导致系统运行变慢</u>，像电脑的CPU一样，占有量极高，电脑卡死不动的感觉。因为系统的硬件设施需求变动量小，所以只能想出一个节约成本 的方法就是，单例模式，<u>让多线程处于等待的状态，一个 一个的去解决</u>，这样，即节约内存，提交了运行的成本。也就是单例存在的意义。</p>
+<h2 id="重写和重载的区别"><a href="#重写和重载的区别" class="headerlink" title="重写和重载的区别"></a>重写和重载的区别</h2><p><strong>重写</strong>:</p>
+<p>重写（Override）是<strong>父类与子类之间多态性的一种表现</strong>。如果在子类中定义某方法与其父类有<strong>相同的名称和参数</strong>，我们说该方法被重写 (Override)。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被“<strong>屏蔽</strong>”了。</p>
+<p><strong>重载：</strong></p>
+<p>重载（Overload）是<strong>一个类中多态性的一种表现</strong>。如果在一个类中定义了多个同名的方法，它们<strong>参数列表不同</strong>，则称为方法的重载(Overload)</p>
+<p><strong>区别：</strong>重载实现于一个类中;重写实现于子类中。</p>
+<p>重载(Overload)：是一个类中多态性的一种表现，指同一个类中不同的函数使用<strong>相同的函数名</strong>，但是<strong>函数的参数个数或类型不同</strong>。可以有<strong>不同的返回类型</strong>;可以有不同的访问修饰符;可以抛出不同的异常。调用的时候根据函数的参数来区别不同的函数。</p>
+<p>重写（Override): 是父类与子类之间的多态性，是<strong>子类对父类函数的重新实现</strong>。<strong>函数名和参数与父类一样</strong>，子类与父类<strong>函数体内容不一样</strong>。子类<strong>返回的类型</strong>必须与父类保持一致；子类方法访问修饰符的限制一定要大于父类方法的访问修饰（public&gt;protected&gt;default&gt;private）；子类重写方法一定不能抛出新的检查异常或者比被父类方法申明更加宽泛的检查型异常。</p>
+<h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a><strong>重载</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.etime09;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Goods</span> </span>&#123;  <span class="comment">//创建一个商品类 </span></span><br><span class="line"><span class="keyword">private</span> String ID;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> price;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> String manufactureDate;</span><br><span class="line"><span class="comment">//实现构造函数的重载 参数个数或类型不同</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Goods</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Goods</span><span class="params">(String iD)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	ID = iD;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Goods</span><span class="params">(String iD, <span class="keyword">int</span> price)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	ID = iD;</span><br><span class="line">	<span class="keyword">this</span>.price = price;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Goods</span><span class="params">(String iD, <span class="keyword">int</span> price, String name)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	ID = iD;</span><br><span class="line">	<span class="keyword">this</span>.price = price;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Goods</span><span class="params">(String iD, <span class="keyword">int</span> price, String name, String manufactureDate)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>();</span><br><span class="line">	ID = iD;</span><br><span class="line">	<span class="keyword">this</span>.price = price;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.manufactureDate = manufactureDate;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重写"><a href="#重写" class="headerlink" title="重写"></a><strong>重写</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.etime09;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  <span class="comment">//创建一个父类Person</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"><span class="comment">//父类中写一个eat()方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;人都要吃饭&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------------</span><br><span class="line"><span class="keyword">package</span> com.etime09;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;  <span class="comment">//Student子类继承Person父类</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="comment">//重写eat()方法   方法名，参数，返回类型相同；方法体内容不同</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;学生喜欢吃肉&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面向对象三大特征"><a href="#面向对象三大特征" class="headerlink" title="面向对象三大特征"></a>面向对象三大特征</h2><h3 id="1-封装-Encapsulation"><a href="#1-封装-Encapsulation" class="headerlink" title="(1)封装(Encapsulation)"></a>(1)封装(Encapsulation)</h3><p><strong>所谓封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏</strong>。封装是面向对象的特征之一，是对象和类概念的主要特性。简单的说，一个类就是一个封装了数据以及操作这些数据的代码的逻辑实体。在一个对象内部，某些代码或某些数据可以是私有的，不能被外界访问。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或错误的使用了对象的私有部分。</p>
+<hr>
+<h3 id="2-继承-Inheritance"><a href="#2-继承-Inheritance" class="headerlink" title="(2)继承(Inheritance)"></a>(2)继承(Inheritance)</h3><p><strong>继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展</strong>。通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。继承的过程，就是从一般到特殊的过程。要实现继承，可以通过“继承”（Inheritance）和“组合”（Composition）来实现。继承概念的实现方式有二类：<strong>实现继承与接口继承</strong>。</p>
+<ul>
+<li>实现继承是指直接使用基类的属性和方法而无需额外编码的能力；</li>
+<li>接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力。</li>
+</ul>
+<hr>
+<h3 id="3-多态-Polymorphism"><a href="#3-多态-Polymorphism" class="headerlink" title="(3)多态(Polymorphism)"></a>(3)多态(Polymorphism)</h3><p><strong>所谓多态就是指一个类实例的相同方法在不同情形有不同表现形式。多态机制使具有不同内部结构的对象可以共享相同的外部接口</strong>。这意味着，虽然针对不同对象的具体操作不同，但通过一个公共的类，它们（那些操作）可以通过相同的方式予以调用。最常见的多态就是将子类传入父类参数中，运行时调用父类方法时通过传入的子类决定具体的内部结构或行为。</p>
+<h2 id="MySQL两种引擎"><a href="#MySQL两种引擎" class="headerlink" title="MySQL两种引擎"></a>MySQL两种引擎</h2><p>MySQL应用最广泛的有两种存储引擎：</p>
+<p><strong>一个是MyISAM</strong>，不支持事务处理，读性能处理快，表级别锁。</p>
+<p><strong>一个是InnoDB</strong>，支持事务处理（ACID属性）,设计目标是为大数据处理，行级别锁，外键。</p>
+<p>ACID（Atomicity 原子性、Consistency 一致性、Isolation 隔离性、Durability 持久性）是一系列属性</p>
+<p>表锁：开销小，锁定粒度大，发生死锁概率高，相对并发也低。<br>行锁：开销大，锁定粒度小，发生死锁概率低，相对并发也高。</p>
+<p>InnoDB不支持FULLTEXT类型的索引。</p>
+<p>InnoDB 中不保存表的具体行数，也就是说，执行select count(<em>) from table时，InnoDB要扫描一遍整个表来计算有多少行，但是MyISAM只要简单的读出保存好的行数即可。注意的是，当count(</em>)语句包含 where条件时，两种表的操作是一样的。</p>
+<p>对于AUTO_INCREMENT类型的字段，InnoDB中必须包含只有该字段的索引，但是在MyISAM表中，可以和其他字段一起建立联合索引。</p>
+<p>DELETE FROM table时，InnoDB不会重新建立表，而是一行一行的删除。</p>
+<p>LOAD TABLE FROM MASTER操作对InnoDB是不起作用的，解决方法是首先把InnoDB表改成MyISAM表，导入数据后再改成InnoDB表，但是对于使用的额外的InnoDB特性(例如外键)的表不适用。</p>
+<p>另外，InnoDB表的行锁也不是绝对的，假如在执行一个SQL语句时MySQL不能确定要扫描的范围，InnoDB表同样会锁全表，例如update table set num=1 where name like “%aaa%”</p>
+<p>作为使用MySQL的用户角度出发，Innodb和MyISAM都是比较喜欢的，如果数据库平台要达到需求：99.9%的稳定性，方便的扩展性和高可用性来说的话，MyISAM绝对是首选。</p>
+<p>　　原因如下：</p>
+<p>　　1、平台上承载的大部分项目是读多写少的项目，而MyISAM的读性能是比Innodb强不少的。</p>
+<p>　　2、MyISAM的索引和数据是分开的，并且索引是有压缩的，内存使用率就对应提高了不少。能加载更多索引，而Innodb是索引和数据是紧密捆绑的，没有使用压缩从而会造成Innodb比MyISAM体积庞大不小。</p>
+<p>　　3、经常隔1，2个月就会发生应用开发人员不小心update一个表where写的范围不对，导致这个表没法正常用了，这个时候MyISAM的优越性就体现出来了，随便从当天拷贝的压缩包取出对应表的文件，随便放到一个数据库目录下，然后dump成sql再导回到主库，并把对应的binlog补上。如果是Innodb，恐怕不可能有这么快速度，别和我说让Innodb定期用导出xxx.sql机制备份，因为最小的一个数据库实例的数据量基本都是几十G大小。</p>
+<p>　　4、从接触的应用逻辑来说，select count(*) 和order by 是最频繁的，大概能占了整个sql总语句的60%以上的操作，而这种操作Innodb其实也是会锁表的，很多人以为Innodb是行级锁，那个只是where对它主键是有效，非主键的都会锁全表的。</p>
+<p>　　5、还有就是经常有很多应用部门需要我给他们定期某些表的数据，MyISAM的话很方便，只要发给他们对应那表的frm.MYD,MYI的文件，让他们自己在对应版本的数据库启动就行，而Innodb就需要导出xxx.sql了，因为光给别人文件，受字典数据文件的影响，对方是无法使用的。</p>
+<p>　　6、如果和MyISAM比insert写操作的话，Innodb还达不到MyISAM的写性能，如果是针对基于索引的update操作，虽然MyISAM可能会逊色Innodb,但是那么高并发的写，从库能否追的上也是一个问题，还不如通过多实例分库分表架构来解决。</p>
+<p>　　7、如果是用MyISAM的话，merge引擎可以大大加快应用部门的开发速度，他们只要对这个merge表做一些select count(*)操作，非常适合大项目总量约几亿的rows某一类型(如日志，调查统计)的业务表。</p>
+<p>　　当然Innodb也不是绝对不用，用事务的项目就用Innodb的。另外，可能有人会说你MyISAM无法抗太多写操作，但是可以通过架构来弥补。</p>
+<h2 id="预防死锁"><a href="#预防死锁" class="headerlink" title="预防死锁"></a>预防死锁</h2><p><strong>死锁</strong><br>当线程A持有独占锁a，并尝试去获取独占锁b的同时，线程B持有独占锁b，并尝试获取独占锁a的情况下，就会发生AB两个线程由于互相持有对方需要的锁，而发生的阻塞现象，我们称为死锁。</p>
+<p><strong>如何避免死锁？</strong></p>
+<p>教科书般的回答应该是，结合“哲学家就餐”模型，分析并总结出以下死锁的原因，最后得出“避免死锁就是破坏造成死锁的，若干条件中的任意一个”的结论。</p>
+<p>造成死锁必须达成的4个条件（原因）：</p>
+<ol>
+<li><strong>互斥条件</strong>：一个资源每次只能被一个线程使用。</li>
+<li><strong>请求与保持条件</strong>：一个线程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li><strong>不剥夺条件</strong>：线程已获得的资源，在未使用完之前，不能强行剥夺。</li>
+<li><strong>循环等待条件</strong>：若干线程之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+<p>但是，“哲学家就餐”光看名字就很讨厌，然后以上这4个条件看起来也很绕口，再加上笔者又是个懒人，所以要让我在面试时把这些“背诵”出来实在是太难了！必须要想办法把这4个条件简化一下！<br> 于是，通过对4个造成死锁的条件进行逐条分析，我们可以得出以下4个结论。</p>
+<ol>
+<li>互斥条件 —&gt; 独占锁的特点之一。</li>
+<li>请求与保持条件 —&gt; 独占锁的特点之一，尝试获取锁时并不会释放已经持有的锁</li>
+<li>不剥夺条件 —&gt; 独占锁的特点之一。</li>
+<li>循环等待条件 —&gt; 唯一需要记忆的造成死锁的条件。</li>
+</ol>
+<p>不错！复杂的死锁条件经过简化，现在需要记忆的仅只有独占锁与第四个条件而已。</p>
+<p>所以，面对如何避免死锁这个问题，我们只需要这样回答！<br> :   在并发程序中，避免了逻辑中出现复数个线程互相持有对方线程所需要的独占锁的情况，就可以避免死锁。</p>
+<h2 id="JVM内存结构-VS-Java内存模型-VS-Java对象模型"><a href="#JVM内存结构-VS-Java内存模型-VS-Java对象模型" class="headerlink" title="JVM内存结构 VS Java内存模型 VS Java对象模型"></a>JVM内存结构 VS Java内存模型 VS Java对象模型</h2><h3 id="JVM内存结构"><a href="#JVM内存结构" class="headerlink" title="JVM内存结构"></a>JVM内存结构</h3><p>Java代码是要运行在虚拟机上的，而虚拟机在执行Java程序的过程中会把所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途。其中有些区域随着虚拟机进程的启动而存在，而有些区域则依赖用户线程的启动和结束而建立和销毁。</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5CQQ20180624-150918.png" alt="QQ20180624-150918"></p>
+<p>1、以上是Java虚拟机规范，不同的虚拟机实现会各有不同，但是一般会遵守规范。</p>
+<p>2、规范中定义的方法区，只是一种概念上的区域，并说明了其应该具有什么功能。但是并没有规定这个区域到底应该处于何处。所以，对于不同的虚拟机实现来说，是由一定的自由度的。</p>
+<p>3、不同版本的方法区所处位置不同，上图中划分的是逻辑区域，并不是绝对意义上的物理区域。因为某些版本的JDK中方法区其实是在堆中实现的。</p>
+<p>4、运行时常量池用于存放编译期生成的各种字面量和符号应用。但是，Java语言并不要求常量只有在编译期才能产生。比如在运行期，String.intern也会把新的常量放入池中。</p>
+<p>5、除了以上介绍的JVM运行时内存外，还有一块内存区域可供使用，那就是直接内存。Java虚拟机规范并没有定义这块内存区域，所以他并不由JVM管理，是利用本地方法库直接在堆外申请的内存区域。</p>
+<p>6、堆和栈的数据划分也不是绝对的，如HotSpot的JIT会针对对象分配做相应的优化。</p>
+<p>如上，做个总结，JVM内存结构，由Java虚拟机规范定义。描述的是Java程序执行过程中，由JVM管理的不同数据区域。各个区域有其特定的功能。</p>
+<h3 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h3><p>Java内存模型看上去和Java内存结构（JVM内存结构）差不多，很多人会误以为两者是一回事。</p>
+<p>在前面的关于JVM的内存结构的图中，我们可以看到，其中Java堆和方法区的区域是多个线程共享的数据区域。也就是说，多个线程可能可以操作保存在堆或者方法区中的同一个数据。这也就是我们常说的“Java的线程间通过共享内存进行通信”。</p>
+<p>Java内存模型是根据英文Java Memory Model（JMM）翻译过来的。其实JMM并不像JVM内存结构一样是真实存在的。他只是一个<strong>抽象的概念</strong>。<a target="_blank" rel="noopener" href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf">JSR-133: Java Memory Model and Thread Specification</a>中描述了，JMM是<strong>和多线程相关的</strong>，他描述了<strong>一组规则或规范</strong>，这个规范定义了一个线程对共享变量的写入时对另一个线程是可见的。</p>
+<p>那么，简单总结下，<strong>Java的多线程之间是通过共享内存进行通信的</strong>，而由于采用共享内存进行通信，在通信过程中会存在一系列如<strong>可见性、原子性、顺序性等问题</strong>，而JMM就是围绕着多线程通信以及与其相关的一系列特性而建立的模型。JMM定义了一些语法集，这些语法集映射到Java语言中就是volatile、synchronized等关键字。</p>
+<p><a target="_blank" rel="noopener" href="http://www.hollischuang.com/wp-content/uploads/2018/06/11.png"><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C11.png" alt="11"></a></p>
+<p>在Java中，JMM是一个非常重要的概念，正是由于有了JMM，Java的并发编程才能避免很多问题。这里就不对Java内存模型做更加详细的介绍了，想了解更多的朋友可以参考《Java并发编程的艺术》。</p>
+<h3 id="Java对象模型"><a href="#Java对象模型" class="headerlink" title="Java对象模型"></a>Java对象模型</h3><p>Java是一种面向对象的语言，而Java对象在JVM中的存储也是有一定的结构的。而这个关于Java对象自身的存储模型称之为Java对象模型。</p>
+<p>HotSpot虚拟机中，设计了一个OOP-Klass Model。OOP（Ordinary Object Pointer）指的是普通对象指针，而Klass用来描述对象实例的具体类型。</p>
+<p>每一个Java类，在被JVM加载的时候，JVM会给这个类创建一个<code>instanceKlass</code>，保存在方法区，用来在JVM层表示该Java类。当我们在Java代码中，使用new创建一个对象的时候，JVM会创建一个<code>instanceOopDesc</code>对象，这个对象中包含了对象头以及实例数据。</p>
+<p><a target="_blank" rel="noopener" href="http://www.hollischuang.com/wp-content/uploads/2018/06/20170615230126453.jpeg"><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C20170615230126453.jpeg" alt="20170615230126453"></a></p>
+<p>这就是一个简单的Java对象的OOP-Klass模型，即Java对象模型。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我们再来区分下JVM内存结构、 Java内存模型 以及 Java对象模型 三个概念。</p>
+<p>JVM内存结构，和Java虚拟机的运行时区域有关。 Java内存模型，和Java的并发编程有关。 Java对象模型，和Java对象在虚拟机中的表现形式有关。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

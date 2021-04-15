@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Mybatis - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E4%BB%A3%E7%90%86Dao-%E5%AE%9E%E7%8E%B0CRUD-%E6%93%8D%E4%BD%9C"><span class="toc-text">基于代理Dao 实现CRUD 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="toc-text">使用要求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%B9%E6%8D%AEID-%E6%9F%A5%E8%AF%A2"><span class="toc-text">1.根据ID 查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E5%9C%A8%E6%8C%81%E4%B9%85%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%B8%AD%E6%B7%BB%E5%8A%A0findById-%E6%96%B9%E6%B3%95"><span class="toc-text">1.1在持久层接口中添加findById 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E5%9C%A8%E7%94%A8%E6%88%B7%E7%9A%84%E6%98%A0%E5%B0%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">1.2在用户的映射配置文件中配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E5%9C%A8%E6%B5%8B%E8%AF%95%E7%B1%BB%E6%B7%BB%E5%8A%A0%E6%B5%8B%E8%AF%95"><span class="toc-text">1.3在测试类添加测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%9D%E5%AD%98%E6%93%8D%E4%BD%9C"><span class="toc-text">2.保存操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E5%9C%A8%E6%8C%81%E4%B9%85%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-text">2.1在持久层接口中添加新增方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E5%9C%A8%E7%94%A8%E6%88%B7%E7%9A%84%E6%98%A0%E5%B0%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">2.2在用户的映射配置文件中配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E6%B7%BB%E5%8A%A0%E6%B5%8B%E8%AF%95%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">2.3添加测试类中的测试方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9A%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7id-%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-text">扩展：新增用户id 的返回值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%94%A8%E6%88%B7%E6%9B%B4%E6%96%B0"><span class="toc-text">3.用户更新</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E5%9C%A8%E6%8C%81%E4%B9%85%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-text">3.1在持久层接口中添加新增方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E5%9C%A8%E7%94%A8%E6%88%B7%E7%9A%84%E6%98%A0%E5%B0%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">3.2在用户的映射配置文件中配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E6%B7%BB%E5%8A%A0%E6%B5%8B%E8%AF%95%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">3.3添加测试类中的测试方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%94%A8%E6%88%B7%E5%88%A0%E9%99%A4"><span class="toc-text">4.用户删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E5%9C%A8%E6%8C%81%E4%B9%85%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-text">4.1在持久层接口中添加新增方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2%E5%9C%A8%E7%94%A8%E6%88%B7%E7%9A%84%E6%98%A0%E5%B0%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">4.2在用户的映射配置文件中配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3%E6%B7%BB%E5%8A%A0%E6%B5%8B%E8%AF%95%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">4.3添加测试类中的测试方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%94%A8%E6%88%B7%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-text">5.用户模糊查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E5%9C%A8%E6%8C%81%E4%B9%85%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="toc-text">5.1在持久层接口中添加新增方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E5%9C%A8%E7%94%A8%E6%88%B7%E7%9A%84%E6%98%A0%E5%B0%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">5.2在用户的映射配置文件中配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E6%B7%BB%E5%8A%A0%E6%B5%8B%E8%AF%95%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">5.3添加测试类中的测试方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SqlMapConfig-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">SqlMapConfig.xml配置文件</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Mybatis
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-12-12 10:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#框架学习" title="框架学习">框架学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="基于代理Dao-实现CRUD-操作"><a href="#基于代理Dao-实现CRUD-操作" class="headerlink" title="基于代理Dao 实现CRUD 操作"></a>基于代理Dao 实现CRUD 操作</h1><h2 id="使用要求："><a href="#使用要求：" class="headerlink" title="使用要求："></a>使用要求：</h2><ol>
+<li>持久层接口和持久层接口的映射配置必须在相同的包下</li>
+<li>持久层映射配置中mapper 标签的namespace 属性取值必须是持久层接口的全限定类名</li>
+<li>SQL 语句的配置标签<select>,<insert>,<delete>,<update>的id 属性必须和持久层接口的方法名相同。</li>
+</ol>
+<p>实例所用数据库user表结构：</p>
+<p><img src="C:\Users\Powerwenwh\Documents_posts\Mybatisi.assets\image-20201212192704973.png" alt="image-20201212192704973"></p>
+<h2 id="1-根据ID-查询"><a href="#1-根据ID-查询" class="headerlink" title="1.根据ID 查询"></a>1.根据ID 查询</h2><h3 id="1-1在持久层接口中添加findById-方法"><a href="#1-1在持久层接口中添加findById-方法" class="headerlink" title="1.1在持久层接口中添加findById 方法"></a>1.1在持久层接口中添加findById 方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">User <span class="title">findById</span><span class="params">(Integer userId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-2在用户的映射配置文件中配置"><a href="#1-2在用户的映射配置文件中配置" class="headerlink" title="1.2在用户的映射配置文件中配置"></a>1.2在用户的映射配置文件中配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 根据id 查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.itheima.domain.User&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span>&gt;</span></span><br><span class="line">select * from user where id = #&#123;uid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>细节：</p>
+<ul>
+<li>resultType 属性：<pre><code>    用于指定结果集的类型。
+</code></pre>
+</li>
+<li>parameterType 属性：<pre><code>    用于指定传入参数的类型。
+</code></pre>
+</li>
+<li>sql 语句中使用#{}字符：<pre><code>    它代表占位符，相当于原来jdbc 部分所学的?，都是用于执行语句时替换实际的数据。
+    具体的数据是由#&#123;&#125;里面的内容决定的。
+</code></pre>
+</li>
+<li>#{}中内容的写法：<pre><code>    由于数据类型是基本类型，所以此处可以随意写。
+</code></pre>
+</li>
+</ul>
+<h3 id="1-3在测试类添加测试"><a href="#1-3在测试类添加测试" class="headerlink" title="1.3在测试类添加测试"></a>1.3在测试类添加测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybastisCRUDTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> InputStream in;</span><br><span class="line">    <span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line">    <span class="keyword">private</span> IUserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="comment">//1.读取配置文件，生成字节输入流</span></span><br><span class="line">        in = Resources.getResourceAsStream(<span class="string">&quot;SqlMapConfig.xml&quot;</span>);</span><br><span class="line">        <span class="comment">//2.获取SqlSessionFactory</span></span><br><span class="line">        SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(in);</span><br><span class="line">        <span class="comment">//3.获取SqlSession对象</span></span><br><span class="line">        sqlSession = factory.openSession();</span><br><span class="line">        <span class="comment">//4.获取dao的代理对象</span></span><br><span class="line">        userDao = sqlSession.getMapper(IUserDao.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        sqlSession.commit();</span><br><span class="line">        <span class="comment">//6.释放资源</span></span><br><span class="line">        sqlSession.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindById</span><span class="params">()</span></span>&#123;</span><br><span class="line">        User user = userDao.findById(<span class="number">50</span>);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-保存操作"><a href="#2-保存操作" class="headerlink" title="2.保存操作"></a>2.保存操作</h2><h3 id="2-1在持久层接口中添加新增方法"><a href="#2-1在持久层接口中添加新增方法" class="headerlink" title="2.1在持久层接口中添加新增方法"></a>2.1在持久层接口中添加新增方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2在用户的映射配置文件中配置"><a href="#2-2在用户的映射配置文件中配置" class="headerlink" title="2.2在用户的映射配置文件中配置"></a>2.2在用户的映射配置文件中配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--保存用户--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;saveUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.wwh.domain.User&quot;</span>&gt;</span></span><br><span class="line">	insert into user(username, address, sex, birthday)values(#&#123;username&#125;,#&#123;address&#125;,#&#123;sex&#125;,#&#123;birthday&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>细节：</p>
+<ul>
+<li>parameterType 属性：<pre><code>    代表参数的类型，因为我们要传入的是一个类的对象，所以类型就写类的全名称。
+</code></pre>
+</li>
+<li>#{}中内容的写法：<pre><code>    由于我们保存方法的参数是 一个User 对象，此处要写User 对象中的属性名称。它用的是ognl 表达式。
+</code></pre>
+</li>
+<li>ognl 表达式：<pre><code>    它是apache 提供的一种表达式语言，全称是：
+        Object Graphic Navigation Language 对象图导航语言
+    它是按照一定的语法格式来获取数据的。
+    语法格式就是使用 #&#123;对象.对象&#125;的方式
+    #&#123;user.username&#125;它会先去找user 对象，然后在user 对象中找到username 属性，并调用
+    getUsername()方法把值取出来。但是我们在parameterType 属性上指定了实体类名称，所以可以省略user.而直接写username。
+</code></pre>
+</li>
+</ul>
+<h3 id="2-3添加测试类中的测试方法"><a href="#2-3添加测试类中的测试方法" class="headerlink" title="2.3添加测试类中的测试方法"></a>2.3添加测试类中的测试方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSave</span><span class="params">()</span></span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setAddress(<span class="string">&quot;地址1&quot;</span>);</span><br><span class="line">    user.setBirthday(<span class="keyword">new</span> Date());</span><br><span class="line">    user.setUsername(<span class="string">&quot;姓名1&quot;</span>);</span><br><span class="line">    user.setSex(<span class="string">&quot;男&quot;</span>);</span><br><span class="line"></span><br><span class="line">    userDao.saveUser(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>细节：</p>
+<ul>
+<li><p>保存后Mysql会自动添加id的值,id 是由数据库的自动增长来实现的。</p>
+</li>
+<li><p>执行后打开Mysql 数据库发现并没有添加任何记录，原因是什么？<br>这一点和jdbc 是一样的，我们在实现增删改时一定要去控制事务的提交，那么在mybatis 中如何控制事务提交呢？</p>
+</li>
+<li><p>可以使用:session.commit();来实现事务提交。加入事务提交后的代码如下：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@After</span><span class="comment">//在测试方法执行完成之后执行</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    session.commit();</span><br><span class="line">    <span class="comment">//7.释放资源</span></span><br><span class="line">    session.close();</span><br><span class="line">    in.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="扩展：新增用户id-的返回值"><a href="#扩展：新增用户id-的返回值" class="headerlink" title="扩展：新增用户id 的返回值"></a>扩展：新增用户id 的返回值</h4><p>新增用户后，同时还要返回当前新增用户的id 值，因为id 是由数据库的自动增长来实现的，所以就相<br>当于我们要在新增后将自动增长auto_increment 的值返回。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;saveUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;USER&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置保存时获取插入的id --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">keyColumn</span>=<span class="string">&quot;id&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;id&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;int&quot;</span>&gt;</span></span><br><span class="line">        select last_insert_id();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span></span><br><span class="line">    insert into user(username,birthday,sex,address)</span><br><span class="line">    values(#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-用户更新"><a href="#3-用户更新" class="headerlink" title="3.用户更新"></a>3.用户更新</h2><h3 id="3-1在持久层接口中添加新增方法"><a href="#3-1在持久层接口中添加新增方法" class="headerlink" title="3.1在持久层接口中添加新增方法"></a>3.1在持久层接口中添加新增方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2在用户的映射配置文件中配置"><a href="#3-2在用户的映射配置文件中配置" class="headerlink" title="3.2在用户的映射配置文件中配置"></a>3.2在用户的映射配置文件中配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 更新用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.itheima.domain.User&quot;</span>&gt;</span></span><br><span class="line">    update user set username=#&#123;username&#125;,birthday=#&#123;birthday&#125;,sex=#&#123;sex&#125;,address=#&#123;address&#125; where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3添加测试类中的测试方法"><a href="#3-3添加测试类中的测试方法" class="headerlink" title="3.3添加测试类中的测试方法"></a>3.3添加测试类中的测试方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdateUser</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//1.根据id 查询</span></span><br><span class="line">    User user = userDao.findById(<span class="number">52</span>);</span><br><span class="line">    <span class="comment">//2.更新操作</span></span><br><span class="line">    user.setAddress(<span class="string">&quot;北京市顺义区&quot;</span>);</span><br><span class="line">    <span class="keyword">int</span> res = userDao.updateUser(user);</span><br><span class="line">    System.out.println(res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-用户删除"><a href="#4-用户删除" class="headerlink" title="4.用户删除"></a>4.用户删除</h2><h3 id="4-1在持久层接口中添加新增方法"><a href="#4-1在持久层接口中添加新增方法" class="headerlink" title="4.1在持久层接口中添加新增方法"></a>4.1在持久层接口中添加新增方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deleteUser</span><span class="params">(Integer userId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-2在用户的映射配置文件中配置"><a href="#4-2在用户的映射配置文件中配置" class="headerlink" title="4.2在用户的映射配置文件中配置"></a>4.2在用户的映射配置文件中配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 删除用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span>&gt;</span></span><br><span class="line">delete from user where id = #&#123;uid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3添加测试类中的测试方法"><a href="#4-3添加测试类中的测试方法" class="headerlink" title="4.3添加测试类中的测试方法"></a>4.3添加测试类中的测试方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteUser</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//6.执行操作</span></span><br><span class="line">    <span class="keyword">int</span> res = userDao.deleteUser(<span class="number">52</span>);</span><br><span class="line">    System.out.println(res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-用户模糊查询"><a href="#5-用户模糊查询" class="headerlink" title="5.用户模糊查询"></a>5.用户模糊查询</h2><h3 id="5-1在持久层接口中添加新增方法"><a href="#5-1在持久层接口中添加新增方法" class="headerlink" title="5.1在持久层接口中添加新增方法"></a>5.1在持久层接口中添加新增方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">List&lt;User&gt; <span class="title">findByName</span><span class="params">(String username)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-2在用户的映射配置文件中配置"><a href="#5-2在用户的映射配置文件中配置" class="headerlink" title="5.2在用户的映射配置文件中配置"></a>5.2在用户的映射配置文件中配置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 根据名称模糊查询 --&gt;</span><br><span class="line">&lt;select id=<span class="string">&quot;findByName&quot;</span> resultType=<span class="string">&quot;com.itheima.domain.User&quot;</span> parameterType=<span class="string">&quot;String&quot;</span>&gt;</span><br><span class="line">select * from user where username like #&#123;username&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-3添加测试类中的测试方法"><a href="#5-3添加测试类中的测试方法" class="headerlink" title="5.3添加测试类中的测试方法"></a>5.3添加测试类中的测试方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindByName</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//5.执行查询一个方法</span></span><br><span class="line">    List&lt;User&gt; users = userDao.findByName(<span class="string">&quot;%王%&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(User user : users)&#123;</span><br><span class="line">    	System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Powerwenwh\Documents_posts\Mybatisi.assets\image-20201212205615436.png" alt="image-20201212205615436"></p>
+<p>细节：</p>
+<ul>
+<li>在配置文件中没有加入%来作为模糊查询的条件，所以在传入字符串实参时，就需要给定模糊查询的标识%。配置文件中的#{username}也只是一个占位符，所以SQL 语句显示为“？”</li>
+</ul>
+<h2 id="SqlMapConfig-xml配置文件"><a href="#SqlMapConfig-xml配置文件" class="headerlink" title="SqlMapConfig.xml配置文件"></a>SqlMapConfig.xml配置文件</h2>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

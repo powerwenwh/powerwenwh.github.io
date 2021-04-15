@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        递归和迭代的区别、联系、优缺点及实例对比 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%86"><span class="toc-text">1.概念区分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text">递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3"><span class="toc-text">迭代</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BE%A9%E8%AF%81%E7%9C%8B%E9%80%92%E5%BD%92%E5%92%8C%E8%BF%AD%E4%BB%A3"><span class="toc-text">2.辩证看递归和迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%80%BB%E7%BB%93"><span class="toc-text">3.总结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        递归和迭代的区别、联系、优缺点及实例对比
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-10-17 17:16:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="1-概念区分"><a href="#1-概念区分" class="headerlink" title="1.概念区分"></a>1.概念区分</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>程序调用自身的编程技巧称为递归,是函数自己调用自己</p>
+<p>一个函数在其定义中直接或间接调用自身的一种方法,它通常把一个大型的复杂的问题转化为一个与原问题相似的规模较小的问题来解决,可以极大的减少代码量.递归的能力在于用有限的语句来定义对象的无限集合</p>
+<p>使用递归要注意的有两点:</p>
+<ol>
+<li><p>递归就是在过程或函数里面调用自身</p>
+</li>
+<li><p>在使用递归时,必须有一个明确的递归结束条件,称为<strong>递归出口</strong></p>
+</li>
+</ol>
+<p>递归分为两个阶段:</p>
+<p>1)递推:把复杂的问题的求解推到比原问题简单一些的问题的求解;</p>
+<p>2)回归:当获得最简单的情况后,逐步返回,依次得到复杂的解.</p>
+<p>利用递归可以解决很多问题:如背包问题,汉诺塔问题,…等.</p>
+<p>斐波那契数列为:0,1,1,2,3,5…</p>
+<p><strong>由于递归引起一系列的函数调用,并且有可能会有一系列的重复计算,递归算法的执行效率相对较低.</strong></p>
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>利用变量的原值推算出变量的一个新值,如果递归是自己调用自己的话,迭代就是A不停的调用B</p>
+<h2 id="2-辩证看递归和迭代"><a href="#2-辩证看递归和迭代" class="headerlink" title="2.辩证看递归和迭代"></a>2.辩证看递归和迭代</h2><p>递归的使用可以使代码更简洁清晰，可读性更好，但由于递归需要系统堆栈，所以空间消耗要比非递归代码要大很多，而且，如果递归深度太大，可能系统资源会不够用。</p>
+<p><strong>往往有这样的观点：能不用递归就不用递归，递归都可以用迭代来代替。</strong></p>
+<p>在理论上，递归和迭代在时间复杂度方面是等价的（在不考虑函数调用开销和函数调用产生的堆栈开销），但实际上递归确实效率比迭代低，递归没有任何优势，是不是就没有使用递归的必要了，那递归的存在有何意义呢？</p>
+<p>从算法结构来说，递归声明的结构并不总能够转换为迭代结构，原因在于结构的引申本身属于递归的概念，<strong>用迭代的方法在设计初期根本无法实现</strong>。这也是为什么在结构设计时，通常采用递归的方式而不是采用迭代的方式的原因，一个极典型的例子类似于链表，使用递归定义及其简单，但对于内存定义(数组方式)其定义及调用处理说明就变得很晦涩，尤其是在遇到环链、图、网格等问题时，使用迭代方式从描述到实现上都变得不现实。因而可以从实际上说，所有的迭代可以转换为递归，但递归不一定可以转换为迭代。</p>
+<p>递归其实是方便了程序员难为了机器，递归可以通过数学公式很方便的转换为程序。其优点就是易理解，容易编程。但<strong>递归是用栈机制实现的，每深入一层，都要占去一块栈数据区域，对嵌套层数深的一些算法，递归会力不从心，空间上会以内存崩溃而告终，而且递归也带来了大量的函数调用，这也有许多额外的时间开销。所以在深度大时，它的时空性就不好了。</strong></p>
+<p>而迭代虽然效率高，运行时间只因循环次数增加而增加，没什么额外开销，空间上也没有什么增加，但缺点就是不容易理解，编写复杂问题时困难。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th align="left">定义</th>
+<th align="left">优点</th>
+<th align="left">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>递归</td>
+<td align="left">程序调用自身的编程技巧称为递归</td>
+<td align="left">1）大问题化为小问题,可以极大的减少代码量；<br>2）用有限的语句来定义对象的无限集合<br>3）代码更简洁清晰，可读性更好</td>
+<td align="left">1）递归调用函数,浪费空间<br>2）递归太深容易造成堆栈的溢出；</td>
+</tr>
+<tr>
+<td>迭代</td>
+<td align="left">利用变量的原值推算出变量的一个新值，迭代就是A不停的调用B</td>
+<td align="left">1）迭代效率高，运行时间只因循环次数增加而增加<br>2）没什么额外开销，空间上也没有什么增加，</td>
+<td align="left">1） 不容易理解<br>2） 代码不如递归简洁<br>3） 编写复杂问题时困难。</td>
+</tr>
+</tbody></table>
+<p><strong>二者关系</strong></p>
+<ol>
+<li><p>递归中一定有迭代,但是迭代中不一定有递归,大部分可以相互转换</p>
+</li>
+<li><p>能用迭代的不用递归,递归调用函数,浪费空间,并且递归太深容易造成堆栈的溢出</p>
+</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

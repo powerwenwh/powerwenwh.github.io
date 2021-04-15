@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        二叉树 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E7%9A%84%E8%8A%82%E7%82%B9%E7%BB%93%E6%9E%84"><span class="toc-text">1. 数的节点结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86%E7%9A%84%E8%A7%A3%E6%B3%95"><span class="toc-text">2. 树的前序遍历，中序遍历，后续遍历的解法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E8%A7%A3%E6%B3%95"><span class="toc-text">递归解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E8%A7%A3%E6%B3%95"><span class="toc-text">迭代解法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">前序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">中序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86"><span class="toc-text">后续遍历</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B1%82%E5%BA%8F%E9%A1%BA%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">3.层序顺序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%90%E7%94%A8%E9%80%92%E5%BD%92%E8%A7%A3%E5%86%B3%E6%A0%91%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-text">4.运用递归解决树的相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E8%87%AA%E9%A1%B6%E8%80%8C%E4%B8%8B%E2%80%9D%E5%92%8C%E2%80%9C%E8%87%AA%E5%BA%95%E8%80%8C%E4%B8%8A%E2%80%9D%E7%9A%84%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">“自顶而下”和“自底而上”的解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Part1-%E2%80%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E2%80%9D-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">Part1.“自顶向下” 的解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part2-%E2%80%9C%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E2%80%9D-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">Part2.“自底向上” 的解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E4%B8%80%EF%BC%9A%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6"><span class="toc-text">经典例题一：二叉树的最大深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%98%85%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E4%BA%8C%EF%BC%9A%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">★经典例题二：对称二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E9%80%92%E5%BD%92"><span class="toc-text">方法一：递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E8%BF%AD%E4%BB%A3"><span class="toc-text">方法二：迭代</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%98%85%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E4%B8%89%EF%BC%9A%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C"><span class="toc-text">★经典例题三：路径总和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%98%85%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E5%9B%9B%EF%BC%9A%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">★经典例题四：从中序与后序遍历序列构造二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%98%85%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E4%BA%94%EF%BC%9A%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">★经典例题五：从前序与中序遍历序列构造二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E5%85%AD%EF%BC%9A%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88"><span class="toc-text">例题六：填充每个节点的下一个右侧节点指针</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%B7%B2%E5%BB%BA%E7%AB%8B%E7%9A%84-next-%E6%8C%87%E9%92%88"><span class="toc-text">方法一：使用已建立的 next 指针</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%B8%83%EF%BC%9A%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88-II"><span class="toc-text">例题七：填充每个节点的下一个右侧节点指针 II</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E5%85%AB%EF%BC%9A%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88"><span class="toc-text">例题八：填充每个节点的下一个右侧节点指针</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        二叉树
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-10-15 12:07:32</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>树是一种经常用到的数据结构，用来模拟具有树状结构性质的数据集合。</p>
+<p>树里的每一个节点有一个值和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有N 个节点和N-1 条边的一个有向无环图。</p>
+<p>二叉树是一种更为典型的树状结构。如它名字所描述的那样，二叉树是每个节点最多有两个子树的树结构，通常子树被称作“左子树”和“右子树”。</p>
+<p><strong>知识点：</strong>  </p>
+<ol>
+<li>树的节点结构</li>
+<li>深度优先搜索（DFS）：树的前序遍历，中序遍历，后续遍历的解法<ul>
+<li>递归</li>
+<li>迭代</li>
+</ul>
+</li>
+<li>层序顺序遍历（使用队列）</li>
+<li>运用递归解决树的相关问题<ul>
+<li>“自顶而下”和“自底而上”的解题思路</li>
+<li>二叉树的最大深度</li>
+<li>对称二叉树</li>
+<li>路径总和</li>
+</ul>
+</li>
+<li>总结</li>
+</ol>
+<h2 id="1-数的节点结构"><a href="#1-数的节点结构" class="headerlink" title="1. 数的节点结构"></a>1. 数的节点结构</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> data;  </span><br><span class="line">    <span class="keyword">private</span> Node leftNode;  </span><br><span class="line">    <span class="keyword">private</span> Node rightNode;  </span><br><span class="line"></span><br><span class="line">    TreeNode(<span class="keyword">int</span> val) &#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data, Node leftNode, Node rightNode)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.data = data;  </span><br><span class="line">        <span class="keyword">this</span>.leftNode = leftNode;  </span><br><span class="line">        <span class="keyword">this</span>.rightNode = rightNode;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> data;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.data = data;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">getLeftNode</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> leftNode;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLeftNode</span><span class="params">(Node leftNode)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.leftNode = leftNode;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">getRightNode</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> rightNode;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRightNode</span><span class="params">(Node rightNode)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.rightNode = rightNode;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>创建二叉树的时候注意必须逆序建立，先建立子节点，再逆序往上建立，因为非叶子结点会使用到下面的节点，而初始化是按顺序初始化的，不逆序建立会报错 。</p>
+<h2 id="2-树的前序遍历，中序遍历，后续遍历的解法"><a href="#2-树的前序遍历，中序遍历，后续遍历的解法" class="headerlink" title="2. 树的前序遍历，中序遍历，后续遍历的解法"></a>2. 树的前序遍历，中序遍历，后续遍历的解法</h2><p>树的前序遍历，中序遍历，后续遍历的解法有递归和迭代两种</p>
+<h3 id="递归解法"><a href="#递归解法" class="headerlink" title="递归解法"></a>递归解法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">theFirstTraversal</span><span class="params">(Node root)</span> </span>&#123;  <span class="comment">//先序遍历  </span></span><br><span class="line">        printNode(root);  </span><br><span class="line">        <span class="keyword">if</span> (root.getLeftNode() != <span class="keyword">null</span>) &#123;  <span class="comment">//使用递归进行遍历左孩子  </span></span><br><span class="line">            theFirstTraversal(root.getLeftNode());  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (root.getRightNode() != <span class="keyword">null</span>) &#123;  <span class="comment">//递归遍历右孩子  </span></span><br><span class="line">            theFirstTraversal(root.getRightNode());  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">theInOrderTraversal</span><span class="params">(Node root)</span> </span>&#123;  <span class="comment">//中序遍历  </span></span><br><span class="line">    <span class="keyword">if</span> (root.getLeftNode() != <span class="keyword">null</span>) &#123;  </span><br><span class="line">        theInOrderTraversal(root.getLeftNode());  </span><br><span class="line">    &#125;  </span><br><span class="line">    printNode(root);  </span><br><span class="line">    <span class="keyword">if</span> (root.getRightNode() != <span class="keyword">null</span>) &#123;  </span><br><span class="line">        theInOrderTraversal(root.getRightNode());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">thePostOrderTraversal</span><span class="params">(Node root)</span> </span>&#123;  <span class="comment">//后序遍历  </span></span><br><span class="line">    <span class="keyword">if</span> (root.getLeftNode() != <span class="keyword">null</span>) &#123;  </span><br><span class="line">        thePostOrderTraversal(root.getLeftNode());  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">if</span>(root.getRightNode() != <span class="keyword">null</span>) &#123;  </span><br><span class="line">        thePostOrderTraversal(root.getRightNode());  </span><br><span class="line">    &#125;  </span><br><span class="line">    printNode(root);  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代解法"><a href="#迭代解法" class="headerlink" title="迭代解法"></a>迭代解法</h3><h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建两个链接列表对象，指定TreeNode类型的作为栈来使用，Integer类型的用作存储排好序的数据</span></span><br><span class="line">    LinkedList&lt;TreeNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    LinkedList&lt;Integer&gt; output = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">//判断传进来的参数是否为空，空的话返回空链表</span></span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> output;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//把头节点存入栈</span></span><br><span class="line">    stack.add(root);</span><br><span class="line">    <span class="comment">//while循环的条件很关键，</span></span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        <span class="comment">//设置一个临时变量Node,用于操作栈，把栈中的值存入output中，出栈，按先序遍历顺序入栈</span></span><br><span class="line">        TreeNode node = <span class="keyword">new</span> TreeNode();</span><br><span class="line">        <span class="comment">//pollLast方法在出栈的同时还可以返回出栈的元素，非常方便</span></span><br><span class="line">        node = stack.pollLast();</span><br><span class="line">        output.addLast(node.val);</span><br><span class="line">        <span class="comment">//判断节点是否为空很重要</span></span><br><span class="line">        <span class="keyword">if</span>(node.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.add(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.add(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong><br>迭代是自己创建并操作一个栈，按照先序遍历的特点，要注意，根结点是个例外，提前入栈，while循环做的第一件事是出栈并记录出栈的val，<strong>然后是右子树入栈</strong>，最后是左子树入栈，然后左子树出栈，其右左子树分别入栈，左子树全部出栈后，右子树出栈，其右左子树分别入栈，以此类推。因为栈是一种先进后出的结构。</p>
+<p>入栈的顺序需要注意，栈是先进后出的结构，我们需要先读左子树，所以左子树反而要后入栈。</p>
+<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建LinkedList对象stack用来作为栈使用，output用来存储按中序遍历排号顺序的元素</span></span><br><span class="line">        LinkedList&lt;TreeNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;Integer&gt; output = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (root != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.add(root);</span><br><span class="line">                root = root.left;</span><br><span class="line">            &#125;</span><br><span class="line">            root = stack.pollLast();</span><br><span class="line">            output.add(root.val);</span><br><span class="line">            root = root.right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> output;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong><br>中序遍历和前序遍历不一样，中序遍历是从根结点开始先遍历到最左边的子树，依次入栈，而后出栈，然后<code>root = root.right;</code>检查该节点是否有右节点，有的话按前边的步骤再走一遍。</p>
+<p>做了两道迭代遍历之后，其实有一个难点十分相似——<strong>右子树的处理</strong>，前序遍历和中序遍历都有一个向左边不断走的趋向，区别是前序遍历是每到一个节点先遍历本身，而中序遍历是找到最左的子树才开始出栈。两者对右子树的处理不相同，中续遍历是左子树出栈后，立刻其检查右子树，而前序遍历是按右左的顺序依次入栈。这是由其自身的逻辑特点决定的，有一定难度。</p>
+<h4 id="后续遍历"><a href="#后续遍历" class="headerlink" title="后续遍历"></a>后续遍历</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Deque&lt;TreeNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        TreeNode prev = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 循环开始的条件是root不为空，或者栈不为空，这点和中序遍历一样。</span></span><br><span class="line">        <span class="keyword">while</span> (root != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(root);</span><br><span class="line">                root = root.left;</span><br><span class="line">            &#125;</span><br><span class="line">            root = stack.pop();</span><br><span class="line">            <span class="comment">// res入栈的条件很难理解，先决条件是最左的元素，然后要满足栈顶节点的右子树为空或者为之前遍历过的才可以入栈</span></span><br><span class="line">            <span class="comment">// 为空很容易理解，由左右中的顺序，右为空的话可以直接跳过，开始遍历根结点</span></span><br><span class="line">            <span class="comment">// 同理，之前遍历过了的话则直接遍历根结点。</span></span><br><span class="line">            <span class="keyword">if</span> (root.right == <span class="keyword">null</span> || root.right == prev) &#123;</span><br><span class="line">                <span class="comment">// res入栈之后立刻记录入栈的节点prev，置root为空，使得其不用执行寻找最右节点的步骤，</span></span><br><span class="line">                res.add(root.val);</span><br><span class="line">                prev = root;</span><br><span class="line">                root = <span class="keyword">null</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 不满足条件的节点重新入栈，并把root置为该节点的右节点，</span></span><br><span class="line">                <span class="comment">// 这时该节点不为空且未被遍历。</span></span><br><span class="line">                stack.push(root);</span><br><span class="line">                root = root.right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>后序遍历的迭代做法是三种里面最难的一种，左右中里面“右”这个点很难处理，这里关联到了后面“中”的处理，最左边的子树很好找，和前面两种方法一样。但要注意的是，找到最左节点之后还需要确认其右节点是否为空，是否被遍历过，也就是在以该节点为根结点的子树里面“左右中”的顺序依然生效，但其变为了根结点。</p>
+<p>综上所述，最关键还是右节点的处理，在一棵最简单的子树里面有四种遍历可能：①左右中、②右中、③左中、④中，如何识别和遍历？</p>
+<p>方法：在找到最左节点的时候，根据右节点的情况，判断它是哪一种情况。右节点已经被遍历过了（需要记录上一个遍历的节点做对比）为情况①或②，右节点为空为情况③或④，这些情况都可以直接遍历该节点，如果不符合这两个条件的话，则右节点不为空且还没被遍历，需要把右节点入栈，进行遍历。</p>
+<h2 id="3-层序顺序遍历"><a href="#3-层序顺序遍历" class="headerlink" title="3.层序顺序遍历"></a>3.层序顺序遍历</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, TreeNode&gt; ancestor = <span class="keyword">new</span> Hashtable&lt;&gt;();</span><br><span class="line">    Set&lt;Integer&gt; p_ancestor = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        preorderTraversal(root);</span><br><span class="line">        <span class="comment">// 寻找p的所有父节点,存入数组</span></span><br><span class="line">        <span class="comment">// LinkedList&lt;TreeNode&gt; p_ancestor = new LinkedList&lt;&gt;();</span></span><br><span class="line">        <span class="keyword">while</span>(p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            p_ancestor.add(p.val);</span><br><span class="line">            p = ancestor.get(p.val);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 寻找q的祖先并和p的祖先对比，相同则结束，</span></span><br><span class="line">        <span class="keyword">while</span> (q!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (p_ancestor.contains(q.val)) <span class="keyword">return</span> q;</span><br><span class="line">            q = ancestor.get(q.val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用哈希表存储所有子树的父节点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//while (root != null) &#123;</span></span><br><span class="line">            <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">                ancestor.put(root.left.val, root);</span><br><span class="line">                preorderTraversal(root.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (root.right!=<span class="keyword">null</span>) &#123;</span><br><span class="line">                ancestor.put(root.right.val, root);</span><br><span class="line">                preorderTraversal(root.right);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>层序遍历的思路是首先把所有节点的父节点都用哈希表记录下来，然后在里面把p的所有祖先找出来（包括p），再开始找q的祖先，当出现一样的节点，即找到。</p>
+<p>Q1：哈希表的key和vale的类型</p>
+<p>可以两个都选择TreeNode类型，也可以选择&lt;Integer, TreeNode&gt;的形式，这个关系到程序运行的开销。两个都选择TreeNode类型，程序运行开销比&lt;Integer, TreeNode&gt;的形式大，操作基本数据类型开销小。</p>
+<p>Q2：寻找祖先节点的条件判断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">    p_ancestor.add(p.val);</span><br><span class="line">    p = ancestor.get(p.val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接使用p！=null，<strong>不需要新建临时存储的数据，直接使用传进来的p引用</strong>，<strong>不需要使用<code>contains(key)</code>方法</strong>通过获取的值不存在时get()返回的null值作为结束的条件，减少代码量。</p>
+<p>Q3：数据类型的选择</p>
+<p>这个解法中，使用Hashtable类继承Map接口创建存储子节点和父节点一一对应的哈希表，使用Hashset类继承Set接口创建存储p节点所有祖先的集合。</p>
+<h2 id="4-运用递归解决树的相关问题"><a href="#4-运用递归解决树的相关问题" class="headerlink" title="4.运用递归解决树的相关问题"></a>4.运用递归解决树的相关问题</h2><p>递归是解决树相关问题的最有效和最常用的方法之一，这里记录两种典型的递归方法。</p>
+<p>树可以以递归的方式定义为一个节点（根节点），它包括一个值和一个指向其他节点指针的列表。 递归是树的特性之一。 因此，许多树问题可以通过递归的方式来解决。 对于每个递归层级，我们只能关注单个节点内的问题，并通过递归调用函数来解决其子节点问题。</p>
+<h3 id="“自顶而下”和“自底而上”的解题思路"><a href="#“自顶而下”和“自底而上”的解题思路" class="headerlink" title="“自顶而下”和“自底而上”的解题思路"></a>“自顶而下”和“自底而上”的解题思路</h3><h4 id="Part1-“自顶向下”-的解决方案"><a href="#Part1-“自顶向下”-的解决方案" class="headerlink" title="Part1.“自顶向下” 的解决方案"></a>Part1.“自顶向下” 的解决方案</h4><p>“自顶向下” 意味着在每个递归层级，我们将首先访问节点来计算一些值，并在递归调用函数时将这些值传递到子节点。 所以 “自顶向下” 的解决方案可以被认为是一种前序遍历。 具体来说，递归函数 top_down(root, params) 的原理是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">return</span> specific value <span class="keyword">for</span> <span class="keyword">null</span> node</span><br><span class="line"><span class="number">2.</span> update the answer <span class="keyword">if</span> needed                      <span class="comment">// anwer &lt;-- params</span></span><br><span class="line"><span class="number">3.</span> left_ans = top_down(root.left, left_params)		<span class="comment">// left_params &lt;-- root.val, params</span></span><br><span class="line"><span class="number">4.</span> right_ans = top_down(root.right, right_params)	<span class="comment">// right_params &lt;-- root.val, params</span></span><br><span class="line"><span class="number">5.</span> <span class="keyword">return</span> the answer <span class="keyword">if</span> needed                      <span class="comment">// answer &lt;-- left_ans, right_ans</span></span><br></pre></td></tr></table></figure>
+
+<p>例如，思考这样一个问题：给定一个二叉树，请寻找它的最大深度。</p>
+<p>我们知道根节点的深度是1。 <strong>对于每个节点，如果我们知道某节点的深度，那我们将知道它子节点的深度。 因此，在调用递归函数的时候，将节点的深度传递为一个参数，那么所有的节点都知道它们自身的深度。 而对于叶节点，我们可以通过更新深度从而获取最终答案。</strong> 这里是递归函数 maximum_depth(root, depth) 的伪代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">return</span> <span class="keyword">if</span> root is <span class="keyword">null</span></span><br><span class="line"><span class="number">2.</span> <span class="keyword">if</span> root is a leaf node:</span><br><span class="line"><span class="number">3.</span> 		answer = max(answer, depth)         <span class="comment">// update the answer if needed</span></span><br><span class="line"><span class="number">4.</span> maximum_depth(root.left, depth + <span class="number">1</span>)      <span class="comment">// call the function recursively for left child</span></span><br><span class="line"><span class="number">5.</span> maximum_depth(root.right, depth + <span class="number">1</span>)		<span class="comment">// call the function recursively for right child</span></span><br></pre></td></tr></table></figure>
+
+<p>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> answer;		<span class="comment">// don&#x27;t forget to initialize answer before call maximum_depth</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">maximum_depth</span><span class="params">(TreeNode root, <span class="keyword">int</span> depth)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">        answer = Math.max(answer, depth);</span><br><span class="line">    &#125;</span><br><span class="line">    maximum_depth(root.left, depth + <span class="number">1</span>);</span><br><span class="line">    maximum_depth(root.right, depth + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Part2-“自底向上”-的解决方案"><a href="#Part2-“自底向上”-的解决方案" class="headerlink" title="Part2.“自底向上” 的解决方案"></a>Part2.“自底向上” 的解决方案</h4><p>“自底向上” 是另一种递归方法。 <strong>在每个递归层次上，我们首先对所有子节点递归地调用函数，然后根据返回值和根节点本身的值得到答案。</strong> 这个过程可以看作是后序遍历的一种。 通常， “自底向上” 的递归函数 bottom_up(root) 为如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">return</span> specific value <span class="keyword">for</span> <span class="keyword">null</span> node</span><br><span class="line"><span class="number">2.</span> left_ans = bottom_up(root.left)			<span class="comment">// call function recursively for left child</span></span><br><span class="line"><span class="number">3.</span> right_ans = bottom_up(root.right)		<span class="comment">// call function recursively for right child</span></span><br><span class="line"><span class="number">4.</span> <span class="keyword">return</span> answers                           <span class="comment">// answer &lt;-- left_ans, right_ans, root.val</span></span><br></pre></td></tr></table></figure>
+
+<p>继续讨论前面关于树的最大深度的问题，但是使用不同的思维方式：<strong>对于树的单个节点，以节点自身为根的子树的最大深度x是多少？</strong></p>
+<p>如果我们知道一个根节点，以其左子节点为根的最大深度为l和以其右子节点为根的最大深度为r，我们是否可以回答前面的问题？ 当然可以，我们可以选择它们之间的最大值，再加上1来获得根节点所在的子树的最大深度。 那就是 x = max（l，r）+ 1。</p>
+<p>这意味着对于每一个节点来说，我们都可以在解决它子节点的问题之后得到答案。 因此，我们可以使用“自底向上“的方法。下面是递归函数 maximum_depth(root) 的伪代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> root is <span class="keyword">null</span>                 <span class="comment">// return 0 for null node</span></span><br><span class="line"><span class="number">2.</span> left_depth = maximum_depth(root.left)</span><br><span class="line"><span class="number">3.</span> right_depth = maximum_depth(root.right)</span><br><span class="line"><span class="number">4.</span> <span class="keyword">return</span> max(left_depth, right_depth) + <span class="number">1</span>	<span class="comment">// return depth of the subtree rooted at root</span></span><br></pre></td></tr></table></figure>
+
+<p>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximum_depth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;                                   <span class="comment">// return 0 for null node</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> left_depth = maximum_depth(root.left);</span><br><span class="line">	<span class="keyword">int</span> right_depth = maximum_depth(root.right);</span><br><span class="line">	<span class="keyword">return</span> Math.max(left_depth, right_depth) + <span class="number">1</span>;	<span class="comment">// return depth of the subtree rooted at root</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong><br>了解递归并利用递归解决问题并不容易。</p>
+<p>当遇到树问题时，请先思考一下两个问题：</p>
+<ol>
+<li>你能确定一些参数，从该节点自身解决出发寻找答案吗？  </li>
+<li>你可以<strong>使用这些参数和节点本身的值来决定什么应该是传递给它子节点的参数</strong>吗？<br>如果答案都是肯定的，那么请尝试使用 “自顶向下” 的递归来解决此问题。</li>
+</ol>
+<p>或者你可以这样思考：对于树中的任意一个节点，如果你知道它子节点的答案，你能计算出该节点的答案吗？ 如果答案是肯定的，那么 “自底向上” 的递归可能是一个不错的解决方法。</p>
+<p>在接下来提供几个经典例题，以帮助你更好地理解树的结构和递归。</p>
+<h3 id="经典例题一：二叉树的最大深度"><a href="#经典例题一：二叉树的最大深度" class="headerlink" title="经典例题一：二叉树的最大深度"></a>经典例题一：二叉树的最大深度</h3><p>给定一个二叉树，找出其最大深度。</p>
+<p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<p>示例：<br>给定二叉树 [3,9,20,null,null,15,7]，</p>
+<pre><code>     3
+    / \
+   9   20
+      /  \
+     15   7
+</code></pre>
+<p>返回它的最大深度 3 。</p>
+<p>思路一：自顶而下的思想<br>    从根节点开始，设深度为1，每下一层+1，下到最底层的时候选取两个子节点中层数多的那个+1作为最大深度(top_down(root))  </p>
+<p>自己设计的伪代码如下：</p>
+<pre><code>    top_down(root)&#123;
+        if(root==null)&#123;
+            return 0;
+        &#125;
+        depth=1
+        if(depth.right!=null)&#123;
+            depth+=1;
+            top_down(depth.right)
+        &#125;
+        if(depth.left!=null)&#123;
+            depth+=1;
+            top_down(depth.left)
+        &#125;
+        return depth;
+    &#125;
+</code></pre>
+<p>运行后发现问题：<br>问题一：<code>depth=1</code>这个设计还是陷在原来的非递归思维，这样设置的话每一次循环都会重置<code>depth</code>的值，所以不可行。正确的方法应该是不设置<code>depth</code>,而是利用一下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每迭代一次+1就可以达到目的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> leftHeight = maxDepth(root.left);</span><br><span class="line">            <span class="keyword">int</span> rightHeight = maxDepth(root.right);</span><br><span class="line">            <span class="keyword">return</span> Math.max(leftHeight, rightHeight) + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">错误解法：</span></span><br><span class="line"><span class="comment">        int depth = 1;</span></span><br><span class="line"><span class="comment">        if(root.left != null)&#123;</span></span><br><span class="line"><span class="comment">            depth++;</span></span><br><span class="line"><span class="comment">            maxDepth(root.left);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        if(root.right != null)&#123;</span></span><br><span class="line"><span class="comment">            depth++;</span></span><br><span class="line"><span class="comment">            maxDepth(root.right);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        return depth;*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>小技巧</strong>：善用<code>math.max()</code>函数可以减少代码量，非常方便。</p>
+<h3 id="★经典例题二：对称二叉树"><a href="#★经典例题二：对称二叉树" class="headerlink" title="★经典例题二：对称二叉树"></a>★经典例题二：对称二叉树</h3><p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<pre><code>    例如，二叉树[1,2,2,3,4,4,3] 是对称的。
+
+    1
+    / \
+    2   2
+    / \ / \
+    3  4 4  3
+    
+    但是下面这个[1,2,2,null,3,null,3] 则不是镜像对称的:
+
+      1
+     / \
+    2   2
+     \   \
+      3    3
+    
+    进阶：你可以运用递归和迭代两种方法解决这个问题吗？*/
+</code></pre>
+<h4 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h4><p>如果一个树的左子树与右子树镜像对称，那么这个树是对称的。<br>因此，该问题可以转化为：两个树在什么情况下互为镜像？</p>
+<p>如果同时满足下面的条件，两个树互为镜像：</p>
+<ol>
+<li>它们的两个根结点具有相同的值</li>
+<li>每个树的右子树都与另一个树的左子树镜像对称</li>
+</ol>
+<p>我们可以实现这样一个递归函数，通<em><strong>过「同步移动」两个指针的方法</strong></em>来遍历这棵树，p 指针和 q 指针一开始都指向这棵树的根，随后 p 右移时，q 左移，p 左移时，q 右移。每次检查当前 p 和 q 节点的值是否相等，如果相等再判断左右子树是否对称。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span> || q == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p.val == q.val &amp;&amp; check(p.left, q.right) &amp;&amp; check(p.right, q.left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p>假设树上一共 nn 个节点。</p>
+<ul>
+<li>时间复杂度：这里遍历了这棵树，渐进时间复杂度为 O(n)O(n)。</li>
+<li>空间复杂度：这里的空间复杂度和递归使用的栈空间有关，这里递归层数不超过 nn，故渐进空间复杂度为 O(n)O(n)。</li>
+</ul>
+<h4 id="方法二：迭代"><a href="#方法二：迭代" class="headerlink" title="方法二：迭代"></a>方法二：迭代</h4><p>「方法一」中我们用递归的方法实现了对称性的判断，那么如何用迭代的方法实现呢？首先我们引入一个队列，这是把递归程序改写成迭代程序的常用方法。初始化时我们把根节点入队两次。每次提取两个结点并比较它们的值（队列中每两个连续的结点应该是相等的，而且它们的子树互为镜像），然后将两个结点的左右子结点按相反的顺序插入队列中。当队列为空时，或者我们检测到树不对称（即从队列中取出两个不相等的连续结点）时，该算法结束。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(TreeNode u, TreeNode v)</span> </span>&#123;</span><br><span class="line">        Queue&lt;TreeNode&gt; q = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        q.offer(u);</span><br><span class="line">        q.offer(v);</span><br><span class="line">        <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">            u = q.poll();</span><br><span class="line">            v = q.poll();</span><br><span class="line">            <span class="keyword">if</span> (u == <span class="keyword">null</span> &amp;&amp; v == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> ((u == <span class="keyword">null</span> || v == <span class="keyword">null</span>) || (u.val != v.val)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            q.offer(u.left);</span><br><span class="line">            q.offer(v.right);</span><br><span class="line"></span><br><span class="line">            q.offer(u.right);</span><br><span class="line">            q.offer(v.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)O(n)，同「方法一」。</li>
+<li>空间复杂度：这里需要用一个队列来维护节点，每个节点最多进队一次，出队一次，队列中最多不会超过 nn 个点，故渐进空间复杂度为 O(n)O(n)。</li>
+</ul>
+<h3 id="★经典例题三：路径总和"><a href="#★经典例题三：路径总和" class="headerlink" title="★经典例题三：路径总和"></a>★经典例题三：路径总和</h3><p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
+<pre><code>    说明:叶子节点是指没有子节点的节点。
+
+    示例:
+    给定如下二叉树，以及目标和 sum = 22，
+
+             5
+            / \
+           4   8
+          /   / \
+        11  13   4
+       /  \       \
+       7    2      1
+    返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2。*/
+</code></pre>
+<p>解答：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sum -= root.val;</span><br><span class="line">        <span class="keyword">if</span>(sum == <span class="number">0</span> &amp;&amp; root.right == <span class="keyword">null</span> &amp;&amp; root.left == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> hasPathSum(root.left, sum) || hasPathSum(root.right, sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>做题总结</strong>：<br>一开始的时候思路是按前序遍历的思路做，和前序遍历不同的地方是这道题目每遍历一个节点都要把他从sum减掉，一开始的解决方法是想设一个标记之类的，但后来发现由于Java的值传递机制，根本不需要。 </p>
+<p>细节一：sum减到零的时候要确保他是叶子节点，而不是中间节点才符合题意。</p>
+<h3 id="★经典例题四：从中序与后序遍历序列构造二叉树"><a href="#★经典例题四：从中序与后序遍历序列构造二叉树" class="headerlink" title="★经典例题四：从中序与后序遍历序列构造二叉树"></a>★经典例题四：从中序与后序遍历序列构造二叉树</h3><pre><code>根据一棵树的中序遍历与后序遍历构造二叉树。
+
+    注意:你可以假设树中没有重复的元素。
+
+    例如，给出
+
+    中序遍历 inorder =[9,3,15,20,7]
+    后序遍历 postorder = [9,15,7,20,3]
+    返回如下的二叉树：
+
+     3
+    / \
+   9   20
+      /  \
+     15   7
+</code></pre>
+<p><strong>利用后序遍历和中序遍历的特点解题</strong>  </p>
+<p>后续遍历的顺序是：左右中<br>中序遍历的顺序是：左中右</p>
+<p>关键点1：后续遍历的最后一个元素为根结点<br>关键点2：找出根结点后可以在中序遍历中划分左右子树<br>关键点3：利用1、2点通过递归的方法解决问题</p>
+<p><strong>自己的思考方向：</strong></p>
+<ol>
+<li><p>由于要经常查找根节点元素在中序遍历数组中的下标，数据结构应该用<code>hashtable</code>比较高效。</p>
+</li>
+<li><p>大概的递归流程：</p>
+<pre><code> 后.last为根，获取index
+ 中.[0,index-1]为左子树
+ 中.[index+1,last]为右子树
+</code></pre>
+</li>
+<li><p>遇到的问题及之后看答案求解：</p>
+<ul>
+<li>递归到叶子节点的情况做什么：创建节点，返回节点</li>
+<li>如何连接节点：直接定义root.right和root.left</li>
+<li>定义递归函数时，哪里是递归入口，传什么参数，返回什么类型的值：用index作为参数，返回节点类型的值。</li>
+</ul>
+</li>
+</ol>
+<p>Java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Hashtable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 定义全局变量，方便递归函数操作</span></span><br><span class="line">    <span class="keyword">int</span> post_idx;<span class="comment">// post_idx</span></span><br><span class="line">    <span class="keyword">int</span>[] postorder;</span><br><span class="line">    <span class="keyword">int</span>[] inorder;</span><br><span class="line">    Hashtable&lt;Integer, Integer&gt; table = <span class="keyword">new</span> Hashtable&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.inorder = inorder;</span><br><span class="line">        <span class="keyword">this</span>.postorder = postorder;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; inorder.length; i++) &#123;</span><br><span class="line">            table.put(inorder[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        post_idx = postorder.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> helper(<span class="number">0</span>, post_idx);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">helper</span><span class="params">(<span class="keyword">int</span> in_left, <span class="keyword">int</span> in_right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (in_left &gt; in_right) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 选择 post_idx 位置的元素作为当前子树根节点</span></span><br><span class="line">        <span class="keyword">int</span> root_val = postorder[post_idx];</span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(root_val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据 root 所在位置分成左右两棵子树</span></span><br><span class="line">        <span class="keyword">int</span> index = table.get(root_val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 下标减一</span></span><br><span class="line">        post_idx--;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建左右子树,理解这里参数in_right和in_left有难度</span></span><br><span class="line">        root.right = helper(index + <span class="number">1</span>, in_right);</span><br><span class="line">        root.left = helper(in_left, index - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> root;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关于运用递归解决二叉树问题的一些总结</strong></p>
+<ul>
+<li>递归函数里的第一步都是判断是否递归到叶子节点的子节点，如果是就结束，但怎么判断这个是叶子节点的子节点要根据递归函数的参数来判断，比如这道题目，传的参数是数组的下标，那么根据左边不可能比右边大为条件写if条件</li>
+<li>递归函数最后的返回值一般都是节点。</li>
+<li>在递归的过程有一些变量是每次递归都需要的，可这些变量是一直不变的，可以用全局变量来达到目的，避免多次传参。还可以直接把要传进去的参数先用全局变量定义好，再在方法里面使用传进来的参数进行初始化。适用于方法里面要用到传参，可又不方便定义。比如这道题目，递归函数里不方便进行定义和引用，用传参的方法每次都要copy一样的值，花销应该会比较大，代码量也会增加。</li>
+<li>这道题题还有一个注意点是左右子树的创建顺序是不能随意互换的，一定要先创建右子树，这是由于后序遍历的特点——“左右中”的顺序，我们根节点的选取是从最后面开始的，所以要先创建右子树。而下面的题目则正好相反。</li>
+</ul>
+<h3 id="★经典例题五：从前序与中序遍历序列构造二叉树"><a href="#★经典例题五：从前序与中序遍历序列构造二叉树" class="headerlink" title="★经典例题五：从前序与中序遍历序列构造二叉树"></a>★经典例题五：从前序与中序遍历序列构造二叉树</h3><pre><code>根据一棵树的前序遍历与中序遍历构造二叉树。
+
+    注意:
+    你可以假设树中没有重复的元素。
+
+    例如，给出
+
+    前序遍历 preorder = [3,9,20,15,7]
+    中序遍历 inorder = [9,3,15,20,7]
+    返回如下的二叉树：
+
+     3
+    / \
+   9   20
+      /  \
+     15   7
+</code></pre>
+<p>Java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Hashtable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义全局变量</span></span><br><span class="line">    <span class="keyword">int</span> first_index;</span><br><span class="line">    <span class="keyword">int</span>[] preorder;</span><br><span class="line">    <span class="keyword">int</span>[] inorder;</span><br><span class="line">    Hashtable&lt;Integer, Integer&gt; idx_map = <span class="keyword">new</span> Hashtable&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.preorder = preorder;</span><br><span class="line">        <span class="keyword">this</span>.inorder = inorder;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; preorder.length; i++) &#123;</span><br><span class="line">            idx_map.put(inorder[i], i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        first_index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> helper(<span class="number">0</span>, inorder.length-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">helper</span><span class="params">(<span class="keyword">int</span> in_left, <span class="keyword">int</span> in_right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(in_left &gt; in_right)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//分开左右子树</span></span><br><span class="line">        <span class="keyword">int</span> index = idx_map.get(preorder[first_index]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建根节点</span></span><br><span class="line">        <span class="keyword">int</span> root_val = preorder[first_index];</span><br><span class="line">        first_index++;</span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(root_val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 理解这里参数in_right和in_left有难度,这两个参数分别保证在子树划分之后，左子树的最右边界，和右子树的最左边界在正确的位置</span></span><br><span class="line">        root.left = helper(in_left, index - <span class="number">1</span>);</span><br><span class="line">        root.right = helper(index + <span class="number">1</span>, in_right);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这道题目的解法和上一道题目大同小异，只需要更改根结点的下标和左右子树的创建顺序就可以。</p>
+<h3 id="例题六：填充每个节点的下一个右侧节点指针"><a href="#例题六：填充每个节点的下一个右侧节点指针" class="headerlink" title="例题六：填充每个节点的下一个右侧节点指针"></a>例题六：填充每个节点的下一个右侧节点指针</h3><pre><code>给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+
+    struct Node &#123;
+    int val;
+    Node *left;
+    Node *right;
+    Node *next;
+    &#125;
+    填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+
+    初始状态下，所有next 指针都被设置为 NULL。
+</code></pre>
+<h4 id="方法一：使用已建立的-next-指针"><a href="#方法一：使用已建立的-next-指针" class="headerlink" title="方法一：使用已建立的 next 指针"></a>方法一：使用已建立的 next 指针</h4><p><strong>思路</strong></p>
+<p>一棵树中，存在两种类型的 next 指针。</p>
+<p>1.第一种情况是连接同一个父节点的两个子节点。它们可以通过同一个节点直接访问到，因此执行下面操作即可完成连接。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node.left.next = node.right</span><br></pre></td></tr></table></figure>
+
+<p>2.第二种情况在不同父亲的子节点之间建立连接，这种情况不能直接连接。</p>
+<p>如果每个节点有指向父节点的指针，可以通过该指针找到 next 节点。如果不存在该指针，则按照下面思路建立连接：</p>
+<blockquote>
+<p>第 N 层节点之间建立 next 指针后，再建立第 N+1 层节点的 next 指针。可<br>以通过 next 指针访问同一层的所有节点，因此可以使用第 N 层的 next 指<br>针，为第 N+1 层节点建立 next 指针。</p>
+</blockquote>
+<p>算法</p>
+<p>从根节点开始，由于第 00 层只有一个节点，所以不需要连接，直接为第 11 层节点建立 next 指针即可。该算法中需要注意的一点是，当我们为第 NN 层节点建立 next 指针时，处于第 N-1N−1 层。当第 NN 层节点的 next 指针全部建立完成后，移至第 NN 层，建立第 N+1N+1 层节点的 next 指针。</p>
+<p>遍历某一层的节点时，这层节点的 next 指针已经建立。因此我们只需要知道这一层的最左节点，就可以按照链表方式遍历，不需要使用队列。</p>
+<p>上面思路的伪代码如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">leftmost = root</span><br><span class="line"><span class="keyword">while</span> (leftmost.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">    head = leftmost</span><br><span class="line">    <span class="keyword">while</span> (head.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="number">1</span>) Establish Connection <span class="number">1</span></span><br><span class="line">        <span class="number">2</span>) Establish Connection <span class="number">2</span> using next pointers</span><br><span class="line">        head = head.next</span><br><span class="line">    &#125;</span><br><span class="line">    leftmost = leftmost.left</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>Java代码如下:</p>
+<p><strong>迭代做法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 从根节点开始</span></span><br><span class="line">        Node leftmost = root;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (leftmost.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// ★遍历这一层节点组织成的链表，为下一层的节点更新 next 指针</span></span><br><span class="line">            <span class="comment">// 新建的head是用来做每一层的遍历，而原来的leftmost则用来控制换层</span></span><br><span class="line">            Node head = leftmost;</span><br><span class="line">            <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// CONNECTION 1</span></span><br><span class="line">                head.left.next = head.right;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// CONNECTION 2</span></span><br><span class="line">                <span class="keyword">if</span> (head.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    head.right.next = head.next.left;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 指针向后移动</span></span><br><span class="line">                head = head.next;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 去下一层的最左的节点</span></span><br><span class="line">            leftmost = leftmost.left;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>复杂度分析</p>
+<ul>
+<li><p>时间复杂度：O(N)，每个节点只访问一次。</p>
+</li>
+<li><p>空间复杂度：O(1)，不需要存储额外的节点。</p>
+</li>
+</ul>
+<p><strong>自己的总结</strong></p>
+<ul>
+<li>迭代的方法解题，一般写法都是两个while循环嵌套</li>
+<li>这道题有一个隐藏知识可以使用，创建对象时如果没有赋值，会默认进行赋值，可以看作最左侧的节点的next都是设定好了为null，只需要把剩下的节点弄好就可以</li>
+<li>层序遍历只需要使用两个变量来控制，一个是从根节点不断转到下一层的最左边的节点，另一个则是最左节点的复制，用来做每一层的遍历。</li>
+</ul>
+<p><strong>递归做法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">connect</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            root.left.next = root.right;</span><br><span class="line">            root.right.next = root.next != <span class="keyword">null</span> ? root.next.left : <span class="keyword">null</span>;</span><br><span class="line">            <span class="comment">/*if (root.next != null) &#123;</span></span><br><span class="line"><span class="comment">                root.right.next = root.next.left;</span></span><br><span class="line"><span class="comment">            &#125; else &#123;</span></span><br><span class="line"><span class="comment">                root.right.next = null;</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">            connect(root.left);</span><br><span class="line">            connect(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="例题七：填充每个节点的下一个右侧节点指针-II"><a href="#例题七：填充每个节点的下一个右侧节点指针-II" class="headerlink" title="例题七：填充每个节点的下一个右侧节点指针 II"></a>例题七：填充每个节点的下一个右侧节点指针 II</h3><p>给定一个二叉树</p>
+<pre><code>    struct Node &#123;
+        int val;
+        Node *left;
+        Node *right;
+        Node *next;
+    &#125;
+    填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，
+    则将 next 指针设置为 NULL。
+
+    初始状态下，所有next 指针都被设置为 NULL。
+
+    进阶：
+        你只能使用常量级额外空间。
+        使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node leftmost = root;</span><br><span class="line">        <span class="keyword">while</span> (leftmost != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Node head = leftmost;</span><br><span class="line">            <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// connection1：head存在左右子树，左子树直接连接</span></span><br><span class="line">                <span class="keyword">if</span> (head.left != <span class="keyword">null</span> &amp;&amp; head.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    head.left.next = head.right;</span><br><span class="line">                    head.right = connectDifTree(head,head.right);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// connection2：head存在左子树，但不存在右子树</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(head.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    head.left = connectDifTree(head,head.left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// connection3:head不存在左子树，存在右子树</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (head.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    head.right = connectDifTree(head, head.right);</span><br><span class="line">                &#125;</span><br><span class="line">                head = head.next;</span><br><span class="line">            &#125;</span><br><span class="line">            leftmost = fineLeftMost(leftmost);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connectDifTree</span><span class="params">(Node head,Node child)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//非同父节点子树间的连接</span></span><br><span class="line">        Node tempN = head.next;</span><br><span class="line">        <span class="keyword">if</span> (tempN == <span class="keyword">null</span>) &#123;</span><br><span class="line">            child.next = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span> child;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (tempN.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            child.next = tempN.left;</span><br><span class="line">            <span class="keyword">return</span> child;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (tempN.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            child.next = tempN.right;</span><br><span class="line">            <span class="keyword">return</span> child;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> connectDifTree(head.next,child);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">fineLeftMost</span><span class="params">(Node l)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(l != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (l.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> l.left;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> l.right;</span><br><span class="line">            &#125;</span><br><span class="line">            l = l.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>个人总结</strong></p>
+<ol>
+<li>这一道题和上道题的思路和算法和上一道题很像，但这道题要复杂很多。依旧是使用层序遍历的思想来解题，但由于题中二叉树不是完全二叉树，子树的情况不可预测，需要比第一道题多很多的判断条件。</li>
+<li>寻找一层当中的最左子树，即层序遍历的起点，要注意遍历该层的所有子树。</li>
+<li>虽然比上道题复杂，但整体来说并不难，我在解题的过程由于受到上一道题目的定势思维影响，很多情况都没有考虑妥当，采用了和上一题一样的解法，导致做题花费时间非常多。这道题做完我最大的收获可能是“做题要顾整体而言”，就是做题的时候，要清楚整体的思路，不要在某个条件的判断里面陷进去，做题之前最好在脑海里面走一遍伪代码，写条件的时候要细心仔细，拿出测试软件的劲设想好所有会出现的情况，其中要留意哪几种情况可以合并，哪些情况可以简化。</li>
+</ol>
+<h3 id="例题八：填充每个节点的下一个右侧节点指针"><a href="#例题八：填充每个节点的下一个右侧节点指针" class="headerlink" title="例题八：填充每个节点的下一个右侧节点指针"></a>例题八：填充每个节点的下一个右侧节点指针</h3><pre><code>    给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+    struct Node &#123;
+        int val;
+        Node *left;
+        Node *right;
+        Node *next;
+    &#125;
+    填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+
+    初始状态下，所有next 指针都被设置为 NULL。
+</code></pre>
+<p><strong>递归解法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">connect</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            root.left.next = root.right;</span><br><span class="line">            root.right.next = root.next != <span class="keyword">null</span> ? root.next.left : <span class="keyword">null</span>;</span><br><span class="line">            <span class="comment">/*if (root.next != null) &#123;</span></span><br><span class="line"><span class="comment">                root.right.next = root.next.left;</span></span><br><span class="line"><span class="comment">            &#125; else &#123;</span></span><br><span class="line"><span class="comment">                root.right.next = null;</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">            connect(root.left);</span><br><span class="line">            connect(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>迭代解法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node leftmost = root;</span><br><span class="line">        <span class="keyword">while</span> (leftmost != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Node head = leftmost;</span><br><span class="line">            <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// connection1：head存在左右子树，左子树直接连接</span></span><br><span class="line">                <span class="keyword">if</span> (head.left != <span class="keyword">null</span> &amp;&amp; head.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    head.left.next = head.right;</span><br><span class="line">                    head.right = connectDifTree(head,head.right);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// connection2：head存在左子树，但不存在右子树，左子树连接head.next的子树或者为null</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(head.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    head.left = connectDifTree(head,head.left);</span><br><span class="line">                &#125;</span><br><span class="line"><span class="comment">/*                else if(head.left!=null)&#123;</span></span><br><span class="line"><span class="comment">                    Node tempN = head.next;</span></span><br><span class="line"><span class="comment">                    if (tempN==null)&#123;</span></span><br><span class="line"><span class="comment">                        head.left.next = null;</span></span><br><span class="line"><span class="comment">                    &#125;else if (tempN.left!=null)&#123;</span></span><br><span class="line"><span class="comment">                        head.left.next = tempN.left;</span></span><br><span class="line"><span class="comment">                    &#125;else(tempN.right!=null)&#123;</span></span><br><span class="line"><span class="comment">                        head.left.next = tempN.right;</span></span><br><span class="line"><span class="comment">                    &#125;</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="comment">// connection3:head不存在左子树，存在右子树</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (head.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    head.right = connectDifTree(head, head.right);</span><br><span class="line">                &#125;</span><br><span class="line"><span class="comment">/*                else (head.right!=null)&#123;</span></span><br><span class="line"><span class="comment">                    Node tempN1 = head.next;</span></span><br><span class="line"><span class="comment">                    if (tempN1==null)&#123;</span></span><br><span class="line"><span class="comment">                        head.right.next = null;</span></span><br><span class="line"><span class="comment">                    &#125;else if (tempN1.left!=null)&#123;</span></span><br><span class="line"><span class="comment">                        head.right.next = tempN1.left;</span></span><br><span class="line"><span class="comment">                    &#125;else(tempN1.right!=null)&#123;</span></span><br><span class="line"><span class="comment">                        head.right.next = tempN1.right;</span></span><br><span class="line"><span class="comment">                    &#125;</span></span><br><span class="line"><span class="comment">                &#125;*/</span></span><br><span class="line">                <span class="comment">// 尝试合并connection2和3</span></span><br><span class="line"><span class="comment">/*                else if (head.left!=null||head.right!=null)&#123;</span></span><br><span class="line"><span class="comment">                    Node temp;</span></span><br><span class="line"><span class="comment">                    if(head.left!=null)&#123;</span></span><br><span class="line"><span class="comment">                        temp=head.left;</span></span><br><span class="line"><span class="comment">                    &#125;else temp = head.right;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                &#125;*/</span></span><br><span class="line">                head = head.next;</span><br><span class="line">            &#125;</span><br><span class="line">            leftmost = fineLeftMost(leftmost);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connectDifTree</span><span class="params">(Node head,Node child)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//非同父节点子树间的连接</span></span><br><span class="line">        Node tempN = head.next;</span><br><span class="line">        <span class="keyword">if</span> (tempN == <span class="keyword">null</span>) &#123;</span><br><span class="line">            child.next = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span> child;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (tempN.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            child.next = tempN.left;</span><br><span class="line">            <span class="keyword">return</span> child;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (tempN.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            child.next = tempN.right;</span><br><span class="line">            <span class="keyword">return</span> child;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> connectDifTree(head.next,child);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">fineLeftMost</span><span class="params">(Node l)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(l != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (l.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> l.left;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> l.right;</span><br><span class="line">            &#125;</span><br><span class="line">            l = l.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

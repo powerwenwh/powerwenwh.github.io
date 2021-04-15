@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        岛屿问题 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B2%9B%E5%B1%BF%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E9%80%9A%E7%94%A8%E8%A7%A3%E6%B3%95%E3%80%81DFS-%E9%81%8D%E5%8E%86%E6%A1%86%E6%9E%B6"><span class="toc-text">岛屿类问题的通用解法、DFS 遍历框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DFS-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-text">DFS 的基本结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E9%81%8D%E5%8E%86"><span class="toc-text">如何避免重复遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E6%B3%95"><span class="toc-text">岛屿问题的解法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-1%EF%BC%9A%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF"><span class="toc-text">例题 1：岛屿的最大面积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-2%EF%BC%9A%E5%A1%AB%E6%B5%B7%E9%80%A0%E9%99%86%E9%97%AE%E9%A2%98"><span class="toc-text">例题 2：填海造陆问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-3%EF%BC%9A%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF"><span class="toc-text">例题 3：岛屿的周长</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-4%EF%BC%9A%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">例题 4：岛屿的数量</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        岛屿问题
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-12-23 10:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Leetcode" title="Leetcode">Leetcode</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="岛屿类问题的通用解法、DFS-遍历框架"><a href="#岛屿类问题的通用解法、DFS-遍历框架" class="headerlink" title="岛屿类问题的通用解法、DFS 遍历框架"></a>岛屿类问题的通用解法、DFS 遍历框架</h2><p>我们所熟悉的 DFS（深度优先搜索）问题通常是在树或者图结构上进行的。而我们今天要讨论的 DFS 问题，是在一种「网格」结构中进行的。岛屿问题是这类网格 DFS 问题的典型代表。网格结构遍历起来要比二叉树复杂一些，如果没有掌握一定的方法，DFS 代码容易写得冗长繁杂。</p>
+<p>本文将以岛屿问题为例，展示网格类问题 DFS 通用思路，以及如何让代码变得简洁。</p>
+<p><strong>网格问题的基本概念</strong><br>我们首先明确一下岛屿问题中的网格结构是如何定义的，以方便我们后面的讨论。</p>
+<p>网格问题是由m×n 个小方格组成一个网格，每个小方格与其上下左右四个方格认为是相邻的，要在这样的网格上进行某种搜索。</p>
+<p>岛屿问题是一类典型的网格问题。每个格子中的数字可能是 0 或者 1。我们把数字为 0 的格子看成海洋格子，数字为 1 的格子看成陆地格子，这样相邻的陆地格子就连接成一个岛屿。</p>
+<h3 id="DFS-的基本结构"><a href="#DFS-的基本结构" class="headerlink" title="DFS 的基本结构"></a>DFS 的基本结构</h3><p>网格结构要比二叉树结构稍微复杂一些，它其实是一种简化版的图结构。要写好网格上的 DFS 遍历，我们首先要理解二叉树上的 DFS 遍历方法，再类比写出网格结构上的 DFS 遍历。我们写的二叉树 DFS 遍历一般是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 base case</span></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 访问两个相邻结点：左子结点、右子结点</span></span><br><span class="line">    traverse(root.left);</span><br><span class="line">    traverse(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，二叉树的 DFS 有两个要素：「==访问相邻结点」和「判断 base case」==。</p>
+<p>第一个要素是访问相邻结点。二叉树的相邻结点非常简单，只有左子结点和右子结点两个。二叉树本身就是一个递归定义的结构：一棵二叉树，它的左子树和右子树也是一棵二叉树。那么我们的 DFS 遍历只需要递归调用左子树和右子树即可。</p>
+<p>第二个要素是 判断 base case。一般来说，二叉树遍历的 base case 是 root == null。这样一个条件判断其实有两个含义：一方面，这表示 root 指向的子树为空，不需要再往下遍历了。另一方面，在 root == null 的时候==及时返回==，可以让后面的 root.left 和 root.right 操作不会出现空指针异常。</p>
+<p>对于网格上的 DFS，我们完全可以参考二叉树的 DFS，写出网格 DFS 的两个要素：</p>
+<p>首先，网格结构中的格子有多少相邻结点？答案是上下左右四个。对于格子 (r, c) 来说（r 和 c 分别代表行坐标和列坐标），四个相邻的格子分别是 (r-1, c)、(r+1, c)、(r, c-1)、(r, c+1)。换句话说，==网格结构是「四叉」的。==</p>
+<p>其次，网格 DFS 中的 base case 是什么？从二叉树的 base case 对应过来，应该是网格中不需要继续遍历、grid[r][c] 会出现数组下标越界异常的格子，也就是那些超出网格范围的格子。</p>
+<p>这一点稍微有些反直觉，坐标竟然可以临时超出网格的范围？这种方法我称为==「先污染后治理」==—— 甭管当前是在哪个格子，先往四个方向走一步再说，如果发现走出了网格范围再赶紧返回。这跟二叉树的遍历方法是一样的，先递归调用，发现 root == null 再返回。</p>
+<p>这样，我们得到了网格 DFS 遍历的框架代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 base case</span></span><br><span class="line">    <span class="comment">// 如果坐标 (r, c) 超出了网格范围，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (!inArea(grid, r, c)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 访问上、下、左、右四个相邻结点</span></span><br><span class="line">    dfs(grid, r - <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r + <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r, c - <span class="number">1</span>);</span><br><span class="line">    dfs(grid, r, c + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断坐标 (r, c) 是否在网格中</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> &lt;= r &amp;&amp; r &lt; grid.length </span><br><span class="line">        	&amp;&amp; <span class="number">0</span> &lt;= c &amp;&amp; c &lt; grid[<span class="number">0</span>].length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何避免重复遍历"><a href="#如何避免重复遍历" class="headerlink" title="如何避免重复遍历"></a>如何避免重复遍历</h3><p>网格结构的 DFS 与二叉树的 DFS 最大的不同之处在于，遍历中可能遇到遍历过的结点。这是因为，网格结构本质上是一个「图」，我们可以把每个格子看成图中的结点，每个结点有向上下左右的四条边。在图中遍历时，自然可能遇到重复遍历结点。</p>
+<p>这时候，DFS 可能会不停地「兜圈子」，永远停不下来。</p>
+<p>如何避免这样的重复遍历呢？答案是标记已经遍历过的格子。以岛屿问题为例，我们需要在所有值为 1 的陆地格子上做 DFS 遍历。每走过一个陆地格子，就把格子的值改为 2，这样当我们遇到 2 的时候，就知道这是遍历过的格子了。也就是说，每个格子可能取三个值：</p>
+<p>0 —— 海洋格子<br>1 —— 陆地格子（未遍历过）<br>2 —— 陆地格子（已遍历过）<br>我们在框架代码中加入避免重复遍历的语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 base case</span></span><br><span class="line">    <span class="keyword">if</span> (!inArea(grid, r, c)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果这个格子不是岛屿，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (grid[r][c] != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    grid[r][c] = <span class="number">2</span>; <span class="comment">// 将格子标记为「已遍历过」</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 访问上、下、左、右四个相邻结点</span></span><br><span class="line">    dfs(grid, r - <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r + <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r, c - <span class="number">1</span>);</span><br><span class="line">    dfs(grid, r, c + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断坐标 (r, c) 是否在网格中</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> &lt;= r &amp;&amp; r &lt; grid.length </span><br><span class="line">        	&amp;&amp; <span class="number">0</span> &lt;= c &amp;&amp; c &lt; grid[<span class="number">0</span>].length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就得到了一个岛屿问题、乃至各种网格问题的通用 DFS 遍历方法。以下所讲的几个例题，其实都只需要在 DFS 遍历框架上稍加修改而已。</p>
+<blockquote>
+<p>小贴士：</p>
+</blockquote>
+<blockquote>
+<p>在一些题解中，可能会把「已遍历过的陆地格子」标记为和海洋格子一样的 0，美其名曰「陆地沉没方法」，即遍历完一个陆地格子就让陆地「沉没」为海洋。这种方法看似很巧妙，但实际上有很大隐患，因为这样我们就无法区分「海洋格子」和「已遍历过的陆地格子」了。如果题目更复杂一点，这很容易出 bug。</p>
+</blockquote>
+<h3 id="岛屿问题的解法"><a href="#岛屿问题的解法" class="headerlink" title="岛屿问题的解法"></a>岛屿问题的解法</h3><h4 id="例题-1：岛屿的最大面积"><a href="#例题-1：岛屿的最大面积" class="headerlink" title="例题 1：岛屿的最大面积"></a>例题 1：岛屿的最大面积</h4><h4 id="例题-2：填海造陆问题"><a href="#例题-2：填海造陆问题" class="headerlink" title="例题 2：填海造陆问题"></a>例题 2：填海造陆问题</h4><h4 id="例题-3：岛屿的周长"><a href="#例题-3：岛屿的周长" class="headerlink" title="例题 3：岛屿的周长"></a>例题 3：岛屿的周长</h4><h4 id="例题-4：岛屿的数量"><a href="#例题-4：岛屿的数量" class="headerlink" title="例题 4：岛屿的数量"></a>例题 4：岛屿的数量</h4><p>给你一个由 ‘1’（陆地）和 ‘0’（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> nr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> nc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (r &lt; <span class="number">0</span> || c &lt; <span class="number">0</span> || r &gt;= nr || c &gt;= nc || grid[r][c] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        dfs(grid, r - <span class="number">1</span>, c);</span><br><span class="line">        dfs(grid, r + <span class="number">1</span>, c);</span><br><span class="line">        dfs(grid, r, c - <span class="number">1</span>);</span><br><span class="line">        dfs(grid, r, c + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> nr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> nc = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> num_islands = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; nr; ++r) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; nc; ++c) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[r][c] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    ++num_islands;</span><br><span class="line">                    dfs(grid, c, r);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> num_islands;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(MN)，其中 MM 和 NN 分别为行数和列数。</p>
+</li>
+<li><p>空间复杂度：O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到 MN。</p>
+</li>
+</ul>
+<blockquote>
+<p>作者：LeetCode<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/">https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

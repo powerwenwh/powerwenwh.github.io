@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        一份Java面试题记录 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81int%E5%92%8CInteger%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">一、int和Integer有什么区别？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Java%E4%B8%A4%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E7%B1%BB"><span class="toc-text">1.Java两种数据类型分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-int%E4%B8%8EInteger%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94"><span class="toc-text">2.int与Integer的基本使用对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#int%E4%B8%8EInteger%E7%9A%84%E6%B7%B1%E5%85%A5%E5%AF%B9%E6%AF%94"><span class="toc-text">int与Integer的深入对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81String%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">二、String和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFStringBuffer%EF%BC%9F"><span class="toc-text">什么是StringBuffer？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E4%B8%8E%E4%B8%80%E8%88%AC%E5%BC%82%E5%B8%B8%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB"><span class="toc-text">三、运行时异常与一般异常有何区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%92%8C%E9%94%99%E8%AF%AF%EF%BC%88Exception-amp-Error%EF%BC%89"><span class="toc-text">异常和错误（Exception&amp;Error）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81final%E5%92%8Cfinally%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">四、final和finally的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81abstract-class%E5%92%8Cinterface%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">五、abstract class和interface有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">抽象类是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%9F"><span class="toc-text">为什么要有抽象类？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88abstract-class%EF%BC%89"><span class="toc-text">抽象类（abstract class）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Interface"><span class="toc-text">Interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E8%80%85%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="toc-text">二者的相同点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">二者的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">六、数据连接池的工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%95%B0%E7%BB%84%E6%9C%89%E6%97%A0length-%E6%96%B9%E6%B3%95%EF%BC%8CString%E6%9C%89%E6%97%A0length-%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">七、数组有无length()方法，String有无length()方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E3%80%81try-%E9%87%8C%E6%9C%89%E4%B8%80%E4%B8%AAreturn%E8%AF%AD%E5%8F%A5%EF%BC%8C%E9%82%A3%E4%B9%88%E7%B4%A7%E8%B7%9F%E5%9C%A8try%E5%90%8E%E7%9A%84finally-%E9%87%8C%E7%9A%84code%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%89%A7%E8%A1%8C%EF%BC%9F"><span class="toc-text">八、try{}里有一个return语句，那么紧跟在try后的finally{}里的code什么时候执行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%BD%93%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E8%A2%AB%E5%BD%93%E4%BD%9C%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%88%B0%E4%B8%80%E4%B8%AA%E6%96%B9%E6%B3%95%E5%90%8E%EF%BC%8C%E6%AD%A4%E6%96%B9%E6%B3%95%E5%8F%AF%E6%94%B9%E5%8F%98%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%EF%BC%8C%E5%B9%B6%E5%8F%AF%E8%BF%94%E5%9B%9E%E5%8F%98%E5%8C%96%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E9%87%8C%E5%88%B0%E5%BA%95%E6%97%B6%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%EF%BC%9F"><span class="toc-text">九、当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底时值传递还是引用传递？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%BD%93%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E8%BF%9B%E5%85%A5%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%80%E4%B8%AAsynchronized%E6%96%B9%E6%B3%95%E5%90%8E%EF%BC%8C%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E6%98%AF%E5%90%A6%E5%8F%AF%E8%BF%9B%E5%85%A5%E6%AD%A4%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">十、当一个线程进入一个对象的一个synchronized方法后，其他线程是否可进入此对象的其他方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E9%9B%86%E5%90%88%E7%B1%BB%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95%E6%98%AF%EF%BC%9F"><span class="toc-text">十一、集合类都有哪些？主要方法是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%9F%BA%E6%9C%AC%E7%8A%B6%E6%80%81%E5%8F%8A%E7%8A%B6%E6%80%81%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">十二、线程的基本概念、基本状态及状态间的关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81java%E5%86%99%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E8%AF%BB%E5%8F%96C-test-txt%E6%96%87%E4%BB%B6"><span class="toc-text">十三、java写一段代码读取C:\test.txt文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81List%E3%80%81Map%E3%80%81Set%E4%B8%89%E4%B8%AA%E6%8E%A5%E5%8F%A3%EF%BC%8C%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0%E6%97%B6%EF%BC%8C%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-text">十四、List、Map、Set三个接口，存取元素时，各有什么特点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%BA%94%E3%80%81SpringMVC%EF%BC%88%E6%88%96Struts%EF%BC%89%E3%80%81Spring%E3%80%81Hibernate%EF%BC%88%E6%88%96MyBatis%EF%BC%89%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%8C%E7%94%A8%E5%AE%83%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84%EF%BC%9F%E8%B0%88%E8%B0%88%E4%BD%A0%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%82"><span class="toc-text">十五、SpringMVC（或Struts）、Spring、Hibernate（或MyBatis）分别是什么，用它有什么好处？谈谈你的理解。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%85%AD%E3%80%81sql%E8%AF%AD%E5%8F%A5"><span class="toc-text">十六、sql语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E4%B8%80%E4%B8%AA%E5%8F%ABteam%E7%9A%84%E8%A1%A8%EF%BC%8C%E9%87%8C%E9%9D%A2%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AD%97%E6%AE%B5name%EF%BC%8C%E4%B8%80%E5%85%B1%E6%9C%894%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%88%86%E5%88%AB%E6%98%AFa%EF%BC%8Cb%EF%BC%8Cc%EF%BC%8Cd%EF%BC%8C%E5%AF%B9%E5%BA%94%E5%9B%9B%E4%B8%AA%E7%90%83%E9%98%9F%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%9B%9B%E4%B8%AA%E7%90%83%E9%98%9F%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%B5%9B%EF%BC%8C%E7%94%A8%E4%B8%80%E6%9D%A1sql%E8%AF%AD%E5%8F%A5%E6%98%BE%E7%A4%BA%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E6%AF%94%E8%B5%9B%E7%BB%84%E5%90%88%E3%80%82"><span class="toc-text">十七、一个叫team的表，里面只有一个字段name，一共有4条记录，分别是a，b，c，d，对应四个球队，现在四个球队进行比赛，用一条sql语句显示所有可能的比赛组合。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E3%80%81String%E7%9A%84-substring-int-beginIndex-%E3%80%81concat-String-str-%E6%96%B9%E6%B3%95%E3%80%82"><span class="toc-text">十八、String的**substring(int beginIndex)、concat**(String str)方法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81Javascript%E7%9B%B8%E5%85%B3"><span class="toc-text">十九、Javascript相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E8%AF%B7%E4%BD%A0%E6%A0%B9%E6%8D%AE%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%A4%96%E5%8D%96app%E7%9A%84%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86%EF%BC%8C%E7%94%BB%E5%87%BA%E4%BD%A0%E6%89%80%E7%90%86%E8%A7%A3%E7%9A%84%E5%A4%96%E5%8D%96%E7%9A%84%E6%B5%81%E7%A8%8B%E3%80%82%E8%AF%B7%E7%94%BB%E5%87%BA%E4%B8%BB%E8%A6%81%E7%9A%84%E7%8E%AF%E8%8A%82%EF%BC%8C%E4%BB%A5%E5%8F%8A%E6%AF%8F%E4%B8%AA%E7%8E%AF%E8%8A%82%E6%B6%89%E5%8F%8A%E7%9A%84%E8%A7%92%E8%89%B2%E3%80%82%EF%BC%88%E6%AF%94%E5%A6%82%E7%94%A8%E6%88%B7%E3%80%81%E5%95%86%E5%AE%B6%E7%AD%89%EF%BC%89"><span class="toc-text">二十一、请你根据任意一个外卖app的使用经历，画出你所理解的外卖的流程。请画出主要的环节，以及每个环节涉及的角色。（比如用户、商家等）</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        一份Java面试题记录
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-03-14 01:44:48</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h3 id="一、int和Integer有什么区别？"><a href="#一、int和Integer有什么区别？" class="headerlink" title="一、int和Integer有什么区别？"></a>一、int和Integer有什么区别？</h3><h4 id="1-Java两种数据类型分类"><a href="#1-Java两种数据类型分类" class="headerlink" title="1.Java两种数据类型分类"></a>1.Java两种数据类型分类</h4><p>为了编程的方便还是引入了基本数据类型，但是为了能够将这些基本数据类型当成对象操作，Java为每 一个基本数据类型都引入了对应的包装类型（wrapper class），int的包装类就是Integer，从Java 5开始引入了自动装箱/拆箱机制，使得二者可以相互转换。</p>
+<p>（1）基本数据类型，分为boolean、byte、int、char、long、short、double、float；<br>（2）引用数据类型 ，分为数组、类、接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">基本数据类型: <span class="keyword">boolean</span>，<span class="keyword">char</span>，<span class="keyword">byte</span>，<span class="keyword">short</span>，<span class="keyword">int</span>，<span class="keyword">long</span>，<span class="keyword">float</span>，<span class="keyword">double</span></span><br><span class="line">封装类类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-int与Integer的基本使用对比"><a href="#2-int与Integer的基本使用对比" class="headerlink" title="2.int与Integer的基本使用对比"></a>2.int与Integer的基本使用对比</h4><ul>
+<li>Integer是int的包装类；int是基本数据类型；</li>
+<li>Integer变量必须实例化后才能使用；int变量不需要；</li>
+<li>Integer实际是对象的引用，指向此new的Integer对象；int是直接存储数据值 ；</li>
+<li>Integer的默认值是null；int的默认值是0。</li>
+</ul>
+<h4 id="int与Integer的深入对比"><a href="#int与Integer的深入对比" class="headerlink" title="int与Integer的深入对比"></a>int与Integer的深入对比</h4><p>（1）由于Integer变量实际上是对一个Integer对象的引用，所以两个通过new生成的Integer变量永远是不相等的（<strong>因为new生成的是两个对象，其内存地址不同</strong>）。</p>
+<p>（2）Integer变量和int变量比较时，只要两个变量的值是向等的，则结果为true（因为<strong>包装类Integer和基本数据类型int比较时，java会自动拆包装为int，然后进行比较，实际上就变为两个int变量的比较</strong>）</p>
+<p>（3）非new生成的Integer变量和new Integer()生成的变量比较时，结果为false。因为<strong>非new生成的Integer变量指向的是静态常量池中cache数组中存储的指向了堆中的Integer对象，而new Integer()生成的变量指向堆中新建的对象，两者在内存中的对象引用（地址）不同</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">Integer j = <span class="number">100</span>;</span><br><span class="line">System.out.print(i == j); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、String和StringBuffer的区别"><a href="#二、String和StringBuffer的区别" class="headerlink" title="二、String和StringBuffer的区别"></a>二、String和StringBuffer的区别</h3><h4 id="什么是StringBuffer？"><a href="#什么是StringBuffer？" class="headerlink" title="什么是StringBuffer？"></a>什么是StringBuffer？</h4><blockquote>
+<p>线程安全的可变字符序列。一个类似于 <a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html"><code>String</code></a> 的字符串缓冲区，但不能修改。虽然在任意时间点上它都包含某种特定的字符序列，但通过某些方法调用可以改变该序列的长度和内容。</p>
+</blockquote>
+<blockquote>
+<p>可将字符串缓冲区安全地用于多个线程。可以在必要时对这些方法进行同步，因此任意特定实例上的所有操作就好像是以串行顺序发生的，该顺序与所涉及的每个线程进行的方法调用顺序一致。</p>
+</blockquote>
+<blockquote>
+<p><code>StringBuffer</code> 上的主要操作是 <code>append</code> 和 <code>insert</code> 方法，可重载这些方法，以接受任意类型的数据。每个方法都能有效地将给定的数据转换成字符串，然后将该字符串的字符追加或插入到字符串缓冲区中。<code>append</code> 方法始终将这些字符添加到缓冲区的末端；而 <code>insert</code> 方法则在指定的点添加字符。</p>
+</blockquote>
+<blockquote>
+<p>通常，如果 sb 引用 <code>StringBuilder</code> 的一个实例，则 <code>sb.append(x)</code> 和 <code>sb.insert(sb.length(), x)</code> 具有相同的效果。</p>
+</blockquote>
+<blockquote>
+<p>当发生与源序列有关的操作（如源序列中的追加或插入操作）时，该类只在执行此操作的字符串缓冲区上而不是在源上实现同步。</p>
+</blockquote>
+<blockquote>
+<p>从 JDK 5 开始，为该类补充了一个单个线程使用的等价类，即 <a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/StringBuilder.html"><code>StringBuilder</code></a>。与该类相比，通常应该优先使用 <code>StringBuilder</code> 类，因为它支持所有相同的操作，但由于它不执行同步，所以速度更快。</p>
+</blockquote>
+<blockquote>
+<p>将 <code>StringBuilder</code> 的实例用于多个线程是不安全的。如果需要这样的同步，则建议使用 <a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/StringBuffer.html"><code>StringBuffer</code></a>。</p>
+</blockquote>
+<blockquote>
+<p>Java 语言提供对字符串串联符号（”+”）以及将其他对象转换为字符串的特殊支持。字符串串联是通过 <code>StringBuilder</code>（或 <code>StringBuffer</code>）类及其 <code>append</code> 方法实现的。字符串转换是通过 <code>toString</code> 方法实现的，该方法由 <code>Object</code> 类定义，并可被 Java 中的所有类继承。</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>简单地说，就是一个变量和常量的关系。StringBuffer对象的内容可以修改；而String对象一旦产生后就不可以被修改，重新赋值其实是两个对象。<br>StringBuffer的内部实现方式和String不同，<strong>StringBuffer在进行字符串处理时，不生成新的对象，在内存使用上要优于String类。</strong>所以在实际使用时，如果经常需要对一个字符串进行修改，例如插入、删除等操作，使用StringBuffer要更加适合一些。<br>String:在String类中没有用来改变已有字符串中的某个字符的方法，由于不能改变一个java字符串中的某个单独字符，所以在JDK文档中称String类的对象是不可改变的。然而，不可改变的字符串具有一个很大的优点:编译器可以把字符串设为共享的。<br>StringBuffer:<strong>StringBuffer类属于一种辅助类，可预先分配指定长度的内存块建立一个字符串缓冲区。</strong>这样使用StringBuffer类的append方法追加字符 比 String使用 + 操作符添加字符 到 一个已经存在的字符串后面有效率得多。因为使用 + 操作符每一次将字符添加到一个字符串中去时，字符串对象都需要寻找一个新的内存空间来容纳更大的字符串，这无凝是一个非常消耗时间的操作。添加多个字符也就意味着要一次又一次的对字符串重新分配内存。使用StringBuffer类就避免了这个问题。<br><strong>StringBuffer是线程安全的</strong>，在多线程程序中也可以很方便的进行使用，但是程序的执行效率相对来说就要稍微慢一些。</p>
+<ol>
+<li> StringBuffer在进行字符串处理时，不生成新的对象，在内存使用由于String类。</li>
+<li>StringBuffer可预先分配指定长度的内存块建立一个字符串缓冲区。</li>
+<li>StringBuffer是线程安全的。</li>
+</ol>
+<h3 id="三、运行时异常与一般异常有何区别"><a href="#三、运行时异常与一般异常有何区别" class="headerlink" title="三、运行时异常与一般异常有何区别"></a>三、运行时异常与一般异常有何区别</h3><h4 id="异常和错误（Exception-amp-Error）"><a href="#异常和错误（Exception-amp-Error）" class="headerlink" title="异常和错误（Exception&amp;Error）"></a>异常和错误（Exception&amp;Error）</h4><img src="/2021/03/14/%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E8%AE%B0%E5%BD%95/Exception&Error.png" class="" title="img">
+
+<p>Throwable： 有两个重要的子类：<strong>Exception（异常）和 Error（错误）</strong>，二者都是 Java 异常处理的重要子类，各自都包含大量子类。</p>
+<p>Error（错误）:</p>
+<p>　　是<strong>程序无法处理的错误</strong>，表示运行应用程序中较严重问题。<strong>大多数错误与代码编写者执行的操作无关</strong>，而表示代码运行时 JVM（Java 虚拟机）出现的问题。例如，Java虚拟机运行错误（Virtual MachineError），当 JVM 不再有继续执行操作所需的内存资源时，将出现 OutOfMemoryError。这些异常发生时，Java虚拟机（JVM）一般会选择线程终止。</p>
+<p>Exception（异常）:</p>
+<p>　　是<strong>程序本身可以处理的异常。</strong></p>
+<p>Exception可以分为checked exceptions和unchecked exceptions：</p>
+<ol>
+<li>unchecked exceptions（<strong>运行时异常</strong>）都是RuntimeException类及其子类异常，就是我们在开发中测试功能时程序终止，控制台出现的异常，比如：</li>
+</ol>
+<ul>
+<li>NullPointerException(空指针异常)、</li>
+<li>IndexOutOfBoundsException(下标越界异常)</li>
+<li>ClassCastException(类转换异常)</li>
+<li>ArrayStoreException(数据存储异常，操作数组时类型不一致)</li>
+<li>IO操作的BufferOverflowException异常</li>
+</ul>
+<ol start="2">
+<li>checked exceptions 非运行时异常 （编译异常）：是RuntimeException以外的异常，类型上都属于Exception类及其子类。从程序语法角度讲是必须进行处理的异常，如果不处理，程序就不能编译通过。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。<br>通俗的话说就是在写代码时出现红线，需要try catch或者throws时出现的异常。</li>
+</ol>
+<p><strong>1、运行时异常与一般异常有何异同？</strong></p>
+<p>异常表示程序运行过程中可能出现的非正常状态，运行时异常表示虚拟机的通常操作中可能遇到的异常，是一种常见运行错误。java编译器要求方法必须声明抛出可能发生的非运行时异常，但是并不要求必须声明抛出未被捕获的运行时异常。</p>
+<p>　　<strong>理解：</strong></p>
+<p>　　<u>运行时异常，我们<strong>可以不处理</strong>。当出现这样的异常时，<strong>总是由虚拟机接管</strong>。</u>比如：我们从来没有人去处理过 NullPointerException 异常，它就是运行时异常，并且，这种异常还是最常见的异常之一。RuntimeException 体系包括<strong>错误的类型转换、数组越界访问和试图访问空指针</strong>等等。处理 RuntimeException 的原则是：假如出现 RuntimeException，那么一定是程序员的错误，例如，可以通过检查数组小标和数组边界来避免越界访问异常。</p>
+<p>　　一般异常：<u>定义方法时<strong>必须声明</strong>所有可能会抛出的checked exception</u>；在调用这个方法时，必须捕获它的checked exception，不然就得把它的exception传递下去；checked exception是从java.lang.Exception类衍生出来的。</p>
+<p><strong>2、error和exception有什么区别?</strong></p>
+<p>　　error 是<strong>程序无法处理的错误</strong>。比如说内存溢出。<strong>不可能指望程序能处理这样的情况</strong>。 <strong>exception 表示一种设计或实现问题</strong>。也就是说，它表示如果程序运行正常，从不会发生的情况。</p>
+<p><strong>3.Java中的异常处理机制的简单原理和应用</strong></p>
+<p>　　异常是指java程序运行时（非编译）所发生的非正常情况或错误，与现实生活中的事件很相似，现实生活中的事件可以包含事件发生的时间、地点、人物、情节等信息，可以用一个对象来表示，Java使用面向对象的方式来处理异常，它把程序中发生的每个异常也都分别封装到一个对象来表示的，该对象中包含有异常的信息。</p>
+<p>　　Java对异常进行了分类，不同类型的异常分别用不同的Java类来表示，所有异常的根类为java.lang.Throwable，Throwable下面又派生了两个子类：Error和Exception,Error表示应用程序本身无法克服和恢复的一种严重问题，程序只有死的份了，例如，说内存溢出和线程死锁等系统问题。Exception表示程序表示程序还能够克服和恢复的一种严重问题，其中又分为系统异常和普通异常，系统异常是软件本身缺陷所导致的问题，也就是软件开发人员考虑不周所导致的问题，软件使用者无法克服和恢复这种问题，但在这种问题下还可以让软件系统继续运行或者让软件死掉，例如，数组脚本越界（ArrayIndexOutOfBoundsException）、空指针异常（NullPointerException）、类转换异常（ClassCastException）；普通异常是运行环境的变化或异常所导致的问题，是用户能够克服的问题，例如，网络断线，硬盘空间不够，发生这样的异常后，程序不应该死掉。</p>
+<p>　　java为系统异常和普通异常提供了不同的解决方案，编译器强制普通异常必须try···catch处理或用throws声明继续抛给上层调用方法处理，所以普通异常也称为checked异常，而系统异常可以处理也可以不处理，所以，编译器不强制用try…catch处理或用throws声明，所以系统异常也称为unchecked异常。</p>
+<h3 id="四、final和finally的区别"><a href="#四、final和finally的区别" class="headerlink" title="四、final和finally的区别"></a>四、final和finally的区别</h3><ol>
+<li>final修饰符（关键字）。<strong>被final修饰的类不能被其他子类继承。</strong>因此一个类不能既被abstract声明，又被final声明。<strong>将变量或方法声明为final，可以保证他们在使用的过程中不被修改。</strong>被声明为final的变量必须在声明时给出变量的初始值，而在以后的引用中只能读取。<strong>被final声明的方法也同样只能使用，即不能方法重写。</strong></li>
+<li><strong>finally是在异常处理时提供finally块来执行任何清除操作。不管有没有异常被抛出、捕获，finally块都会被执行。</strong>try块中的内容是在无异常时执行到结束。catch块中的内容，是在try块内容发生catch所声明的异常时，跳转到catch块中执行。finally块则是无论异常是否发生，都会执行finally块的内容，所以在代码逻辑中有需要无论发生什么都必须执行的代码，就可以放在finally块中。</li>
+</ol>
+<h3 id="五、abstract-class和interface有什么区别"><a href="#五、abstract-class和interface有什么区别" class="headerlink" title="五、abstract class和interface有什么区别"></a>五、abstract class和interface有什么区别</h3><h4 id="抽象类是什么？"><a href="#抽象类是什么？" class="headerlink" title="抽象类是什么？"></a>抽象类是什么？</h4><p>本文中的抽象类表示的是一个抽象体</p>
+<ul>
+<li>在面向对象的概念中，所有的对象都是通过类来描绘的，但是并不是所有的类都是用来描绘对象的，<strong>如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</strong></li>
+<li>抽象类的定义<br>是对一系列看上去不同，但是本质上相同的具体概念的抽象，往往用来表征我们在对问题进行分析、设计中得出的抽象概念</li>
+<li>它和具体类的核心区别是，抽象类不能创建对象(比如，不能使用new Shape())，而具体类可以。</li>
+<li>一个类在继承抽象类后，必须实现抽象类中定义的所有抽象方法，除非它自己也声明为抽象类。</li>
+</ul>
+<h4 id="为什么要有抽象类？"><a href="#为什么要有抽象类？" class="headerlink" title="为什么要有抽象类？"></a>为什么要有抽象类？</h4><ul>
+<li>待总结</li>
+</ul>
+<h4 id="抽象类（abstract-class）"><a href="#抽象类（abstract-class）" class="headerlink" title="抽象类（abstract class）"></a>抽象类（abstract class）</h4><ul>
+<li><p>定义：包含抽象方法的的类是abstract class</p>
+<blockquote>
+<p>用abstract关键字修饰</p>
+</blockquote>
+</li>
+<li><p>作用：abstractclass是为了把相同的东西提取出来,<strong>即重用</strong></p>
+</li>
+<li><p>使用abstractclass语法规定</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">语法</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">抽象类定义用abstract关键字修饰</td>
+<td align="center">要通过子类进行实例化</td>
+</tr>
+<tr>
+<td align="left">抽象类是不能被实例化的</td>
+<td align="center">要通过子类进行实例化</td>
+</tr>
+<tr>
+<td align="left"><strong>子类必须重写父类的所有抽象方法</strong></td>
+<td align="center">抽象方法：声明但却未被实现的方法，用abstract关键字修饰</td>
+</tr>
+<tr>
+<td align="left">含有抽象方法的类一定是抽象类，但是抽象类不一定含有抽象方法</td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td align="left">抽象类是用来被它的子类继承的</td>
+<td align="center"><strong>关键字extends</strong></td>
+</tr>
+</tbody></table>
+<h4 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h4><ul>
+<li><p>定义：比abstract class更加抽象，是一种特殊的abstract class</p>
+<blockquote>
+<p>用Interface关键字修饰</p>
+</blockquote>
+</li>
+<li><p>作用：Interface是为了把程序模块进行固化的契约,是<strong>为了降低偶合</strong></p>
+</li>
+<li><p>使用Interface的语法规定</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">语法</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">接口定义用Interface关键字修饰</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">接口中的所有方法都是抽象的</td>
+<td align="center"><strong>可以用abstract修饰，也可以省略</strong></td>
+</tr>
+<tr>
+<td align="left">接口中的方法<strong>必须是用public修饰，或不写</strong></td>
+<td align="center">但是不能被其他修饰符修饰</td>
+</tr>
+<tr>
+<td align="left">接口中的属性<strong>必须是全局常量</strong></td>
+<td align="center"><strong>public static final修饰</strong></td>
+</tr>
+<tr>
+<td align="left">抽象类是用来被它的子类实现的</td>
+<td align="center"><strong>关键字Implements</strong></td>
+</tr>
+<tr>
+<td align="left">接口不能被实例化</td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td align="left"><strong>子类实现接口时需要实现接口中的所有方法</strong></td>
+<td align="center">若有一个未不实现，该子类就是抽象类abstractclass</td>
+</tr>
+</tbody></table>
+<h4 id="二者的相同点"><a href="#二者的相同点" class="headerlink" title="二者的相同点"></a>二者的相同点</h4><p>都不能被实例化</p>
+<h4 id="二者的区别"><a href="#二者的区别" class="headerlink" title="二者的区别"></a>二者的区别</h4><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="center">abstract class</th>
+<th align="center">Interface</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">定义</td>
+<td align="center">abstract class关键字</td>
+<td align="center">Interface关键字</td>
+</tr>
+<tr>
+<td align="left">继承</td>
+<td align="center"><strong>子类只可以继承一个抽象类</strong></td>
+<td align="center"><strong>接口只可以继承接口（一个或多个）；子类可以实现多个接口</strong></td>
+</tr>
+<tr>
+<td align="left">访问修饰符</td>
+<td align="center">抽象方法可以有<strong>public</strong>、<strong>protected</strong>和<strong>default</strong>这些修饰符</td>
+<td align="center">接口方法默认修饰符是<strong>public</strong>。你不可以使用其它修饰符</td>
+</tr>
+<tr>
+<td align="left">方法实现</td>
+<td align="center">可定义构造方法，<strong>可以有抽象方法和具体方法</strong></td>
+<td align="center">接口完全是抽象的，没构造方法，且方法都是抽象的，不存在方法的实现</td>
+</tr>
+<tr>
+<td align="left">实现方式</td>
+<td align="center">子类使用<strong>extends</strong>关键字来继承抽象类。如果子类不是抽象类的话，它需要提供抽象类中所有声明的方法的实现</td>
+<td align="center">子类使用关键字<strong>implements</strong>来实现接口。它需要提供接口中所有声明的方法的实现</td>
+</tr>
+<tr>
+<td align="left">作用</td>
+<td align="center">把相同的东西提取出来,<strong>即重用</strong></td>
+<td align="center">为了把程序模块进行固化的契约,是<strong>为了降低偶合</strong></td>
+</tr>
+</tbody></table>
+<ol>
+<li>抽象类中抽象方法的访问权限可以是public、protectedl；接口只能是public</li>
+<li>抽象类中可以有非抽象方法；接口中的方法都是抽象方法</li>
+<li>抽象类中可以定义普通成员变量；接口中不能定义普通成员变量</li>
+<li>抽象类和接口都能定义静态成员变量，抽象类访问权限可以是任意的；但是接口只能是 public static final即常量</li>
+<li>抽象类中可以有构造方法；接口中不能有构造方法</li>
+<li>一个类只能实现一个抽象类；但一个类可以实现多个接口，接口可以继承多个接口</li>
+</ol>
+<h3 id="六、数据连接池的工作机制"><a href="#六、数据连接池的工作机制" class="headerlink" title="六、数据连接池的工作机制"></a>六、数据连接池的工作机制</h3><ol>
+<li>初始化时建立由最大维持连接数决定数量的连接。</li>
+<li>用户申请连接直到达到最大连接数的时候，请求将被添加到等待队列。</li>
+<li>用户断开连接后，超过最大维持连接数的连接不会马上销毁，最大等待时间过后才会销毁</li>
+<li>对数据库连接的管理能显著影响到整个应用程序的伸缩性和健壮性，影响到程序的性能指标。</li>
+</ol>
+<h3 id="七、数组有无length-方法，String有无length-方法？"><a href="#七、数组有无length-方法，String有无length-方法？" class="headerlink" title="七、数组有无length()方法，String有无length()方法？"></a>七、数组有无length()方法，String有无length()方法？</h3><p>数组有length属性，String有length()方法。</p>
+<h3 id="八、try-里有一个return语句，那么紧跟在try后的finally-里的code什么时候执行？"><a href="#八、try-里有一个return语句，那么紧跟在try后的finally-里的code什么时候执行？" class="headerlink" title="八、try{}里有一个return语句，那么紧跟在try后的finally{}里的code什么时候执行？"></a>八、try{}里有一个return语句，那么紧跟在try后的finally{}里的code什么时候执行？</h3><p>在return前执行</p>
+<h3 id="九、当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底时值传递还是引用传递？"><a href="#九、当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底时值传递还是引用传递？" class="headerlink" title="九、当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底时值传递还是引用传递？"></a>九、当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底时值传递还是引用传递？</h3><p>是值传递。Java编程语言只有值传递参数。当一个对象实例作为一个参数被传递到方法中时，参数的值就是该对象的引用一个副本。指向同一个对象,对象的内容可以在被调用的方法中改变，但<strong>对象的引用(不是引用的副本)是永远不会改变的</strong>。</p>
+<h3 id="十、当一个线程进入一个对象的一个synchronized方法后，其他线程是否可进入此对象的其他方法？"><a href="#十、当一个线程进入一个对象的一个synchronized方法后，其他线程是否可进入此对象的其他方法？" class="headerlink" title="十、当一个线程进入一个对象的一个synchronized方法后，其他线程是否可进入此对象的其他方法？"></a>十、当一个线程进入一个对象的一个synchronized方法后，其他线程是否可进入此对象的其他方法？</h3><p>不可以</p>
+<h3 id="十一、集合类都有哪些？主要方法是？"><a href="#十一、集合类都有哪些？主要方法是？" class="headerlink" title="十一、集合类都有哪些？主要方法是？"></a>十一、集合类都有哪些？主要方法是？</h3>
+
+<p><strong>Set</strong></p>
+<p>Set中不能包含重复的元素。</p>
+<p><strong>List接口</strong></p>
+<p>List是一个有序的集合，可以包含重复的元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add(E e),add(<span class="keyword">int</span> index, E e),contains(Object o),addAll(Collection c),equals(Object o),get(<span class="keyword">int</span> index),indexOf(Object o),</span><br><span class="line">isEmpty(),set(<span class="keyword">int</span> index, E element),remove(<span class="keyword">int</span> index),remove(Object o),size(),toArray()</span><br></pre></td></tr></table></figure>
+
+<p>ArrayList：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ensureCapacity()</span><br></pre></td></tr></table></figure>
+
+<p>LinkList:</p>
+<p>除了实现 List 接口外，LinkedList 类还为在列表的开头及结尾 get、remove 和 insert 元素提供了统一的命名方法。这些操作允许将链接列表用作堆栈、队列或双端队列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">peek(),peekFirst(),	peekLast(),<span class="comment">//获取不移除</span></span><br><span class="line">poll(),pollFirst(),pollLast(),<span class="comment">//获取并移除</span></span><br><span class="line">pop(),push(E e)、、堆栈操作</span><br></pre></td></tr></table></figure>
+
+<p>Vector：</p>
+<p>Stack：</p>
+<p>通过五个操作对类 <code>Vector</code> 进行了扩展</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">empty(),peek(),pop(),push(E item),search(Object o)</span><br></pre></td></tr></table></figure>
+
+<p><strong>queue</strong></p>
+<h3 id="十二、线程的基本概念、基本状态及状态间的关系？"><a href="#十二、线程的基本概念、基本状态及状态间的关系？" class="headerlink" title="十二、线程的基本概念、基本状态及状态间的关系？"></a>十二、线程的基本概念、基本状态及状态间的关系？</h3><p><strong>什么是线程</strong></p>
+<p>一个线程是<u>进程的一个顺序执行流</u>。同类的多个线程<u>共享一块内存空间和一组系统资源</u>，线程本身有一个供程序执行时的堆栈。线程在切换时负荷小，因此，线程也被称为轻负荷进程。一个进程中可以包含多个线程。</p>
+<p><strong>进程与线程的区别</strong></p>
+<p>一个进程至少有一个线程。线程的划分尺度小于进程，使得多线程程序的并发性高。另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。</p>
+<p>线程在执行过程中与进程的区别在于每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。</p>
+<p>从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操<u>作系统并没有将多个线程看做多个独立的应用来实现进程的调度和管理以及资源分配</u>。</p>
+<p><strong>并发原理</strong></p>
+<p>多个线程或进程”同时”运行只是我们感官上的一种表现。事实上进程和线程是并发运行的，OS的线程调度机制将时间划分为很多时间片段（时间片），尽可能均匀分配给正在运行的程序，获取CPU时间片的线程或进程得以被执行，其他则等待。而CPU则在这些进程或线程上来回切换运行。微观上所有进程和线程是走走停停的，宏观上都在运行，这种都运行的现象叫并发，但是不是绝对意义上的“同时发生”。</p>
+<p><strong>线程状态</strong></p>
+<p><strong>1.新建</strong></p>
+<p>用new语句创建的线程对象处于新建状态，此时它和其他java对象一样，仅被分配了内存。</p>
+<p><strong>2.等待</strong></p>
+<p>当线程在new之后，并且在调用start方法前，线程处于等待状态。</p>
+<p><strong>3.就绪</strong></p>
+<p>当一个线程对象创建后，其他线程调用它的start()方法，该线程就进入就绪状态。处于这个状态的线程<u>位于Java虚拟机的可运行池中</u>，等待cpu的使用权。</p>
+<p><strong>4.运行状态</strong></p>
+<p>处于这个状态的线程占用CPU，执行程序代码。在并发运行环境中，如果计算机只有一个CPU，那么任何时刻只会有一个线程处于这个状态。</p>
+<p><u>只有处于就绪状态的线程才有机会转到运行状态。</u></p>
+<p><strong>5.阻塞状态</strong></p>
+<p>阻塞状态是指线程因为某些原因放弃CPU，暂时停止运行。当线程处于阻塞状态时，Java虚拟机不会给线程分配CPU，直到线程重新进入就绪状态，它才会有机会获得运行状态。</p>
+<p><strong>阻塞状态分为三种:</strong></p>
+<p>1、等待阻塞:运行的线程执行wait（）方法，JVM会把该线程放入等待池中。</p>
+<p>2、同步阻塞:运行的线程在获取对象同步锁时，若该同步锁被别的线程占用，则JVM会把线程放入锁池中。</p>
+<p>3、其他阻塞:运行的线程执行Sleep（）方法，或者发出I/O请求时，JVM会把线程设为阻塞状态。当Sleep（）状态超时、或者I/O处理完毕时，线程重新转入就绪状态。</p>
+<p><strong>6.死亡状态</strong></p>
+<p>当线程执行完run()方法中的代码，或者遇到了未捕获的异常，就会退出run()方法，此时就进入死亡状态，该线程结束生命周期。</p>
+<h3 id="十三、java写一段代码读取C-test-txt文件"><a href="#十三、java写一段代码读取C-test-txt文件" class="headerlink" title="十三、java写一段代码读取C:\test.txt文件"></a>十三、java写一段代码读取C:\test.txt文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Path path = Paths.get(<span class="string">&quot;C:/test.txt&quot;</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] data = Files.readAllBytes(path);</span><br><span class="line">        String result = <span class="keyword">new</span> String(data, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题整理：</p>
+<ol>
+<li><p>了解path类</p>
+<p><strong>Path用于来表示文件路径和文件</strong>。</p>
+<p>创建path对象的常用方式,要注意异常的处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.以当前路径创建Path对象</span></span><br><span class="line">String filePath = <span class="string">&quot;E:\\tempCSDN\\Paths&quot;</span>;</span><br><span class="line">Path path = Paths.get(filePath);</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="keyword">if</span>(!Files.exists(target2))</span><br><span class="line">         Files.createFile(target2);</span><br><span class="line"> &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>files类</p>
+<p>files类被path类取代了</p>
+</li>
+<li><p>String构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(<span class="keyword">byte</span>[] bytes, String charsetName)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>通过使用指定的charset解码指定的 byte 数组，构造一个新的 <code>String</code>。</p>
+</li>
+</ol>
+<h3 id="十四、List、Map、Set三个接口，存取元素时，各有什么特点？"><a href="#十四、List、Map、Set三个接口，存取元素时，各有什么特点？" class="headerlink" title="十四、List、Map、Set三个接口，存取元素时，各有什么特点？"></a>十四、List、Map、Set三个接口，存取元素时，各有什么特点？</h3><p>List是有序存储，</p>
+<p>Map时键值对存储，</p>
+<p>Set不允许重复元素</p>
+<h3 id="十五、SpringMVC（或Struts）、Spring、Hibernate（或MyBatis）分别是什么，用它有什么好处？谈谈你的理解。"><a href="#十五、SpringMVC（或Struts）、Spring、Hibernate（或MyBatis）分别是什么，用它有什么好处？谈谈你的理解。" class="headerlink" title="十五、SpringMVC（或Struts）、Spring、Hibernate（或MyBatis）分别是什么，用它有什么好处？谈谈你的理解。"></a>十五、SpringMVC（或Struts）、Spring、Hibernate（或MyBatis）分别是什么，用它有什么好处？谈谈你的理解。</h3><p>JavaEE体系结构包括四层，从上到下分别是<strong>应用层、Web层、业务层、持久层</strong>。Struts和SpringMVC是Web层的框架，Spring是业务层的框架，Hibernate和MyBatis是持久层的框架。</p>
+<p><strong>为什么要使用SpringMVC？</strong></p>
+<p>很多应用程序的问题在于处理业务数据的对象和显示业务数据的视图之间存在紧密耦合，通常，更新业务对象的命令都是从视图本身发起的，使视图对任何业务对象更改都有高度敏感性。而且，当多个视图依赖于同一个业务对象时是没有灵活性的。</p>
+<p>SpringMVC是一种基于Java，实现了Web MVC设计模式，请求驱动类型的轻量级Web框架，即使用了MVC架构模式的思想，将Web层进行职责解耦。基于请求驱动指的就是使用请求-响应模型，框架的目的就是帮助我们简化开发，SpringMVC也是要简化我们日常Web开发。</p>
+<p><strong>MVC设计模式</strong></p>
+<p>MVC设计模式的任务是<strong>将包含业务数据的模块与显示模块的视图解耦</strong>。这是怎样发生的？在模型和视图之间引入重定向层可以解决问题。此重定向层是控制器，控制器将接收请求，执行更新模型的操作，然后通知视图关于模型更改的消息。</p>
+<p><strong>SpringMVC的核心架构：</strong></p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5C%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E8%AE%B0%E5%BD%95%5C20190630145911981.png" alt="在这里插入图片描述"></p>
+<p>具体流程：</p>
+<p>（1）首先浏览器发送请求——&gt;DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；</p>
+<p>（2）DispatcherServlet——&gt;HandlerMapping，处理器映射器将会把请求映射为HandlerExecutionChain对象（包含一个Handler处理器对象、多个HandlerInterceptor拦截器）对象；</p>
+<p>（3）DispatcherServlet——&gt;HandlerAdapter，处理器适配器将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；</p>
+<p>（4）HandlerAdapter——&gt;调用处理器相应功能处理方法，并返回一个ModelAndView对象（包含模型数据、逻辑视图名）；</p>
+<p>（5）ModelAndView对象（Model部分是业务对象返回的模型数据，View部分为逻辑视图名）——&gt; ViewResolver， 视图解析器将把逻辑视图名解析为具体的View；</p>
+<p>（6）View——&gt;渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构；</p>
+<p>（7）返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。</p>
+<p>==待总结==</p>
+<h3 id="十六、sql语句"><a href="#十六、sql语句" class="headerlink" title="十六、sql语句"></a>十六、sql语句</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5C%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E8%AE%B0%E5%BD%95%5Cimage-20210321153913927.png" alt="image-20210321153913927"></h3><p><strong>思路：对除了自动编号外的字段进行分组即可筛选出不重复的数据</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_student_score(id <span class="type">int</span>,sid <span class="type">int</span>,name varchar2(<span class="number">20</span>),kid <span class="type">int</span>,kname varchar2(<span class="number">20</span>),score <span class="type">int</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">--插入数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student_score <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">2018001</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="number">0001</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="number">69</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student_score <span class="keyword">values</span>(<span class="number">2</span>,<span class="number">2018002</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="number">0001</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="number">89</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student_score <span class="keyword">values</span>(<span class="number">3</span>,<span class="number">2018001</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="number">0001</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="number">69</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student_score <span class="keyword">values</span>(<span class="number">4</span>,<span class="number">2018002</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="number">0002</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="number">79</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student_score <span class="keyword">values</span>(<span class="number">5</span>,<span class="number">2018001</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="number">0002</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="number">80</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student_score <span class="keyword">values</span>(<span class="number">6</span>,<span class="number">2018002</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="number">0002</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="number">79</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_student_score;</span><br><span class="line">ID    SID      NAME  KID    KNAME  SCORE</span><br><span class="line"><span class="number">1</span>    <span class="number">2018001</span>    张三    <span class="number">1</span>    数学    <span class="number">69</span></span><br><span class="line"><span class="number">2</span>    <span class="number">2018002</span>    李四    <span class="number">1</span>    数学    <span class="number">89</span></span><br><span class="line"><span class="number">3</span>    <span class="number">2018001</span>    张三    <span class="number">1</span>    数学    <span class="number">69</span></span><br><span class="line"><span class="number">4</span>    <span class="number">2018002</span>    李四    <span class="number">2</span>    语文    <span class="number">79</span></span><br><span class="line"><span class="number">5</span>    <span class="number">2018001</span>    张三    <span class="number">2</span>    语文    <span class="number">80</span></span><br><span class="line"><span class="number">6</span>    <span class="number">2018002</span>    李四    <span class="number">2</span>    语文    <span class="number">79</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--执行删除SQL语句</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tb_student_score</span><br><span class="line"> <span class="keyword">where</span> id <span class="keyword">not</span> <span class="keyword">in</span> (</span><br><span class="line">                   <span class="keyword">select</span> <span class="built_in">min</span>(id)</span><br><span class="line">                     <span class="keyword">from</span> tb_student_score t</span><br><span class="line">                    <span class="keyword">group</span> <span class="keyword">by</span> t.sid, t.name, t.kid, t.kname, t.score</span><br><span class="line">                  );</span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_student_score;</span><br><span class="line">ID    SID        NAME    KID    KNAME        SCORE</span><br><span class="line"><span class="number">1</span>    <span class="number">2018001</span>    张三    <span class="number">1</span>          数学         <span class="number">69</span></span><br><span class="line"><span class="number">2</span>    <span class="number">2018002</span>    李四    <span class="number">1</span>          数学         <span class="number">89</span></span><br><span class="line"><span class="number">4</span>    <span class="number">2018002</span>    李四    <span class="number">2</span>          语文         <span class="number">79</span></span><br><span class="line"><span class="number">5</span>    <span class="number">2018001</span>    张三    <span class="number">2</span>          语文         <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="十七、一个叫team的表，里面只有一个字段name，一共有4条记录，分别是a，b，c，d，对应四个球队，现在四个球队进行比赛，用一条sql语句显示所有可能的比赛组合。"><a href="#十七、一个叫team的表，里面只有一个字段name，一共有4条记录，分别是a，b，c，d，对应四个球队，现在四个球队进行比赛，用一条sql语句显示所有可能的比赛组合。" class="headerlink" title="十七、一个叫team的表，里面只有一个字段name，一共有4条记录，分别是a，b，c，d，对应四个球队，现在四个球队进行比赛，用一条sql语句显示所有可能的比赛组合。"></a>十七、一个叫team的表，里面只有一个字段name，一共有4条记录，分别是a，b，c，d，对应四个球队，现在四个球队进行比赛，用一条sql语句显示所有可能的比赛组合。</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> team a,team b <span class="keyword">where</span> a.name<span class="operator">&gt;</span>b.name;</span><br></pre></td></tr></table></figure>
+
+<p>由于需求为讲四个球队两两组合，故我们可以考虑相当于两张一样的表进行笛卡尔积多表查询,由上可看到两两组合的所有可能，但是结合实际，组合(a,a),(b,b)……在比赛中是不可能出现的，而(a,b)和(b,a)组合相当于一样。<a target="_blank" rel="noopener" href="http://故需要加where条件a.name/">故需要加where条件a.name</a>&gt;b.name排除以上的情况发生</p>
+<h3 id="十八、String的-substring-int-beginIndex-、concat-String-str-方法。"><a href="#十八、String的-substring-int-beginIndex-、concat-String-str-方法。" class="headerlink" title="十八、String的**substring(int beginIndex)、concat**(String str)方法。"></a>十八、String的**<a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html#substring(int)">substring</a><strong>(int beginIndex)、</strong><a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html#concat(java.lang.String)">concat</a>**(<a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html">String</a> str)方法。</h3><p><strong><a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html#substring(int)">substring</a></strong>(int beginIndex)</p>
+<p>返回一个新的字符串，它是此字符串的一个子字符串。该子字符串从指定索引处的字符开始，直到此字符串末尾。</p>
+<p>示例：</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;unhappy&quot;</span>.substring(<span class="number">2</span>) returns <span class="string">&quot;happy&quot;</span></span><br><span class="line"><span class="string">&quot;Harbison&quot;</span>.substring(<span class="number">3</span>) returns <span class="string">&quot;bison&quot;</span></span><br><span class="line"><span class="string">&quot;emptiness&quot;</span>.substring(<span class="number">9</span>) returns <span class="string">&quot;&quot;</span> (an empty string)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong><a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html#concat(java.lang.String)">concat</a></strong>(<a target="_blank" rel="noopener" href="https://tool.oschina.net/uploads/apidocs/jdk-zh/java/lang/String.html">String</a> str)</p>
+<p>将指定字符串连接到此字符串的结尾。</p>
+<p>如果参数字符串的长度为 <code>0</code>，则返回此 <code>String</code> 对象。否则，创建一个新的 <code>String</code> 对象，用来表示由此 <code>String</code> 对象表示的字符序列和参数字符串表示的字符序列连接而成的字符序列。</p>
+<p>示例：</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;cares&quot;</span>.concat(<span class="string">&quot;s&quot;</span>) returns <span class="string">&quot;caress&quot;</span></span><br><span class="line"><span class="string">&quot;to&quot;</span>.concat(<span class="string">&quot;get&quot;</span>).concat(<span class="string">&quot;her&quot;</span>) returns <span class="string">&quot;together&quot;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="十九、Javascript相关"><a href="#十九、Javascript相关" class="headerlink" title="十九、Javascript相关"></a>十九、Javascript相关</h3><p>以下哪一条Javascript语句会产生运行错误？</p>
+<ul>
+<li><p>```<br>var obj=( );//错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  var obj&#x3D;[ ];&#x2F;&#x2F;声明obj为数组对象</span><br></pre></td></tr></table></figure></li>
+<li><p>```<br>var obj={ };//声明obj为对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  var obj&#x3D;&#x2F; &#x2F;;&#x2F;&#x2F;声明obj为正则对象</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>foo对象有att属性，那么获取att属性的值，以下哪些做法是可以的：（javascript）</p>
+<p>javascrit获取对象属性的方法有两种：分别是采用’.’和[]。所以ADE都正确</p>
+<ul>
+<li><p>```<br>foo[“att”]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  foo(&quot;att&quot;)</span><br></pre></td></tr></table></figure></li>
+<li><p>```<br>foo{“att”}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  foo.att</span><br></pre></td></tr></table></figure></li>
+<li><p>```<br>foo[[“a”,”t”,”t”].join(“”)]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 二十、html相关</span><br><span class="line"></span><br><span class="line">在不指定特殊属性的情况下，以下标签可以手动输入文本的是B</span><br><span class="line"></span><br><span class="line">&#96;&lt;textarea&gt;&#96; 标签定义多行的文本输入控件。</span><br><span class="line"></span><br><span class="line">&#96;&lt;input type&#x3D;&quot;hidden&quot;&#x2F;&gt;&#96;  </span><br><span class="line">&#96;&lt;textarea&gt;&lt;&#x2F;textarea&gt;&#96;  </span><br><span class="line">&#96;&lt;div&gt;&lt;&#x2F;div&gt;&#96;  </span><br><span class="line">&#96;&lt;a&gt;&lt;&#x2F;a&gt;&#96;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">table标签</span><br><span class="line"></span><br><span class="line">**定义和用法**</span><br><span class="line"></span><br><span class="line">简单的 HTML 表格由 table 元素以及一个或多个 tr、th 或 td 元素组成。</span><br><span class="line"></span><br><span class="line">**tr 元素定义表格行，th 元素定义表头，td 元素定义表格单元。**</span><br><span class="line"></span><br><span class="line">更复杂的 HTML 表格也可能包括 caption、col、colgroup、thead、tfoot 以及 tbody 元素。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;html</span><br><span class="line">&lt;p&gt;每个表格由 table 标签开始。&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;每个表格行由 tr 标签开始。&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;每个表格数据由 td 标签开始。&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">&lt;h4&gt;一列：&lt;&#x2F;h4&gt;</span><br><span class="line">&lt;table border&#x3D;&quot;1&quot;&gt;&#x2F;&#x2F;规定表格边框的宽度。</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;td&gt;100&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;&#x2F;table&gt;</span><br><span class="line"></span><br><span class="line">&lt;h4&gt;一行三列：&lt;&#x2F;h4&gt;</span><br><span class="line">&lt;table border&#x3D;&quot;1&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;td&gt;100&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;td&gt;200&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;td&gt;300&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;&#x2F;table&gt;</span><br><span class="line"></span><br><span class="line">&lt;h4&gt;两行三列：&lt;&#x2F;h4&gt;</span><br><span class="line">&lt;table border&#x3D;&quot;1&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;td&gt;100&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;td&gt;200&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;td&gt;300&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;td&gt;400&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;td&gt;500&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;td&gt;600&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;&#x2F;table&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+
+<h3 id="二十一、请你根据任意一个外卖app的使用经历，画出你所理解的外卖的流程。请画出主要的环节，以及每个环节涉及的角色。（比如用户、商家等）"><a href="#二十一、请你根据任意一个外卖app的使用经历，画出你所理解的外卖的流程。请画出主要的环节，以及每个环节涉及的角色。（比如用户、商家等）" class="headerlink" title="二十一、请你根据任意一个外卖app的使用经历，画出你所理解的外卖的流程。请画出主要的环节，以及每个环节涉及的角色。（比如用户、商家等）"></a>二十一、请你根据任意一个外卖app的使用经历，画出你所理解的外卖的流程。请画出主要的环节，以及每个环节涉及的角色。（比如用户、商家等）</h3>
+
+<p>二十二、图形题解题技巧</p>
+<ol>
+<li><p>三角形或圆心类：找周围的数字与圆心数字关系</p>
+<p>例子：</p>
+</li>
+<li><p>图形题目：观察点的数目，线的数目（直线、曲线、线头），笔画，角（有无，角度，数目），面（封闭区域数，部分数），对称（对称轴）</p>
+</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

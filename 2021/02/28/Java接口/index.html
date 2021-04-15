@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Java中的接口 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%8E%A5%E5%8F%A3"><span class="toc-text">Java接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="toc-text">1、几个问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%8E%A5%E5%8F%A3%E6%98%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%AE%9E%E4%BE%8B%E5%8C%96-%E4%BD%86%E6%98%AF%E6%8E%A5%E5%8F%A3%E5%BC%95%E7%94%A8%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%90%911%E4%B8%AA%E5%AE%9E%E7%8E%B0%E8%AF%A5%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%8E%A5%E5%8F%A3-%E6%88%96%E6%8A%BD%E8%B1%A1%E7%B1%BB-%E7%9A%84%E5%AD%98%E5%9C%A8%E6%98%AF%E4%B8%BA%E4%BA%86%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">3、接口(或抽象类)的存在是为了多态的实现.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-Animal%E7%B1%BB"><span class="toc-text">3.1 Animal类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Mammal%E7%B1%BB"><span class="toc-text">3.2 Mammal类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Reptile%E7%B1%BB"><span class="toc-text">3.3 Reptile类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-Goat%E7%B1%BB-%E5%92%8C-Rabbit%E7%B1%BB"><span class="toc-text">3.5 Goat类 和 Rabbit类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-Snake%E7%B1%BB"><span class="toc-text">3.6 Snake类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-Farmer-%E7%B1%BB"><span class="toc-text">3.7 Farmer 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E6%89%A7%E8%A1%8C%E5%86%9C%E5%A4%AB%E5%96%82%E6%B0%B4%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">3.7 执行农夫喂水的代码.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8%E6%80%BB%E7%BB%93"><span class="toc-text">3.8总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E8%A7%A3%E5%86%B3%E4%B8%8D%E4%BA%86%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">4、抽象类解决不了的问题.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%A4%9A%E6%80%81-%E4%BB%A5%E5%8F%8A-%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="toc-text">5、接口与多态 以及 多继承性.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-Huntable%E6%8E%A5%E5%8F%A3"><span class="toc-text">5.1 Huntable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-Tiger-%E7%B1%BB"><span class="toc-text">5.2 Tiger 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-Snake%E7%B1%BB"><span class="toc-text">5.3 Snake类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-Farmer%E7%B1%BB"><span class="toc-text">5.4 Farmer类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8A%E5%BA%94%E7%94%A8%E6%B3%9B%E5%9E%8B"><span class="toc-text">6、接口上应用泛型.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-Huntable%E6%8E%A5%E5%8F%A3"><span class="toc-text">6.1 Huntable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Tiger%E7%B1%BB-%E5%92%8CSnake%E7%B1%BB"><span class="toc-text">6.2 Tiger类(和Snake类)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%80%8C%E4%B8%8D%E7%94%A8%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">7、什么情况下应该使用接口而不用抽象类.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81"><span class="toc-text">7.1 需要实现多态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95-%E5%8A%9F%E8%83%BD-%E4%B8%8D%E6%98%AF%E5%BD%93%E5%89%8D%E7%B1%BB%E6%97%8F%E7%9A%84%E5%BF%85%E8%A6%81-%E5%B1%9E%E6%80%A7"><span class="toc-text">7.2. 要实现的方法(功能)不是当前类族的必要(属性).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-%E8%A6%81%E4%B8%BA%E4%B8%8D%E5%90%8C%E7%B1%BB%E6%97%8F%E7%9A%84%E5%A4%9A%E4%B8%AA%E7%B1%BB%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%A0%B7%E7%9A%84%E6%96%B9%E6%B3%95-%E5%8A%9F%E8%83%BD"><span class="toc-text">7.3  . 要为不同类族的多个类实现同样的方法(功能).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%A2%AB%E5%8F%AB%E5%81%9A%E6%8E%A5%E5%8F%A3-%E8%B7%9F%E7%9C%9F%E6%AD%A3%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BE%8B%E5%A6%82usb%E6%8E%A5%E5%8F%A3%E6%9C%89%E8%81%94%E7%B3%BB%E5%90%97"><span class="toc-text">8、接口为什么会被叫做接口, 跟真正的接口例如usb接口有联系吗?</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Java中的接口
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-02-28 22:08:32</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="Java接口"><a href="#Java接口" class="headerlink" title="Java接口"></a>Java接口</h2><h3 id="1、几个问题"><a href="#1、几个问题" class="headerlink" title="1、几个问题"></a>1、几个问题</h3><ol>
+<li><p>为什么不直接在类里面写对应的方法, 而要多写1个接口(或抽象类)?</p>
+</li>
+<li><p>既然接口跟抽象类差不多, 什么情况下要用接口而不是抽象类.</p>
+</li>
+<li><p>为什么interface叫做接口呢? 跟一般范畴的接口例如usb接口, 显卡接口有什么联系呢?</p>
+</li>
+</ol>
+<h3 id="2、接口是不可以被实例化-但是接口引用可以指向1个实现该接口的对象"><a href="#2、接口是不可以被实例化-但是接口引用可以指向1个实现该接口的对象" class="headerlink" title="2、接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象."></a>2、<strong>接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象.</strong></h3><p>假如类A impletments 了接口B</p>
+<p>那么下面是合法的:</p>
+<p><code>B b = new A();</code></p>
+<p>也可以把A的对象强制转换为 接口B的对象</p>
+<p><code>A a = new A90; B b = (B)a;</code></p>
+<p>这个特性是下面内容的前提.</p>
+<h3 id="3、接口-或抽象类-的存在是为了多态的实现"><a href="#3、接口-或抽象类-的存在是为了多态的实现" class="headerlink" title="3、接口(或抽象类)的存在是为了多态的实现."></a>3、接口(或抽象类)的存在是为了多态的实现.</h3><p>详细代码用抽象举1个例子：</p>
+<p>先定义几个类,</p>
+<p>动物(Animal) 抽象类</p>
+<p>爬行动物(Reptile) 抽象类  继承动物类</p>
+<p>哺乳动物(Mammal) 抽象类 继承动物类</p>
+<p>山羊(Goat) 继承哺乳动物类<br>老虎(Tiger)  继承哺乳动物类<br>兔子(Rabbit) 继承哺乳动物类<br>蛇(Snake)   继承爬行动物类</p>
+<p>农夫(Farmer)   没有继承任何类 但是农夫可以给Animal喂水(依赖关系)</p>
+<h4 id="3-1-Animal类"><a href="#3-1-Animal类" class="headerlink" title="3.1 Animal类"></a>3.1 Animal类</h4><p>这个是抽象类, 显示也没有”动物” 这种实体</p>
+<p>类里面包含3个抽象方法.</p>
+<ol>
+<li><p>静态方法getName()</p>
+</li>
+<li><p>移动方法move(), 因为动物都能移动.  但是各种动物有不同的移动方法, 例如老虎和山羊会跑着移动, 兔子跳着移动, 蛇会爬着移动.</p>
+</li>
+</ol>
+<p><u>作为抽象基类, 我们不关心继承的实体类是如何移动的, 所以移动方法move()是1个抽象方法.  这个就是多态的思想.</u></p>
+<ol start="3">
+<li>喝水方法drink(), 同样, 各种动物有各种饮水方法. 这个也是抽象方法.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-Mammal类"><a href="#3-2-Mammal类" class="headerlink" title="3.2 Mammal类"></a>3.2 Mammal类</h4><p>这个是继承动物类的哺乳动物类, 后面的老虎山羊等都继承自这个类.<br>Mammal类自然继承了Animal类的3个抽象方法, 实体类不再用写其他代码.</p>
+<p><code>abstract class Mammal extends Animal&#123;&#125;</code></p>
+<h4 id="3-3-Reptile类"><a href="#3-3-Reptile类" class="headerlink" title="3.3 Reptile类"></a>3.3 Reptile类</h4><p>这个是代表爬行动物的抽象类, 同上, 都是继承自Animal类.<br><code>abstract class Reptile extends Animal&#123;&#125;</code></p>
+<p>3.4 Tiger类<br><u>老虎类就是1个实体类, 所以它必须重写所有继承自超类的抽象方法</u>, 至于那些方法如何重写, 则取决于老虎类本身.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tiger</span> <span class="keyword">extends</span> <span class="title">Mammal</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Tiger&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat moved to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat lower it&#x27;s head and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>如上, 老虎的移动方法很普通, 低头喝水.</p>
+<h4 id="3-5-Goat类-和-Rabbit类"><a href="#3-5-Goat类-和-Rabbit类" class="headerlink" title="3.5 Goat类 和 Rabbit类"></a>3.5 Goat类 和 Rabbit类</h4><p>这个两个类与Tiger类似, 它们都继承自Mammal这个类.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Goat</span> <span class="keyword">extends</span> <span class="title">Mammal</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Goat&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat moved to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat lower it&#x27;s head and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>兔子: 喝水方法有点区别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rabbit</span> <span class="keyword">extends</span> <span class="title">Mammal</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Rabbit&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Rabbit moved to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Rabbit put out it&#x27;s tongue and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-6-Snake类"><a href="#3-6-Snake类" class="headerlink" title="3.6 Snake类"></a>3.6 Snake类</h4><p>蛇类继承自Reptile(爬行动物)<br>移动方法和喝水方法都跟其他3动物有点区别.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snake</span> <span class="keyword">extends</span> <span class="title">Reptile</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Snake&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Snake crawled to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Snake dived into water and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-Farmer-类"><a href="#3-7-Farmer-类" class="headerlink" title="3.7 Farmer 类"></a>3.7 Farmer 类</h4><p>Farmer类不属于 Animal类族, 但是Farmer农夫可以给各种动物, 喂水.</p>
+<p>Farmer类有2个关键方法, 一个是<br><code>bringWater(String destination)</code>    –&gt; 把水带到某个地点</p>
+<p>另1个就是<code>feedWater()</code>了, </p>
+<p>feedWater这个方法分为三步:</p>
+<p>首先是农夫带水到饲养室,(<code>bringWater())</code></p>
+<p>接着被喂水动物走到饲养室,(<code>move()</code>)</p>
+<p>接着动物喝水(<code>drink()</code>)</p>
+<p>Farmer可以给老虎喂水, 可以给山羊喂水, 还可以给蛇喂水, 那么feedWater()里的参数类型到底是老虎,山羊还是蛇呢.</p>
+<p>实际上<u>因为老虎,山羊, 蛇都继承自Animal这个类, 所以feedWater里的参数类型设为Animal就可以了.</u></p>
+<p>Farmer类首先调用bringWater(“饲养室”),<br>至于<u>这个动物是如何走到饲养室和如何喝水的, Farmer类则不用关心.</u></p>
+<p><u>因为执行时, Animal超类会根据引用指向的对象类型不同 而 指向不同的被重写的方法.  这个就是多态的意义.</u></p>
+<p>代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Farmer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bringWater</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Farmer bring water to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">feedWater</span><span class="params">(Animal a)</span></span>&#123; <span class="comment">// polymorphism多态性</span></span><br><span class="line">        <span class="keyword">this</span>.bringWater(<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">        a.move(<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">        a.drink();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-7-执行农夫喂水的代码"><a href="#3-7-执行农夫喂水的代码" class="headerlink" title="3.7 执行农夫喂水的代码."></a>3.7 执行农夫喂水的代码.</h4><p>下面的代码是1个农夫依次喂水给一只老虎, 一只羊, 以及一条蛇</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Farmer fm = <span class="keyword">new</span> Farmer();</span><br><span class="line">        Snake sn = <span class="keyword">new</span> Snake();</span><br><span class="line">        Goat gt = <span class="keyword">new</span> Goat();</span><br><span class="line">        Tiger tg = <span class="keyword">new</span> Tiger();</span><br><span class="line"> </span><br><span class="line">        fm.feedWater(sn);</span><br><span class="line">        fm.feedWater(gt);</span><br><span class="line">        fm.feedWater(tg);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-8总结"><a href="#3-8总结" class="headerlink" title="3.8总结"></a>3.8总结</h4><p>农夫只负责带水过去制定地点, 而不必关心老虎, 蛇, 山羊它们是如何过来的. 它们如何喝水. 这些农夫都不必关心.<br>只需要调用同1个方法<code>feedWater()</code>.  </p>
+<p>不使用多态的后果:<br>而如果老虎, 蛇, 山羊的<code>drink() </code>方法不是重写自同1个抽象方法的话, 多态就不能实现.<br><u>农夫类就可能要根据参数类型的不同而重载很多个 <code> feedWater()</code>方法了.</u></p>
+<p>而且每增加1个类(例如 狮子Lion)</p>
+<p>就需要在农夫类里增加1个feedWater的重载方法<code> feedWater(Lion l)</code>…</p>
+<p>而接口跟抽象类类似,<br>这个就回答了本文第一个问题.<br>1.为什么不直接在类里面写对应的方法,  而要多写1个接口(或抽象类)?</p>
+<h3 id="4、抽象类解决不了的问题"><a href="#4、抽象类解决不了的问题" class="headerlink" title="4、抽象类解决不了的问题."></a>4、抽象类解决不了的问题.</h3><p>既然抽象类很好地实现了多态性, 那么什么情况下用接口会更加好呢?</p>
+<p>对于上面的例子, 我们加一点需求.</p>
+<p>Farmer 农夫多了1个技能, 就是给另1个动物喂兔子(囧).</p>
+<p><code>BringAnimal(Animal a, String destination)  </code> 把兔子带到某个地点…</p>
+<p><code>feedAnimal(Animal ht, Animal a) </code> 把动物a丢给动物ht</p>
+<p>注意农夫并没有把兔子宰了, 而是把小动物(a)丢给另1个被喂食的动物(ht).</p>
+<p>那么问题来了, 那个动物必须有捕猎这个技能.  也就是我们要给被喂食的动物加上1个方法(捕猎) <code>hunt(Animal a)</code>.</p>
+<p>但是现实上不是所有动物都有捕猎这个技能的, 所以我们不应该把<code>hunt(Animal a)</code>方法加在Goat类和Rabbit类里,  只加在Tiger类和Snake类里.</p>
+<p>而且老虎跟蛇的捕猎方法也不一样, 则表明<u>hunt()的方法体在Tiger类里和Snake类里是不一样的.</u></p>
+<p>下面有3个方案.</p>
+<ol>
+<li><p>分别在Tiger类里和Snake类里加上Hunt() 方法.  其它类(例如Goat) 不加.</p>
+</li>
+<li><p>在基类Animal里加上Hunt()抽象方法. 在Tiger里和Snake里重写这个Hunt() 方法.</p>
+</li>
+<li><p>添加肉食性动物这个抽象类.   </p>
+</li>
+</ol>
+<p>先来说第1种方案.</p>
+<p>这种情况下, Tiger里的<code>Hunt(Animal a)</code>方法与 Snake里的<code>Hunt(Animal a)</code>方法毫无关联. 也就是说不能利用多态性.</p>
+<p>导致Farm类里的<code>feedAnimal()</code>方法需要分别为Tiger 与 Snake类重载. 否决.</p>
+<p>第2种方案:</p>
+<p>如果在抽象类Animal里加上<code>Hunt()</code>方法, 则所有它的非抽象派生类都要重写实现这个方法, 包括 Goat类和 Rabbit类.</p>
+<p>这是不合理的, 因为Goat类根本没必要用到Hunt()方法, 造成了资源(内存)浪费.</p>
+<p>第3种方案:<br>加入我们在哺乳类动物下做个分叉, 加上肉食性哺乳类动物, 非肉食性哺乳动物这两个抽象类?</p>
+<p>首先,<br>肉食性这种分叉并不准确, 例如很多腐蚀性动物不会捕猎, 但是它们是肉食性.</p>
+<p>其次</p>
+<p>这种方案会另类族图越来越复杂, 假如以后再需要辨别能否飞的动物呢, 增加飞翔 <code>fly()</code>这个方法呢? 是不是还要分叉?</p>
+<p>再次,</p>
+<p>很现实的问题, 在项目中, 你很可能没机会修改上层的类代码, 因为它们是用Jar包发布的, 或者你没有修改权限.</p>
+<p>这种情况下就需要用到接口了.</p>
+<h3 id="5、接口与多态-以及-多继承性"><a href="#5、接口与多态-以及-多继承性" class="headerlink" title="5、接口与多态 以及 多继承性."></a>5、接口与多态 以及 多继承性.</h3><p>上面的问题, 抽象类解决不了, 根本问题是Java的类不能多继承.</p>
+<p>因为Tiger类继承了动物Animal类的特性(例如 move() 和 drink()) , 但是严格上来将 捕猎(hunt())并不算是动物的特性之一. 有些植物, 单细胞生物也会捕猎的.</p>
+<p>所以Tiger要从别的地方来继承Hunt()这个方法.  接口就发挥作用了.</p>
+<h4 id="5-1-Huntable接口"><a href="#5-1-Huntable接口" class="headerlink" title="5.1 Huntable接口"></a>5.1 Huntable接口</h4><p>我们增加1个Huntable接口.</p>
+<p>接口里有1个方法hunt(Animal a), 就是捕捉动物, 至于怎样捕捉则由实现接口的类自己决定.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Huntable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hunt</span><span class="params">(Animal a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Tiger-类"><a href="#5-2-Tiger-类" class="headerlink" title="5.2 Tiger 类"></a>5.2 Tiger 类</h4><p>既然定义了1个Huntable(可以捕猎的)接口.</p>
+<p>Tiger类就要实现这个接口并重写接口里hunt()方法.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tiger</span> <span class="keyword">extends</span> <span class="title">Mammal</span> <span class="keyword">implements</span> <span class="title">Huntable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Tiger&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat moved to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat lower it&#x27;s head and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hunt</span><span class="params">(Animal a)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Tiger catched &quot;</span> + a.getName() + <span class="string">&quot; and eated it&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-Snake类"><a href="#5-3-Snake类" class="headerlink" title="5.3 Snake类"></a>5.3 Snake类</h4><p>同样:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snake</span> <span class="keyword">extends</span> <span class="title">Reptile</span> <span class="keyword">implements</span> <span class="title">Huntable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Snake&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Snake crawled to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Snake dived into water and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hunt</span><span class="params">(Animal a)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Snake coiled &quot;</span> + a.getName() + <span class="string">&quot; and eated it&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见同样实现接口的<code>hunt()</code>方法, 但是蛇与老虎的捕猎方法是有区别的.</p>
+<h4 id="5-4-Farmer类"><a href="#5-4-Farmer类" class="headerlink" title="5.4 Farmer类"></a>5.4 Farmer类</h4><p>这样的话. Farmer类里的<code>feedAnimal(Animal ht, Animal a)</code>就可以实现多态了.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Farmer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bringWater</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Farmer bring water to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bringAnimal</span><span class="params">(Animal a,String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Farmer bring &quot;</span> + a.getName() + <span class="string">&quot; to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">feedWater</span><span class="params">(Animal a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bringWater(<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">        a.move(<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">        a.drink();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">feedAnimal</span><span class="params">(Animal ht , Animal a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bringAnimal(a,<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">        ht.move(<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">        Huntable hab = (Huntable)ht;</span><br><span class="line">        hab.hunt(a);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关键是这一句<br><code>Huntable hab = (Huntable)ht;</code><br>本文一开始讲过了, 接口的引用可以指向实现该接口的对象.<br>当然, 如果把Goat对象传入Farmer的feedAnimal()里就会有异常, 因为Goat类没有实现该接口. 上面那个代码执行失败.</p>
+<p>如果要避免上面的问题.</p>
+<p>可以修改feedAnimal方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">feedAnimal</span><span class="params">(Huntable hab, Animal a)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.bringAnimal(a,<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">      Animal ht = (Animal)hab;</span><br><span class="line">      ht.move(<span class="string">&quot;Feeding Room&quot;</span>);</span><br><span class="line">      hab.hunt(a);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的话, 传入的对象就必须是实现了Huntable的对象, 如果把Goat放入就会编译报错.</p>
+<p>但是里面一样有一句强制转换</p>
+<p><code>Animal ht = (Animal)hab</code></p>
+<p>反而更加不安全, 因为实现的Huntable的接口的类不一定都是Animal的派生类.<br>相反, 接口的出现就是鼓励多种不同的类实现同样的功能(方法)</p>
+<p>例如,假如一个机械类也可以实现这个接口, 那么那个机械就可以帮忙打猎了(囧)</p>
+<p>1个植物类(例如捕蝇草),实现这个接口, 也可以捕猎苍蝇了.</p>
+<p>也就是说, <u>接口不会限制实现接口的类的类型.</u></p>
+<p><u>这样, Tiger类与Snake类不但继承了Animal的方法, 还继承(实现)了接口Huntable的方法, 一定程度上弥补java的class不支持多继承的特点.</u></p>
+<h3 id="6、接口上应用泛型"><a href="#6、接口上应用泛型" class="headerlink" title="6、接口上应用泛型."></a>6、接口上应用泛型.</h3><p>上面的Huntable里还是有点限制的,</p>
+<p>就是它里面的hunt()方法的参数是 Animal a, 也就是说这个这个接口只能用于捕猎动物.</p>
+<p>但是在java的世界里, 接口里的方法(行为)大多数是与类的类型无关的.</p>
+<p>也就是说, Huntable接口里的hunt()方法里不单只可以捕猎动物, 还可以捕猎其他东西(例如 捕猎植物… 敌方机械等)</p>
+<h4 id="6-1-Huntable接口"><a href="#6-1-Huntable接口" class="headerlink" title="6.1 Huntable接口"></a>6.1 Huntable接口</h4><p>首先要在Huntable接口上添加泛型标志:<T></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Huntable</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hunt</span><span class="params">(T o)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后里面的hunt()的参数的类型就写成T, 表示hunt()方法可以接受多种参数, 取决于实现接口的类.</p>
+<h4 id="6-2-Tiger类-和Snake类"><a href="#6-2-Tiger类-和Snake类" class="headerlink" title="6.2 Tiger类(和Snake类)"></a>6.2 Tiger类(和Snake类)</h4><p>同样, 定义tiger类时必须加上接口的泛型标志<Animal>, 表示要把接口应用在Animal这种类型.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tiger</span> <span class="keyword">extends</span> <span class="title">Mammal</span> <span class="keyword">implements</span> <span class="title">Huntable</span>&lt;<span class="title">Animal</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name = <span class="string">&quot;Tiger&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String destination)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat moved to &quot;</span> + destination + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Goat lower it&#x27;s head and drink.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hunt</span><span class="params">(Animal a)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Tiger catched &quot;</span> + a.getName() + <span class="string">&quot; and eated it&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样, 在里面hunt()参数就可以指明类型Animal了, 表示老虎虽然有捕猎这个行为, 但是只能捕猎动物.</p>
+<h3 id="7、什么情况下应该使用接口而不用抽象类"><a href="#7、什么情况下应该使用接口而不用抽象类" class="headerlink" title="7、什么情况下应该使用接口而不用抽象类."></a>7、什么情况下应该使用接口而不用抽象类.</h3><p>好了, 回到本文最重要的一个问题.</p>
+<p>做个总结</p>
+<ol>
+<li><p>需要实现多态</p>
+</li>
+<li><p>要实现的方法(功能)不是当前类族的必要(属性).</p>
+</li>
+<li><p>要为不同类族的多个类实现同样的方法(功能).</p>
+</li>
+</ol>
+<h4 id="7-1-需要实现多态"><a href="#7-1-需要实现多态" class="headerlink" title="7.1 需要实现多态"></a>7.1 需要实现多态</h4><p>很明显, 接口其中一个存在意义就是为了实现多态. 这里不多说了.</p>
+<p>而抽象类(继承) 也可以实现多态</p>
+<h4 id="7-2-要实现的方法-功能-不是当前类族的必要-属性"><a href="#7-2-要实现的方法-功能-不是当前类族的必要-属性" class="headerlink" title="7.2. 要实现的方法(功能)不是当前类族的必要(属性)."></a>7.2. 要实现的方法(功能)不是当前类族的必要(属性).</h4><p>上面的例子就表明, 捕猎这个方法不是动物这个类必须的,<br>在动物的派生类中, 有些类需要, 有些不需要.  </p>
+<p>如果把捕猎方法写在动物超类里面是不合理的浪费资源.</p>
+<p>所以把捕猎这个方法封装成1个接口, 让派生类自己去选择实现!</p>
+<h4 id="7-3-要为不同类族的多个类实现同样的方法-功能"><a href="#7-3-要为不同类族的多个类实现同样的方法-功能" class="headerlink" title="7.3  . 要为不同类族的多个类实现同样的方法(功能)."></a>7.3  . 要为不同类族的多个类实现同样的方法(功能).</h4><p>上面说过了, 其实不是只有Animal类的派生类才可以实现Huntable接口.<br>如果Farmer实现了这个接口, 那么农夫自己就可以去捕猎动物了…</p>
+<p>我们拿另个常用的接口Comparable来做例子.</p>
+<p>这个接口是应用了泛型,</p>
+<p>首先, 比较(CompareTo) 这种行为很难界定适用的类族, 实际上, 几乎所有的类都可以比较.</p>
+<p>比如 数字类可以比较大小,   人类可以比较财富,  动物可以比较体重等.</p>
+<p>所以各种类都可以实现这个比较接口.</p>
+<p>一旦实现了这个比较接口. 就可以开启另1个隐藏技能:</p>
+<p>就是可以利用Arrays.sort()来进行排序了.</p>
+<p>就如实现了捕猎的动物,<br>可以被农夫Farmer喂兔子一样…</p>
+<h4 id="8、接口为什么会被叫做接口-跟真正的接口例如usb接口有联系吗"><a href="#8、接口为什么会被叫做接口-跟真正的接口例如usb接口有联系吗" class="headerlink" title="8、接口为什么会被叫做接口, 跟真正的接口例如usb接口有联系吗?"></a>8、接口为什么会被叫做接口, 跟真正的接口例如usb接口有联系吗?</h4><p>对啊, 为什么叫接口, 而不叫插件(plugin)呢,  貌似java接口的功能更类似1个插件啊.</p>
+<p>插上某个插件, 就有某个功能啊.</p>
+<p>实际上, 插件与接口是相辅相成的.</p>
+<p>例如有1个外部存储插件(U盘), 也需要使用设备具有usb接口才能使用啊.</p>
+<p>再举个具体的例子.</p>
+<p>个人电脑是由大型机发展而来的</p>
+<p>大型机-&gt;小型机-&gt;微机(PC)</p>
+<p>而笔记本是继承自微机的.</p>
+<p>那么问题来了.</p>
+<p>对于, 计算机的CPU/内存/主板/独显/光驱/打印机 有很多功能(方法/行为), 那么到底哪些东西是继承, 哪些东西是接口呢.</p>
+<p>首先,  cpu/内存/主板 是从大型机开始都必备的, 任何计算机都不能把它们去掉.<br>所以, 这三样东西是继承的, 也就说笔记本的cpu/内存/主板是继承自微机(PC)的</p>
+<p>但是/光驱/呢,    现实上很多超薄笔记本不需要光驱的功能.</p>
+<p>如果光驱做成继承, 那么笔记本就必须具有光驱, 然后屏蔽光驱功能, 那么这台笔记本还能做到超薄吗? 浪费了资源.</p>
+<p>所以光驱,打印机这些东西就应该做成插件.</p>
+<p>然后, 在笔记本上做1个可以插光驱和打印机的接口(usb接口).</p>
+<p>也就是说, PC的派生类, 有些(笔记本)可以不实现这个接口, 有些(台式机)可以实现这个接口,只需要把光驱插到这个接口上.</p>
+<p>至于光驱是如何实现的,</p>
+<p>例如一些pc派生类选择实现蓝光光驱, 有些选择刻录机.  但是usb接口本身并不关心. 取决与实现接口的类.</p>
+<p>这个就是现实意义上的多态性啊.<br>————————————————<br>版权声明：本文为CSDN博主「nvd11」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/nvd11/article/details/41129935">https://blog.csdn.net/nvd11/article/details/41129935</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

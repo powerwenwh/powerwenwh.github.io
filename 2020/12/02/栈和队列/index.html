@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        栈和队列 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%88%97%EF%BC%9A%E5%85%88%E5%85%A5%E5%85%88%E5%87%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">队列：先入先出的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97-%E5%AE%9E%E7%8E%B0"><span class="toc-text">队列 - 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="toc-text">循环队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">数组实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="toc-text">单链表实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E9%98%9F%E5%88%97%E5%BA%93%E5%8F%8A%E5%85%B6%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-text">内置队列库及其常见操作的一些示例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-text">队列和广度优先搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-%E6%A8%A1%E6%9D%BF"><span class="toc-text">广度优先搜索 - 模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF-I"><span class="toc-text">模板 I</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF-II"><span class="toc-text">模板 II</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%EF%BC%9A%E5%90%8E%E5%85%A5%E5%85%88%E5%87%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">栈：后入先出的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-%E6%A0%88"><span class="toc-text">实现 - 栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E6%A0%88"><span class="toc-text">最小栈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E8%BE%85%E5%8A%A9%E6%A0%88"><span class="toc-text">方法一：辅助栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E8%BE%85%E5%8A%A9%E6%A0%88%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-text">对于辅助栈的优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%B0O-1"><span class="toc-text">优化空间复杂度到O(1)</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        栈和队列
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-12-02 10:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Leetcode" title="Leetcode">Leetcode</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="队列：先入先出的数据结构"><a href="#队列：先入先出的数据结构" class="headerlink" title="队列：先入先出的数据结构"></a>队列：先入先出的数据结构</h2><p>队列是典型的 FIFO 数据结构。插入（insert）操作也称作入队（enqueue），新元素始终被添加在队列的末尾。 删除（delete）操作也被称为出队（dequeue)。 你只能移除第一个元素。</p>
+<h3 id="队列-实现"><a href="#队列-实现" class="headerlink" title="队列 - 实现"></a>队列 - 实现</h3><p>使用动态数组和指向队列头部的索引。</p>
+<p>队列应支持两种操作：入队和出队。入队会向队列追加一个新元素，而出队会删除第一个元素。 所以我们==需要一个索引来指出起点==。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// store elements</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; data;         </span><br><span class="line">    <span class="comment">// a pointer to indicate the start position</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> p_start;            </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        p_start = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Insert an element into the queue. Return true if the operation is successful. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        data.add(x);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;;    </span><br><span class="line">    <span class="comment">/** Delete an element from the queue. Return true if the operation is successful. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty() == <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p_start++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Get the front item from the queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.get(p_start);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Checks whether the queue is empty or not. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p_start &gt;= data.size();</span><br><span class="line">    &#125;     </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>缺點：简单但低效，随着起始指针的移动，浪费了越来越多的空间</p>
+<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>使用<code>固定大小的数组</code>和<code>两个指针</code>来指示起始位置和结束位置。 目的是<code>重用</code>之前提到的<code>被浪费的存储</code>。</p>
+<h4 id="数组实现"><a href="#数组实现" class="headerlink" title="数组实现"></a>数组实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCircularQueue</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] data;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;<span class="comment">//队列容量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> p_start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;<span class="comment">//队列目前元素个数</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCircularQueue</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = <span class="keyword">new</span> <span class="keyword">int</span>[k];</span><br><span class="line">        <span class="keyword">this</span>.p_start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.capacity=k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.count==<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">this</span>.data[<span class="keyword">this</span>.p_start];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Rear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.count==<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">this</span>.data[((<span class="keyword">this</span>.p_start+<span class="keyword">this</span>.count)-<span class="number">1</span>)%<span class="keyword">this</span>.capacity];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (capacity==count) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.data[(<span class="keyword">this</span>.p_start+<span class="keyword">this</span>.count)%capacity] = value;</span><br><span class="line">            <span class="keyword">this</span>.count++;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.p_start = (p_start+<span class="number">1</span>)%<span class="keyword">this</span>.capacity;</span><br><span class="line">            count--;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span>.count == <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span>.count == <span class="keyword">this</span>.capacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(1)。该数据结构中，所有方法都具有恒定的时间复杂度。</p>
+</li>
+<li><p>空间复杂度：O(N)，其中 N 是队列的预分配容量。循环队列的整个生命周期中，都持有该预分配的空间。</p>
+</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ol>
+<li><p>队列容量这个变量可以用<code>data.length</code>来代替，可以使得属性数量减少，且更加高效。</p>
+</li>
+<li><p>构造函数不带返回类型。</p>
+</li>
+<li><p>==判断队满和队空==</p>
+<ul>
+<li><p>方法一：约定以“队列头指针front在队尾指针rear的下一个位置上”作为队列“满”状态的标志。</p>
+<p> 队空时： front=rear<br> 队满时： (rear+1)%maxsize=front</p>
+</li>
+<li><p>方法二：另设一个变量count记录队列内的元素个数，与队列总长度对比即可得出。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="单链表实现"><a href="#单链表实现" class="headerlink" title="单链表实现"></a>单链表实现</h4><p>单链表 和数组都是很常用的数据结构。</p>
+<blockquote>
+<p>与固定大小的数组相比，单链表不会为未使用的容量预分配内存，因此它的内存效率更高。</p>
+</blockquote>
+<p>单链表与数组实现方法的时间和空间复杂度相同，但是单链表的效率更高，因为这种方法不会预分配内存。</p>
+<p><strong>算法</strong></p>
+<p>列举循环队列中用到的所有属性，并解释其含义:</p>
+<ul>
+<li><p>capacity：循环队列可容纳的最大元素数量。</p>
+</li>
+<li><p>head：队首元素索引。</p>
+</li>
+<li><p>count：当前队列长度。该属性很重要，可以用来做边界检查。</p>
+</li>
+<li><p>tail：队尾元素索引。与数组实现方式相比，如果不保存队尾索引，则需要花费O(N) 时间找到队尾元素。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">  <span class="keyword">public</span> Node nextNode;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//单链表的结构要熟悉，这里为其添加一个含参数的构造函数比较合理。</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value;</span><br><span class="line">    <span class="keyword">this</span>.nextNode = <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCircularQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Node head, tail;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Initialize your data structure here. Set the size of the queue to be k. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MyCircularQueue</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.capacity = k;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Insert an element into the circular queue. Return true if the operation is successful. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count == <span class="keyword">this</span>.capacity)</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    Node newNode = <span class="keyword">new</span> Node(value);</span><br><span class="line">     <span class="comment">//入队的时候，队列为空的话，头尾指针入队后都指向新节点，若队列不为空，只需要操作尾部指针就可以。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count == <span class="number">0</span>) &#123;</span><br><span class="line">      head = tail = newNode;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      tail.nextNode = newNode;</span><br><span class="line">      tail = newNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.count += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Delete an element from the circular queue. Return true if the operation is successful. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.head = <span class="keyword">this</span>.head.nextNode;</span><br><span class="line">    <span class="keyword">this</span>.count -= <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Get the front item from the queue. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.head.value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Get the last item from the queue. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Rear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.tail.value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Checks whether the circular queue is empty or not. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>.count == <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** Checks whether the circular queue is full or not. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>.count == <span class="keyword">this</span>.capacity);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(1)，所有方法都具有恒定的时间复杂度。</p>
+</li>
+<li><p>空间复杂度：O(N)，与数组实现相同。但是单链表实现f方式的内存效率更高。</p>
+</li>
+</ul>
+<p><strong>总结</strong>：</p>
+<ol>
+<li>单链表的结构要熟悉，这里为其添加一个含参数的构造函数比较合理。</li>
+<li>入队的时候，队列为空的话，头尾指针入队后都指向新节点，若队列不为空，只需要操作尾部指针就可以。</li>
+</ol>
+<h3 id="内置队列库及其常见操作的一些示例："><a href="#内置队列库及其常见操作的一些示例：" class="headerlink" title="内置队列库及其常见操作的一些示例："></a>内置队列库及其常见操作的一些示例：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &quot;static void main&quot; must be defined in a public class.</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. Initialize a queue.</span></span><br><span class="line">        Queue&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList();</span><br><span class="line">        <span class="comment">// 2. Get the first element - return null if queue is empty.</span></span><br><span class="line">        System.out.println(<span class="string">&quot;The first element is: &quot;</span> + q.peek());</span><br><span class="line">        <span class="comment">// 3. Push new element.</span></span><br><span class="line">        q.offer(<span class="number">5</span>);</span><br><span class="line">        q.offer(<span class="number">13</span>);</span><br><span class="line">        q.offer(<span class="number">8</span>);</span><br><span class="line">        q.offer(<span class="number">6</span>);</span><br><span class="line">        <span class="comment">// 4. Pop an element.</span></span><br><span class="line">        q.poll();</span><br><span class="line">        <span class="comment">// 5. Get the first element.</span></span><br><span class="line">        System.out.println(<span class="string">&quot;The first element is: &quot;</span> + q.peek());</span><br><span class="line">        <span class="comment">// 7. Get the size of the queue.</span></span><br><span class="line">        System.out.println(<span class="string">&quot;The size is: &quot;</span> + q.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="队列和广度优先搜索"><a href="#队列和广度优先搜索" class="headerlink" title="队列和广度优先搜索"></a>队列和广度优先搜索</h3><p><code>广度优先搜索</code>（BFS）是一种<code>遍历或搜索</code>数据结构（如树或图）的算法。</p>
+<p>使用 BFS 的两个主要方案：<code>遍历</code>或<code>找出最短路径</code>。</p>
+<h4 id="广度优先搜索-模板"><a href="#广度优先搜索-模板" class="headerlink" title="广度优先搜索 - 模板"></a>广度优先搜索 - 模板</h4><h4 id="模板-I"><a href="#模板-I" class="headerlink" title="模板 I"></a>模板 I</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Return the length of the shortest path between root and target node.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BFS</span><span class="params">(Node root, Node target)</span> </span>&#123;</span><br><span class="line">    Queue&lt;Node&gt; queue;  <span class="comment">// store all nodes which are waiting to be processed</span></span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>;       <span class="comment">// number of steps neeeded from root to current node</span></span><br><span class="line">    <span class="comment">// initialize</span></span><br><span class="line">    add root to queue;</span><br><span class="line">    <span class="comment">// BFS</span></span><br><span class="line">    <span class="keyword">while</span> (queue is not empty) &#123;</span><br><span class="line">        step = step + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// iterate the nodes which are already in the queue</span></span><br><span class="line">        <span class="keyword">int</span> size = queue.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">            Node cur = the first node in queue;</span><br><span class="line">            <span class="keyword">return</span> step <span class="keyword">if</span> cur is target;</span><br><span class="line">            <span class="keyword">for</span> (Node next : the neighbors of cur) &#123;</span><br><span class="line">                add next to queue;</span><br><span class="line">            &#125;</span><br><span class="line">            remove the first node from queue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;          <span class="comment">// there is no path from root to target</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如代码所示，在每一轮中，队列中的结点是等待处理的结点。</li>
+<li>在每个更外一层的 while 循环之后，我们距离根结点更远一步。变量 step 指示从根结点到我们正在访问的当前结点的距离。</li>
+</ol>
+<h4 id="模板-II"><a href="#模板-II" class="headerlink" title="模板 II"></a>模板 II</h4><p>有时，确保我们永远<code>不会访问一个结点两次</code>很重要。否则，我们可能陷入无限循环。如果是这样，我们可以在上面的代码中添加一个哈希集来解决这个问题。这是修改后的伪代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Return the length of the shortest path between root and target node.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BFS</span><span class="params">(Node root, Node target)</span> </span>&#123;</span><br><span class="line">    Queue&lt;Node&gt; queue;  <span class="comment">// store all nodes which are waiting to be processed</span></span><br><span class="line">    Set&lt;Node&gt; used;     <span class="comment">// store all the used nodes</span></span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>;       <span class="comment">// number of steps neeeded from root to current node</span></span><br><span class="line">    <span class="comment">// initialize</span></span><br><span class="line">    add root to queue;</span><br><span class="line">    add root to used;</span><br><span class="line">    <span class="comment">// BFS</span></span><br><span class="line">    <span class="keyword">while</span> (queue is not empty) &#123;</span><br><span class="line">        step = step + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// iterate the nodes which are already in the queue</span></span><br><span class="line">        <span class="keyword">int</span> size = queue.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">            Node cur = the first node in queue;</span><br><span class="line">            <span class="keyword">return</span> step <span class="keyword">if</span> cur is target;</span><br><span class="line">            <span class="keyword">for</span> (Node next : the neighbors of cur) &#123;</span><br><span class="line">                <span class="keyword">if</span> (next is not in used) &#123;</span><br><span class="line">                    add next to queue;</span><br><span class="line">                    add next to used;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            remove the first node from queue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;          <span class="comment">// there is no path from root to target</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有两种情况你不需要使用哈希集：</p>
+<ol>
+<li>你完全确定没有循环，例如，在树遍历中；</li>
+<li>你确实希望多次将结点添加到队列中。</li>
+</ol>
+<h2 id="栈：后入先出的数据结构"><a href="#栈：后入先出的数据结构" class="headerlink" title="栈：后入先出的数据结构"></a>栈：后入先出的数据结构</h2><p>在 LIFO 数据结构中，将<code>首先处理添加到队列</code>中的<code>最新元素</code>。</p>
+<h3 id="实现-栈"><a href="#实现-栈" class="headerlink" title="实现 - 栈"></a>实现 - 栈</h3><p>栈的实现比队列容易。<code>动态数组</code>足以实现堆栈结构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &quot;static void main&quot; must be defined in a public class.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; data;               <span class="comment">// store elements</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Insert an element into the stack. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        data.add(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Checks whether the queue is empty or not. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Get the top item from the queue. */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.get(data.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Delete an element from the queue. Return true if the operation is successful. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        data.remove(data.size() - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyStack s = <span class="keyword">new</span> MyStack();</span><br><span class="line">        s.push(<span class="number">1</span>);</span><br><span class="line">        s.push(<span class="number">2</span>);</span><br><span class="line">        s.push(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!s.isEmpty()) &#123;</span><br><span class="line">                System.out.println(s.top());</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(s.pop());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大多数流行的语言都提供了内置的栈库，因此你不必重新发明轮子。除了初始化，我们还需要知道如何使用两个最重要的操作：入栈和退栈。除此之外，你应该能够从栈中获得顶部元素。下面是一些供你参考的代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &quot;static void main&quot; must be defined in a public class.</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. Initialize a stack.</span></span><br><span class="line">        Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="comment">// 2. Push new element.</span></span><br><span class="line">        s.push(<span class="number">5</span>);</span><br><span class="line">        s.push(<span class="number">13</span>);</span><br><span class="line">        s.push(<span class="number">8</span>);</span><br><span class="line">        s.push(<span class="number">6</span>);</span><br><span class="line">        <span class="comment">// 3. Check if stack is empty.</span></span><br><span class="line">        <span class="keyword">if</span> (s.empty() == <span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Stack is empty!&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 4. Pop an element.</span></span><br><span class="line">        s.pop();</span><br><span class="line">        <span class="comment">// 5. Get the top element.</span></span><br><span class="line">        System.out.println(<span class="string">&quot;The top element is: &quot;</span> + s.peek());</span><br><span class="line">        <span class="comment">// 6. Get the size of the stack.</span></span><br><span class="line">        System.out.println(<span class="string">&quot;The size is: &quot;</span> + s.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当你想首先处理最后一个元素时，栈将是最合适的数据结构。</p>
+<h3 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h3><p>设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。</p>
+<p>push(x) —— 将元素 x 推入栈中。<br>pop() —— 删除栈顶的元素。<br>top() —— 获取栈顶元素。<br>getMin() —— 检索栈中的最小元素。</p>
+<h4 id="方法一：辅助栈"><a href="#方法一：辅助栈" class="headerlink" title="方法一：辅助栈"></a>方法一：辅助栈</h4><p>要做出这道题目，首先要理解栈结构先进后出的性质。</p>
+<p>对于栈来说，<strong>如果一个元素 a 在入栈时，栈里有其它的元素 b, c, d，那么无论这个栈在之后经历了什么操作，只要 a 在栈中，b, c, d 就一定在栈中</strong>，因为在 a 被弹出之前，b, c, d 不会被弹出。</p>
+<p>因此，在操作过程中的任意一个时刻，只要栈顶的元素是 a，那么我们就可以确定栈里面现在的元素一定是 a, b, c, d。</p>
+<p>那么，我们可以在每个元素 a 入栈时把当前栈的最小值 m 存储起来。在这之后无论何时，如果栈顶元素是 a，我们就可以直接返回存储的最小值 m。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MinStack object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MinStack obj = new MinStack();</span></span><br><span class="line"><span class="comment"> * obj.push(x);</span></span><br><span class="line"><span class="comment"> * obj.pop();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj.top();</span></span><br><span class="line"><span class="comment"> * int param_4 = obj.getMin();</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; help_stack;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * initialize your data structure here.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        help_stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        <span class="keyword">if</span> (help_stack.empty() || x &lt; help_stack.peek()) &#123;</span><br><span class="line">            help_stack.push(x);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            help_stack.push(help_stack.peek());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        help_stack.pop();</span><br><span class="line">        stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> help_stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><strong>时间复杂度：</strong>对于题目中的所有操作，时间复杂度均为O(1)。因为栈的插入、删除与读取操作都是 O(1)，我们定义的每个操作最多调用栈操作两次。</li>
+<li><strong>空间复杂度：</strong>O(n)，其中 n 为总操作数。最坏情况下，我们会连续插入 n 个元素，此时两个栈占用的空间为 O(n)。</li>
+</ul>
+<h4 id="对于辅助栈的优化"><a href="#对于辅助栈的优化" class="headerlink" title="对于辅助栈的优化"></a>对于辅助栈的优化</h4><p>==当<code>push</code>的数据比当前最小值大的时候，我们可以不对辅助栈进行最小值的插入；如果小于或者等于最小值，就需要把最新的最小值<code>push</code>入栈minValue。（特别注意“小于等于”这个条件，等于也要入栈，不然有相同的几个值都为最小值的时候辅助栈会出现栈空的情况）==</p>
+<p>相应的，辅助栈pop()的条件也改变，如果栈顶元素等于当前最小值则出栈。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    stack.push(x);</span><br><span class="line">    <span class="keyword">if</span> (help_stack.empty() || x &lt;= help_stack.peek()) &#123;</span><br><span class="line">        help_stack.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = stack.pop();</span><br><span class="line">    <span class="keyword">if</span> (temp == help_stack.peek()) &#123;</span><br><span class="line">        help_stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优化空间复杂度到O-1"><a href="#优化空间复杂度到O-1" class="headerlink" title="优化空间复杂度到O(1)"></a><strong>优化空间复杂度到O(1)</strong></h4><p>只用一个栈实现最小栈</p>
+<ul>
+<li>栈不能够只存储原始数据，应该存储差值。</li>
+<li>用一个变量来计算栈的最小值</li>
+</ul>
+<p>diff栈的计算 = <code>data - min</code></p>
+<p><code>top</code> : 如何根据diff栈来恢复栈顶top的元素？</p>
+<p>根据diff的正负分情况讨论，<code>diff&gt;=0</code>时，证明<code>data&gt;=min</code>，此时<code>data=min+diff</code></p>
+<p><code>push</code> : 如何更新min最小值？</p>
+<p>入栈的时候根据<code>compare = x - minValue;</code>的正负来判断,<code>compare &lt; 0 ? x : minValue</code></p>
+<p><code>pop</code> : 如何维护min的最小值？</p>
+<p>出栈的时候也要及时进行min的更新<code>top &gt; 0 ? top + minValue : minValue</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MinStack3</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Stack&lt;Integer&gt; diff = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> minValue;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (diff.isEmpty()) &#123;</span><br><span class="line">			minValue = x;</span><br><span class="line">			diff.push(<span class="number">0</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">int</span> compare = x - minValue;</span><br><span class="line">			diff.push(compare);</span><br><span class="line">			minValue = compare &lt; <span class="number">0</span> ? x : minValue;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> top = diff.peek();</span><br><span class="line">		minValue = top &lt; <span class="number">0</span> ? (minValue - top) : minValue;</span><br><span class="line">		diff.pop();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> top = diff.peek();</span><br><span class="line">		<span class="keyword">return</span> top &gt; <span class="number">0</span> ? top + minValue : minValue;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> minValue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：</strong></p>
+<ul>
+<li>辅助栈的优化，和存储差值的思路可以对程序进行有效的优化。</li>
+<li>合理运用三元表达式可以使代码更加简洁。</li>
+<li>由辅助栈的优化可以知道，以后凡是有相同的步骤或者代码段，都应该思考能否进行优化。而不是机械式地运作。</li>
+<li>由存储差值的方法启发，以后在存储数据的时候，可以考虑不用常规的思维存储数值本身，从与某个特殊值的的差值入手。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
