@@ -181,9 +181,9 @@
 <blockquote>
 <p>Java 语言提供对字符串串联符号（”+”）以及将其他对象转换为字符串的特殊支持。字符串串联是通过 <code>StringBuilder</code>（或 <code>StringBuffer</code>）类及其 <code>append</code> 方法实现的。字符串转换是通过 <code>toString</code> 方法实现的，该方法由 <code>Object</code> 类定义，并可被 Java 中的所有类继承。</p>
 </blockquote>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>简单地说，就是一个变量和常量的关系。StringBuffer对象的内容可以修改；而String对象一旦产生后就不可以被修改，重新赋值其实是两个对象。<br>StringBuffer的内部实现方式和String不同，<strong>StringBuffer在进行字符串处理时，不生成新的对象，在内存使用上要优于String类。</strong>所以在实际使用时，如果经常需要对一个字符串进行修改，例如插入、删除等操作，使用StringBuffer要更加适合一些。<br>String:在String类中没有用来改变已有字符串中的某个字符的方法，由于不能改变一个java字符串中的某个单独字符，所以在JDK文档中称String类的对象是不可改变的。然而，不可改变的字符串具有一个很大的优点:编译器可以把字符串设为共享的。<br>StringBuffer:<strong>StringBuffer类属于一种辅助类，可预先分配指定长度的内存块建立一个字符串缓冲区。</strong>这样使用StringBuffer类的append方法追加字符 比 String使用 + 操作符添加字符 到 一个已经存在的字符串后面有效率得多。因为使用 + 操作符每一次将字符添加到一个字符串中去时，字符串对象都需要寻找一个新的内存空间来容纳更大的字符串，这无凝是一个非常消耗时间的操作。添加多个字符也就意味着要一次又一次的对字符串重新分配内存。使用StringBuffer类就避免了这个问题。<br><strong>StringBuffer是线程安全的</strong>，在多线程程序中也可以很方便的进行使用，但是程序的执行效率相对来说就要稍微慢一些。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>简单地说，就是一个变量和常量的关系。StringBuffer对象的内容可以修改；而String对象一旦产生后就不可以被修改，重新赋值其实是两个对象。<br>StringBuffer的内部实现方式和String不同，<strong>StringBuffer在进行字符串处理时，不生成新的对象，在内存使用上要优于String类。</strong>所以在实际使用时，如果经常需要对一个字符串进行修改，例如插入、删除等操作，使用StringBuffer要更加适合一些。<br>String:在String类中没有用来改变已有字符串中的某个字符的方法，由于不能改变一个java字符串中的某个单独字符，所以在JDK文档中称String类的对象是不可改变的。然而，不可改变的字符串具有一个很大的优点:编译器可以把字符串设为共享的。<br>StringBuffer:<strong>StringBuffer类属于一种辅助类，可预先分配指定长度的内存块建立一个字符串缓冲区。</strong>这样使用StringBuffer类的append方法追加字符 比 String使用 + 操作符添加字符到一个已经存在的字符串后面有效率得多。因为使用 + 操作符每一次将字符添加到一个字符串中去时，字符串对象都需要寻找一个新的内存空间来容纳更大的字符串，这无凝是一个非常消耗时间的操作。添加多个字符也就意味着要一次又一次的对字符串重新分配内存。使用StringBuffer类就避免了这个问题。<br><strong>StringBuffer是线程安全的</strong>，在多线程程序中也可以很方便的进行使用，但是程序的执行效率相对来说就要稍微慢一些。</p>
 <ol>
-<li> StringBuffer在进行字符串处理时，不生成新的对象，在内存使用由于String类。</li>
+<li> StringBuffer在进行字符串处理时，不生成新的对象，在内存使用优于String类。</li>
 <li>StringBuffer可预先分配指定长度的内存块建立一个字符串缓冲区。</li>
 <li>StringBuffer是线程安全的。</li>
 </ol>

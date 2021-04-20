@@ -142,7 +142,7 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="Linux查看内存使用情况"><a href="#Linux查看内存使用情况" class="headerlink" title="Linux查看内存使用情况"></a>Linux查看内存使用情况</h2><h3 id="1-top命令"><a href="#1-top命令" class="headerlink" title="1. top命令"></a>1. top命令</h3><p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CLinux%5Cimage-20210407204911221.png" alt="image-20210407204911221"></p>
+        <h2 id="Linux查看内存使用情况"><a href="#Linux查看内存使用情况" class="headerlink" title="Linux查看内存使用情况"></a>Linux查看内存使用情况</h2><h3 id="1-top命令"><a href="#1-top命令" class="headerlink" title="1. top命令"></a>1. top命令</h3><p><img src="imgs/Linux/image-20210407204911221.png" alt="image-20210407204911221"></p>
 <p>内容分析：</p>
 <p>   PID：进程的ID</p>
 <p>   USER：进程所有者</p>
@@ -160,20 +160,23 @@
 <p>free   用KB为单位展示数据</p>
 <p>free -m   用MB为单位展示数据</p>
 <p>free -h   用GB为单位展示数据</p>
-<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CLinux%5Cimage-20210407205121916.png" alt="image-20210407205121916"></p>
+<img src="/2021/04/12/Linux/image-20210407205121916.png" class="" title="image-20210407205121916">
+
 <p>total : 总计物理内存的大小</p>
 <p>used : 已使用内存的大小</p>
 <p>free : 可用内存的大小</p>
 <p>shared : 多个进程共享的内存总额</p>
 <p>buff/cache : 磁盘缓存大小</p>
 <p>available : 可用内存大小 ， 从应用程序的角度来说：available = free + buff/cache .</p>
-<h3 id="3-cat-proc-meminfo-命令："><a href="#3-cat-proc-meminfo-命令：" class="headerlink" title="3. cat  /proc/meminfo 命令："></a>3. cat  /proc/meminfo 命令：</h3><p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CLinux%5Cimage-20210407205332503.png" alt="image-20210407205332503"></p>
+<h3 id="3-cat-proc-meminfo-命令："><a href="#3-cat-proc-meminfo-命令：" class="headerlink" title="3. cat  /proc/meminfo 命令："></a>3. cat  /proc/meminfo 命令：</h3><img src="/2021/04/12/Linux/image-20210407205332503.png" class="" title="image-20210407205332503">
+
 <p>这是用来查看RAM使用情况最简单的方法。 这个动态更新的虚拟文件实际上是许多其他内存相关工具的组合显示，就如上面说列的 top, free等。它列出了所有我们想了解的内存的使用情况。</p>
 <p>进程的内存使用信息也可以通过： /proc//statm 和 /proc//status 来查看。</p>
 <h3 id="4-ps-命令："><a href="#4-ps-命令：" class="headerlink" title="4. ps 命令："></a>4. ps 命令：</h3><p>输入内容方式：</p>
 <p>ps aux ：按照 pid 显示内容 （默认排序方式）</p>
 <p>ps aux –sort -rss : 按照 rss 排序显示内容</p>
-<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CLinux%5Cimage-20210407205451578.png" alt="image-20210407205451578"></p>
+<img src="/2021/04/12/Linux/image-20210407205451578.png" class="" title="image-20210407205451578">
+
 <h3 id="5-vmstat-命令："><a href="#5-vmstat-命令：" class="headerlink" title="5. vmstat 命令："></a>5. vmstat 命令：</h3><p>输入命令：</p>
 <p>vmstat -s</p>
 <p>输出内容：</p>
