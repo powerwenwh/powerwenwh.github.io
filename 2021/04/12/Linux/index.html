@@ -93,7 +93,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-text">Linux查看内存使用情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-top%E5%91%BD%E4%BB%A4"><span class="toc-text">1. top命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-free%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">2. free命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-cat-proc-meminfo-%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">3. cat  &#x2F;proc&#x2F;meminfo 命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ps-%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">4. ps 命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vmstat-%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">5. vmstat 命令：</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-text">Linux查看内存使用情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-top%E5%91%BD%E4%BB%A4"><span class="toc-text">1. top命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-free%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">2. free命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-cat-proc-meminfo-%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">3. cat  &#x2F;proc&#x2F;meminfo 命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ps-%E5%91%BD%E4%BB%A4%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">4. ps 命令：用于显示当前进程的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vmstat-%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">5. vmstat 命令：</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -142,7 +142,8 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="Linux查看内存使用情况"><a href="#Linux查看内存使用情况" class="headerlink" title="Linux查看内存使用情况"></a>Linux查看内存使用情况</h2><h3 id="1-top命令"><a href="#1-top命令" class="headerlink" title="1. top命令"></a>1. top命令</h3><img src="/2021/04/12/Linux/image-20210407204911221.png" class="" title="image-20210407204911221">
+        <h2 id="Linux查看内存使用情况"><a href="#Linux查看内存使用情况" class="headerlink" title="Linux查看内存使用情况"></a>Linux查看内存使用情况</h2><p>包括：free、top、cat /proc/meminfo、vmstat、ps</p>
+<h3 id="1-top命令"><a href="#1-top命令" class="headerlink" title="1. top命令"></a>1. top命令</h3><img src="/2021/04/12/Linux/image-20210407204911221.png" class="" title="image-20210407204911221">
 
 <p>内容分析：</p>
 <p>   PID：进程的ID</p>
@@ -173,7 +174,7 @@
 
 <p>这是用来查看RAM使用情况最简单的方法。 这个动态更新的虚拟文件实际上是许多其他内存相关工具的组合显示，就如上面说列的 top, free等。它列出了所有我们想了解的内存的使用情况。</p>
 <p>进程的内存使用信息也可以通过： /proc//statm 和 /proc//status 来查看。</p>
-<h3 id="4-ps-命令："><a href="#4-ps-命令：" class="headerlink" title="4. ps 命令："></a>4. ps 命令：</h3><p>输入内容方式：</p>
+<h3 id="4-ps-命令：用于显示当前进程的状态"><a href="#4-ps-命令：用于显示当前进程的状态" class="headerlink" title="4. ps 命令：用于显示当前进程的状态"></a>4. ps 命令：用于显示当前进程的状态</h3><p>输入内容方式：</p>
 <p>ps aux ：按照 pid 显示内容 （默认排序方式）</p>
 <p>ps aux –sort -rss : 按照 rss 排序显示内容</p>
 <img src="/2021/04/12/Linux/image-20210407205451578.png" class="" title="image-20210407205451578">

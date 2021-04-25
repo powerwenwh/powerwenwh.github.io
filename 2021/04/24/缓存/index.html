@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        缓存 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%93%E5%AD%98"><span class="toc-text">什么是缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98"><span class="toc-text">实现本地缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%98%E5%82%A8%E9%9B%86%E5%90%88%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">1.存储集合的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%BF%87%E6%9C%9F%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86"><span class="toc-text">2、过期缓存处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%9C%9F%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5"><span class="toc-text">定期删除策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%87%92%E6%83%B0%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">懒惰淘汰策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">3、缓存淘汰策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E7%AD%96%E7%95%A5"><span class="toc-text">先进先出策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%91%E4%BD%BF%E7%94%A8%E7%AD%96%E7%95%A5"><span class="toc-text">最少使用策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E8%BF%91%E6%9C%80%E5%B0%91%E4%BD%BF%E7%94%A8%E7%AD%96%E7%95%A5"><span class="toc-text">最近最少使用策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">随机淘汰策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">不淘汰策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98-1"><span class="toc-text">实现本地缓存</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        缓存
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-04-24 21:01:16</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#缓存" title="缓存">缓存</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="什么是缓存"><a href="#什么是缓存" class="headerlink" title="什么是缓存"></a>什么是缓存</h2><p>所谓缓存，就是将程序或系统经常要调用的对象存在内存中，以便其使用时可以快速调用，不必再去创建新的重复的实例。这样做可以减少系统开销，提高系统效率。</p>
+<p>缓存主要可分为二大类:</p>
+<p>1：通过文件缓存,顾名思义文件缓存是指把数据存储在磁盘上，不管你是以XML格式，序列化文件DAT格式还是其它文件格式；</p>
+<p>2：内存缓存，也就是创建一个静态内存区域，将数据存储进去，例如我们B/S架构的将数据存储在Application中或者存储在一个静态Map中。</p>
+<h2 id="实现本地缓存"><a href="#实现本地缓存" class="headerlink" title="实现本地缓存"></a>实现本地缓存</h2><h3 id="1-存储集合的选择"><a href="#1-存储集合的选择" class="headerlink" title="1.存储集合的选择"></a>1.存储集合的选择</h3><p>实现本地缓存，存储容器肯定是 <strong>key/value 形式的数据结构</strong>，在 Java 中，也就是我们常用的 Map 集合。Map 中有 HashMap、Hashtable、ConcurrentHashMap 几种供我们选择，如果不考虑高并发情况下数据安全问题，我们可以选择HashMap，如果考虑高并发情况下数据安全问题，我们可以选择 Hashtable、ConcurrentHashMap 中的一种集合，但是我们优先选择 ConcurrentHashMap，因为 ConcurrentHashMap 的性能比 Hashtable 要好。</p>
+<h3 id="2、过期缓存处理"><a href="#2、过期缓存处理" class="headerlink" title="2、过期缓存处理"></a>2、过期缓存处理</h3><p>因为缓存直接存储在内存中，如果我们不处理过期缓存，内存将被大量无效缓存占用，这不是我们想要的，所以我们需要清理这些失效的缓存。过期缓存处理可以参考 Redis 的策略来实现，Redis 采用的是定期删除 + 懒惰淘汰策略。</p>
+<h4 id="定期删除策略"><a href="#定期删除策略" class="headerlink" title="定期删除策略"></a>定期删除策略</h4><p>定期删除策略是每隔一段时间检测已过期的缓存，并且将之删除。这个策略的优点是能够确保过期的缓存都会被删除。同时也存在着缺点，过期的缓存不一定能够及时的被删除，这跟我们设置的定时频率有关系，另一个缺点是如果缓存数据较多时，每次检测也会给 cup 带来不小的压力。</p>
+<h4 id="懒惰淘汰策略"><a href="#懒惰淘汰策略" class="headerlink" title="懒惰淘汰策略"></a>懒惰淘汰策略</h4><p>懒惰淘汰策略是在使用缓存时，先判断缓存是否过期，如果过期将它删除，并且返回空。这个策略的优点是只有在查找的时候，才判断是否过期，对 CUP 影响较小。同时这种策略有致命的缺点，当存入了大量的缓存，这些缓存都没有被使用并且已过期，都将成为无效缓存，这些无效的缓存将占用你大量的内存空间，最后导致服务器内存溢出。</p>
+<p>我们简单的了解了一下 Redis 的两种过期缓存处理策略，每种策略都存在自己的优缺点。所以我们在使用过程中，可以将两种策略组合起来，结合效果还是非常理想的。</p>
+<h3 id="3、缓存淘汰策略"><a href="#3、缓存淘汰策略" class="headerlink" title="3、缓存淘汰策略"></a>3、缓存淘汰策略</h3><p>缓存淘汰跟过期缓存处理要区别开来，缓存淘汰是指当我们的缓存个数达到我们指定的缓存个数时，毕竟我们的内存不是无限的。如果我们需要继续添加缓存的话，我们就需要在现有的缓存中根据某种策略淘汰一些缓存，给新添加的缓存腾出位置，下面一起来认识几种常用的缓存淘汰策略。</p>
+<h4 id="先进先出策略"><a href="#先进先出策略" class="headerlink" title="先进先出策略"></a>先进先出策略</h4><p>最先进入缓存的数据在缓存空间不够的情况下会被优先被清除掉，以腾出新的空间接受新的数据。该策略主要比较缓存元素的创建时间。在一些对数据实效性要求比较高的场景下，可考虑选择该类策略，优先保障最新数据可用。</p>
+<h4 id="最少使用策略"><a href="#最少使用策略" class="headerlink" title="最少使用策略"></a>最少使用策略</h4><p>无论是否过期，根据元素的被使用次数判断，清除使用次数较少的元素释放空间。该策略主要比较元素的hitCount（命中次数），在保证高频数据有效性场景下，可选择这类策略。</p>
+<h4 id="最近最少使用策略"><a href="#最近最少使用策略" class="headerlink" title="最近最少使用策略"></a>最近最少使用策略</h4><p>无论是否过期，根据元素最后一次被使用的时间戳，清除最远使用时间戳的元素释放空间。该策略主要比较缓存最近一次被get使用时间。在热点数据场景下较适用，优先保证热点数据的有效性。</p>
+<h4 id="随机淘汰策略"><a href="#随机淘汰策略" class="headerlink" title="随机淘汰策略"></a>随机淘汰策略</h4><p>无论是否过期，随机淘汰某个缓存，如果对缓存数据没有任何要求，可以考虑使用该策略。</p>
+<h4 id="不淘汰策略"><a href="#不淘汰策略" class="headerlink" title="不淘汰策略"></a>不淘汰策略</h4><p>当缓存达到指定值之后，不淘汰任何缓存，而是不能新增缓存，直到有缓存淘汰时，才能继续添加缓存。</p>
+<p>上面是实现本地缓存需要考虑的三个点，看完我们应该知该如何实现一个本地缓存了，不妨我们一起来实现一个本地缓存。</p>
+<h3 id="实现本地缓存-1"><a href="#实现本地缓存-1" class="headerlink" title="实现本地缓存"></a>实现本地缓存</h3><p>在该 Demo 中，我们采用 ConcurrentHashMap 作为存储集合，这样即使在高并发的情况下，我们也能够保证缓存的安全。过期缓存处理在这里我只使用了定时删除策略，并没有使用定时删除 + 懒惰淘汰策略，你可以自己动手尝试一下使用这两种策略进行过期缓存处理。在缓存淘汰方面，我在这里采用了最少使用策略。好了，技术选型都知道了，我们一起来看看代码实现。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
