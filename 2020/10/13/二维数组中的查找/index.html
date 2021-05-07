@@ -167,7 +167,7 @@
 <p><strong>问题一</strong>：如何创建并初始化二维数组</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] matrix = &#123;&#123;<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>&#125;,</span><br><span class="line">            &#123;<span class="number">2</span>,  <span class="number">5</span>, <span class="number">8</span>,  <span class="number">12</span>, <span class="number">19</span>&#125;,</span><br><span class="line">            &#123;<span class="number">3</span>,  <span class="number">6</span>, <span class="number">9</span>,  <span class="number">16</span>, <span class="number">22</span>&#125;,</span><br><span class="line">            &#123;<span class="number">10</span>,  <span class="number">13</span>, <span class="number">14</span>, <span class="number">17</span>, <span class="number">24</span>&#125;,</span><br><span class="line">            &#123;<span class="number">18</span>,  <span class="number">21</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">30</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>★利用有序性从数组右上方开始查询：</p>
+<p>★利用有序性从数组右上方开始查询：只可以从左下角或者右上角开始！</p>
 <ul>
 <li>若数组为空，返回 false  </li>
 <li> 初始化行下标为 0，列下标为二维数组的列数减 1</li>
