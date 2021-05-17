@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        How many types of memory areas are allocated by JVM? - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>温文焕</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM-perform-some-particular-types-of-operations"><span class="toc-text">JVM perform some particular types of operations:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Types-of-Memory-areas-allocated-by-the-JVM"><span class="toc-text">Types of Memory areas allocated by the JVM:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88-Native-Method-Stacks-2"><span class="toc-text">本地方法栈(Native Method Stacks)[2]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Program-Counter-Register-3"><span class="toc-text">Program Counter Register[3]</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        How many types of memory areas are allocated by JVM?
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-05-17 15:45:09</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p><strong>JVM (Java Virtual Machine)</strong> is an abstract machine, In other words, it is a program/software which takes Java bytecode and converts the bytecode (line by line) into machine understandable code.</p>
+<h3 id="JVM-perform-some-particular-types-of-operations"><a href="#JVM-perform-some-particular-types-of-operations" class="headerlink" title="JVM perform some particular types of operations:"></a>JVM perform some particular types of operations:</h3><ol>
+<li>Loading of code（载入）</li>
+<li>Verification of code（确认）</li>
+<li>Executing the code（执行）</li>
+<li>It provide run-time environment to the users</li>
+</ol>
+<h3 id="Types-of-Memory-areas-allocated-by-the-JVM"><a href="#Types-of-Memory-areas-allocated-by-the-JVM" class="headerlink" title="Types of Memory areas allocated by the JVM:"></a>Types of Memory areas allocated by the JVM:</h3><p>All these functions take different forms of the memory structure. The <strong>memory in the JVM divided into 5 different parts</strong>:</p>
+<img src="/2021/05/17/How-many-types-of-memory-areas-are-allocated-by-JVM/JVM-Architecture-diagram.jpg" class="" title="Lightbox">
+
+<ol>
+<li>Class(Method) Area</li>
+<li>Heap</li>
+<li>Stack</li>
+<li>Program Counter Register（程序计数器寄存器）</li>
+<li>Native Method Stack</li>
+</ol>
+<p>Let’s see about them in brief:</p>
+<ol>
+<li>Class Loader:It is a subsystem of JVM which is used to load class files.It is mainly responsible for three activities.<ul>
+<li>Loading</li>
+<li>Linking</li>
+<li>Initialization</li>
+</ul>
+</li>
+<li><strong>Class(Method) Area:</strong> It stores class level data of every class such as the runtime constant pool, field and method data, the code for methods.</li>
+<li><strong>Heap:</strong> It is used to allocate memory to objects at run time</li>
+<li>Stack:<ul>
+<li>Each thread has a private JVM stack, created at the same time as thread. It is used to store data and partial results which will be needed while returning value for method and performing dynamic linking.</li>
+<li>Java Stack stores frames and a new frame is created each time at every invocation of the method.<br>A frame is destroyed when its method invocation completes</li>
+</ul>
+</li>
+<li><strong>Program Counter Register:</strong> Each JVM thread which carries out the task of a specific method has a program counter register associated with it. The non-native method has a PC which stores the address of the available JVM instruction whereas, in a native method, the value of the program counter is undefined. PC register is capable of storing the return address or a native pointer on some specific platform.</li>
+<li><strong>Native method Stacks:</strong> Also called as C stacks, native method stacks are not written in Java language. This memory is allocated for each thread when its created And it can be of a fixed or dynamic nature.</li>
+</ol>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="本地方法栈-Native-Method-Stacks-2"><a href="#本地方法栈-Native-Method-Stacks-2" class="headerlink" title="本地方法栈(Native Method Stacks)[2]"></a>本地方法栈(Native Method Stacks)[2]</h4><p>本地方法栈（Native Method Stacks）与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行Java方法（也就是字节码）服务，而<strong>本地方法栈则是为虚拟机使用到的Native方法服务</strong>。虚拟机规范中，对本地方法栈中的方法使用的语言、方法使用的方式与数据结构并没有强制规定，因此具体的虚拟机可以自由实现它。甚至有的虚拟机（譬如Sun HotSpot虚拟机）直接就把本地方法栈和虚拟机栈合二为一。与虚拟机栈一样，本地方法栈区域也会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<p>以上描述截取自： </p>
+<p>《深入理解Java虚拟机:JVM高级特性与最佳实践》 作者： 周志明 </p>
+<p>-————————————————————————————————————–</p>
+<p>In addition to all the runtime data areas defined by the Java Virtual Machine specification and described above, a running Java application may use other data areas created by or for native methods. When a thread invokes a native method, it enters a new world in which the structures and security restrictions of the Java Virtual Machine no longer hamper its freedom. A native method can likely access the runtime data areas of the virtual machine (it depends upon the native method interface), but can also do anything else it wants. It may use registers inside the native processor, allocate memory on any number of native heaps, or use any kind of stack.</p>
+<p>前面提到的所有运行时数据区都是Java虚拟机规范中明确定义的，除此之外，对于一个运行中的Java程序而言，他还可能会用到一些与本地方法相关的数据区。当某个线程调用一个本地方法时，他就进入了一个全新的并且不再受虚拟机限制的世界 ，本地方法可以通过本地方法接口来访问虚拟机运行时的数据区，但不止于此，他还可以做任何他想做的事情。比如，他甚至可以直接使用本地处理器中的寄存器，或者直接从本地内存的堆中分配任意数量的内存等等。总之，他和虚拟机拥有同样的权限（或者说能力）。</p>
+<p>Native methods are inherently implementation dependent. Implementation designers are free to decide what mechanisms they will use to enable a Java application running on their implementation to invoke native methods.</p>
+<p>本地方法本质上是依赖于实现的，虚拟机实现的设计者可以自由地决定使用怎样的机制来让Java程序调用本地方法。</p>
+<p>Any native method interface will use some kind of native method stack. When a thread invokes a Java method, the virtual machine creates a new frame and pushes it onto the Java stack. When a thread invokes a native method, however, that thread leaves the Java stack behind. Instead of pushing a new frame onto the threadís Java stack, the Java Virtual Machine will simply dynamically link to and directly invoke the native method. One way to think of it is that the Java Virtual Machine is dynamically extending itself with native code. It is as if the Java Virtual Machine implementation is just calling another (dynamically linked) method within itself, at the behest of the running Java program.</p>
+<p>任何本地方法接口都会使用某种本地方法栈。当线程调用Java方法时，虚拟机会创建一个新的栈帧并压入Java栈。然而<strong>当他调用的是本地方法时，虚拟机会保持Java栈不变，不再在线程的Java栈中压入新的帧，虚拟机只是简单地动态连接并直接调用指定的本地方法。</strong>可以把这看做是虚拟机利用本地方法来动态地扩展自己 。就如同Java虚拟机的实现在按照其中运行的Java程序的吩咐，调用属于虚拟机内部的另一个（动态连接的）方法。</p>
+<p>If an implementationís native method interface uses a C-linkage model, then the native method stacks are C stacks. When a C program invokes a C function, the stack operates in a certain way. The arguments to the function are pushed onto the stack in a certain order. The return value is passed back to the invoking function in a certain way. This would be the behavior of the of native method stacks in that implementation.</p>
+<p>如果某个虚拟机实现的本地方法接口是使用C连接模型的话，那么他的本地方法栈就是C栈。我们知道，当C程序调用一个C函数时，其栈操作都是确定的。传递给该函数的参数以某个确定的顺序压入栈，他的返回值也以确定的方式传回调用者。同样，这就是该虚拟机实现中本地方法栈的行为。</p>
+<p>A native method interface will likely (once again, it is up to the designers to decide) be able to call back into the Java Virtual Machine and invoke a Java method. In this case, the thread leaves the native method stack and enters another Java stack.</p>
+<p>很可能本地方法接口需要回调Java虚拟机中的Java方法（这也是由设计者决定的），在这种情形下，该线程会保存本地方法栈的状态并进入到另一个Java栈。</p>
+<p>Figure 5-13 shows a graphical depiction of a thread that invokes a native method that calls back into the virtual machine to invoke another Java method. This figure shows the full picture of what a thread can expect inside the Java Virtual Machine. A thread may spend its entire lifetime executing Java methods, working with frames on its Java stack. Or, it may jump back and forth between the Java stack and native method stacks.</p>
+<p>图5-13描绘了这种情况，就是当一个线程调用一个本地方法时，本地方法又回调虚拟机中的另一个Java方法。这幅图展Java虚拟机内部线程运行的全景图。一个线程可能在整个生命周期中都执行Java方法，操作他的Java栈；或者他可能毫无障碍地在Java栈和本地方法栈之间跳转。<img src="/2021/05/17/How-many-types-of-memory-areas-are-allocated-by-JVM/03231458_sjaE.jpg" class="" title="img"></p>
+<p>As depicted in Figure 5-13, a thread first invoked two Java methods, the second of which invoked a native method. This act caused the virtual machine to use a native method stack. In this figure, the native method stack is shown as a finite amount of contiguous memory space. Assume it is a C stack. The stack area used by each C-linkage function is shown in gray and bounded by a dashed line. The first C-linkage function, which was invoked as a native method, invoked another C-linkage function. The second C-linkage function invoked a Java method through the native method interface. This Java method invoked another Java method, which is the current method shown in the figure.</p>
+<p>上图所示，该线程首先调用了两个Java方法，而第二个Java方法又调用了一个本地方法，这样导致虚拟机使用了一个本地方法栈。图中的本地方法栈显示为一个连续的内存空间。假设这是一个C语言栈，期间有两个C函数，他们都以包围在虚线中的灰色块表示。第一个C函数被第二个Java方法当做本地方法调用， 而这个C函数又调用了第二个C函数。之后第二个C函数被第二个Java方法当做本地方法调用，而这个C函数又调用了第二个C函数。之后第二个C函数又通过 本地方法接口回调了一个Java方法（第三个Java方法）。最终这个Java方法又调用了一个Java方法（他成为图中的当前方法）。</p>
+<p>As with the other runtime memory areas, the memory they occupied by native method stacks need not be of a fixed size. It can expand and contract as needed by the running application. Implementations may allow users or programmers to specify an initial size for the method area, as well as a maximum or minimum size.</p>
+<p>就像其他运行时内存区一样，本地方法栈占用的内存区也不必是固定大小的，他可以根据需要动态扩展或者收缩。某些是实现也允许用户或者程序员指定该内存区的初始大小以及最大，最小值。</p>
+<h4 id="Program-Counter-Register-3"><a href="#Program-Counter-Register-3" class="headerlink" title="Program Counter Register[3]"></a>Program Counter Register[3]</h4><p>​    　　JVM在运行时会把管理的内存划分为不同的数据区域，有的区域随着jvm进程启动就开始存在，有的生命周期则与用户线程的周期相同。下面我们来看个划分图（摘自网络）</p>
+<img src="/2021/05/17/How-many-types-of-memory-areas-are-allocated-by-JVM/image-20210517170622110.png" class="" title="image-20210517170622110">
+
+<p>其中，方法区、java堆、执行引擎、本地库接口是线程共享的，虚拟机栈、本地方法栈、程序计数器是私有的。</p>
+<p>　　接下来，我们介绍第一个概念：程序计数器。</p>
+<p>   首先看一下百度百科的解释：</p>
+<p>  程序计数器是用于存放下一条指令所在单元的地址的地方。</p>
+<p> 　程序计数器是计算机<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E5%99%A8">处理器</a>中的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%84%E5%AD%98%E5%99%A8">寄存器</a>，它包含当前正在执行的指令的地址（位置）。当每个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8C%87%E4%BB%A4">指令</a>被获取，程序计数器的存储地址加一。在每个指令被获取之后，程序计数器指向顺序中的下一个指令。当计算机重启或复位时，程序计数器通常恢复到 零。</p>
+<p>　　当执行一条指令时，首先需要根据PC中存放的指令地址，将指令由内存取到<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8C%87%E4%BB%A4%E5%AF%84%E5%AD%98%E5%99%A8">指令寄存器</a>中，此过程称为“取指令”。与此同时，PC中的地址或自动加1或由转移指针给出下一条指令的地址。此后经过分析指令，执行指令。完成第一条指令的执行，而后根据PC取出第二条指令的地址，如此循环，执行每一条指令。</p>
+<p>　　程序计数器其实就是一小块内存区域，可以看作是当前线程所执行的字节码的行号代码，直白一点说，就是当前线程执行到哪一行的一个代码计数器。</p>
+<p>　　大家都知道在jvm中，是跑多线程的，包括我们的debug，都是在多线程中运行。java中的多线程是通过轮流切换分配处理器来执行的，在任何时间，一个处理器只处理一条指令，所以一旦切换线程，就依靠程序计数器来确定执行到了哪一行代码，或者说是哪一行指令，所以，程序计数器是私有的，才能保证各个线程间的任务执行互不影响。</p>
+<p>　　还有一点要注意的是，如果线程运行的是一个java的方法，程序计数器记录的是虚拟机字节码指令的地址（在jvm启动后，编译java文件成字节码文件），而如果是一个Native方法，程序计数器则为空，这里也是java虚拟机规范中，唯一一个没有规定OutOfMemoryError的区域。</p>
+<p> The Java Virtual Machine can support many threads of execution at once (JLS §17). Each Java Virtual Machine thread has its own <code>pc</code> (program counter) register. At any point, each Java Virtual Machine thread is executing the code of a single method, namely the current method (<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.6">§2.6</a>) for that thread. If that method is not <code>native</code>, the <code>pc</code> register contains the address of the Java Virtual Machine instruction currently being executed. If the method currently being executed by the thread is <code>native</code>, the value of the Java Virtual Machine’s <code>pc</code> register is undefined. The Java Virtual Machine’s <code>pc</code> register is wide enough to hold a <code>returnAddress</code> or a native pointer on the specific platform.</p>
+<p>　　因为jvm中的程序计数器，记录的是字节码指令的地址，而本地方法体不一定是有java实现的，所以自然不能支持程序计数器。</p>
+<p>参考：</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/how-many-types-of-memory-areas-are-allocated-by-jvm/">https://www.geeksforgeeks.org/how-many-types-of-memory-areas-are-allocated-by-jvm/</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1111730">https://cloud.tencent.com/developer/article/1111730</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://www.iteye.com/blog/denverj-1220969">https://www.iteye.com/blog/denverj-1220969</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/2809403392">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/powerwenwh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
