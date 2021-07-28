@@ -93,7 +93,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Oracle11g"><span class="toc-text">安装Oracle11g</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%88%96%E8%80%85%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8A%A5TNS-12560-TNS-%E5%8D%8F%E8%AE%AE%E9%80%82%E9%85%8D%E5%99%A8%E9%94%99%E8%AF%AF%E6%88%96%E8%80%85ORA-12638-credential-retrieval-failed-tips"><span class="toc-text">配置数据库或者登录数据库报TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E4%B8%8D%E8%A6%81%E8%AE%BE%E7%BD%AE%E6%95%B0%E5%AD%97%E5%BC%80%E5%A4%B4"><span class="toc-text">密码不要设置数字开头</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81TNS-12560-TNS-%E5%8D%8F%E8%AE%AE%E9%80%82%E9%85%8D%E5%99%A8%E9%94%99%E8%AF%AF%E6%88%96%E8%80%85ORA-12638-credential-retrieval-failed"><span class="toc-text">1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AF%86%E7%A0%81%E4%B8%8D%E8%A6%81%E8%AE%BE%E7%BD%AE%E6%95%B0%E5%AD%97%E5%BC%80%E5%A4%B4"><span class="toc-text">2、密码不要设置数字开头</span></a></li></ol>
 </div>
     
 </div>
@@ -136,13 +136,9 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="安装Oracle11g"><a href="#安装Oracle11g" class="headerlink" title="安装Oracle11g"></a>安装Oracle11g</h2><ol>
-<li><h3 id="配置数据库或者登录数据库报TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed-tips"><a href="#配置数据库或者登录数据库报TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed-tips" class="headerlink" title="配置数据库或者登录数据库报TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed tips"></a>配置数据库或者登录数据库报TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed tips</h3><p>修改..\app\admin\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora文件</p>
-<p><code>Original Entry - SQLNET.AUTHENTICATION_SERVICES= (NTS) Modified Entry - SQLNET.AUTHENTICATION_SERVICES= (NONE) </code></p>
-</li>
-<li><h3 id="密码不要设置数字开头"><a href="#密码不要设置数字开头" class="headerlink" title="密码不要设置数字开头"></a>密码不要设置数字开头</h3></li>
-</ol>
-
+        <h3 id="1、TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed"><a href="#1、TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed" class="headerlink" title="1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed"></a>1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed</h3><p>配置数据库或者登录数据库报这个错误可以通过改..\app\admin\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora文件</p>
+<p><code>Original Entry - SQLNET.AUTHENTICATION_SERVICES= (NTS)</code><br><code>Modified Entry - SQLNET.AUTHENTICATION_SERVICES= (NONE) </code></p>
+<h3 id="2、密码不要设置数字开头"><a href="#2、密码不要设置数字开头" class="headerlink" title="2、密码不要设置数字开头"></a>2、密码不要设置数字开头</h3>
         
         <br />
         <div id="comment-container">
