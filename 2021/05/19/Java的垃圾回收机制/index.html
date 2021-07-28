@@ -247,6 +247,7 @@
 <h2 id="动态对象年龄判定。"><a href="#动态对象年龄判定。" class="headerlink" title="动态对象年龄判定。"></a>动态对象年龄判定。</h2><hr>
 <p>为了更好地适应不同程序的内存状况，虚拟机并不是永远地要求对象年龄必须达到了MaxTenuringThreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。</p>
 <p>需要注意的是，Java的垃圾回收机制是Java虚拟机提供的能力，用于在空闲时间以不定时的方式动态回收无任何引用的对象占据的内存空间。也就是说，<strong>垃圾收集器回收的是无任何引用的对象占据的内存空间而不是对象本身</strong></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023637649">https://segmentfault.com/a/1190000023637649</a></p>
 
         
         <br />
