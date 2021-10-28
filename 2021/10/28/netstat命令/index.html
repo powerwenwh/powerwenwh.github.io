@@ -11,7 +11,7 @@
 
     <title>
         
-        字节流和字符流 - undefined
+        How to kill the process currently using a port on localhost in windows - undefined
         
     </title>
 
@@ -93,7 +93,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">[一]写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%AD%97%E8%8A%82%E6%B5%81"><span class="toc-text">[二]字节流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="toc-text">[三]字符流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E5%AD%97%E8%8A%82%E6%B5%81%E4%B8%8E%E5%AD%97%E7%AC%A6%E6%B5%81%E5%8C%BA%E5%88%AB"><span class="toc-text">[四]字节流与字符流区别</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution-java-net-BindException-Address-already-in-use-bind"><span class="toc-text">Solution : java.net.BindException: Address already in use: bind</span></a></li></ol>
 </div>
     
 </div>
@@ -124,15 +124,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        字节流和字符流
+        How to kill the process currently using a port on localhost in windows
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2021-04-15 21:41:48</span></span>
+        <span class="attr">发布于：<span>2021-10-28 11:25:17</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#其他" title="其他">其他</a>
+        <a class="tag" href="/tags/#未分类" title="未分类">未分类</a>
         <span>/</span>
         
         
@@ -142,24 +142,16 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="一-写在前面"><a href="#一-写在前面" class="headerlink" title="[一]写在前面"></a>[一]写在前面</h2><p>简单总结一下分别用(一直混淆的)字节流or字符流读写文件。</p>
-<h2 id="二-字节流"><a href="#二-字节流" class="headerlink" title="[二]字节流"></a>[二]字节流</h2><p>2.1 字节流介绍</p>
-<p>程序中的输入输出都是以<code>流</code>的形式保存的(输入流or输出流),流中保存的实际上全都是<code>字节</code>(一个字节等于一个Byte占8个bit)文件。Java提供了OutputStream、InputStream两个专门操作字节流的类。</p>
-<blockquote>
-<p>知识补充1：<br>计算机能存储的唯一东西就是 bytes,为了在计算机中存储东西,我们首先得将其编码(encode),例如将其转化为 bytes。<br>比如：要想保存音乐(以字节形式保存),我们首先得用 MP3, WAV 等将其编码；要想保存图片,我们首先得用 PNG, JPEG 等将其编码；要想保存文本,我们首先得用 ASCII, UTF-8 等将其编码.<br>知识补充2:<br>Unicode 是字符集,不是字符编码。Unicode 把全世界的字符都搜集并且编号了,但是没有规定具体的编码规则。编码规则有 UTF-8、GBK等。</p>
-</blockquote>
-<p>2.2 字节流使用场景总结</p>
-<p><strong>字节流适合<code>所有类型文件</code>的数据传输,因为字节(Byte)是电脑中表示信息含义的最小单位</strong>(通常情况下一个ACSII码就是一个字节的空间来存放)。</p>
-<p>如果是<code>音频文件、图片、歌曲</code>，就用<code>字节流</code>好,<strong>如果是关系到<code>中文(文本)</code>的,用<code>字符流</code>好</strong>。</p>
-<h2 id="三-字符流"><a href="#三-字符流" class="headerlink" title="[三]字符流"></a>[三]字符流</h2><p>3.1 字符流介绍</p>
-<p>字符流<strong>按字符(一个字符占两个字节)读数据</strong>：一次读两个字节，返回了这两个字节所对应的字符的int型数值(编码)。写入文件时把这两个字节的内容<code>解码</code>成这个字符在Unicode码下对应的二进制数据写入。即把原始文件中的二进制数据以字符形式读出,再将字符以二进制形式写入,所以得到的文件以字符方式存储。<strong>字符流只能处理字符或者字符串。</strong></p>
-<p>3.2 字符流使用场景</p>
-<p>字符流只能够处理纯文本(中文)数据，其他类型数据不行，但是字符流处理文本要比字节流处理文本要方便。</p>
-<h2 id="四-字节流与字符流区别"><a href="#四-字节流与字符流区别" class="headerlink" title="[四]字节流与字符流区别"></a>[四]字节流与字符流区别</h2><p>1.<strong>字节流没有使用到缓冲区(内存),是与文件本身直接操作的。字符流使用到了缓冲区</strong>,在缓冲区的数据需要使用close()或者flush()方法强制刷新缓冲区将其输出(程序没有关闭数据是不会从缓冲区输出出来的)。</p>
-<p>2.<strong>字节流在操作文件时,即使不关闭资源(close方法),文件也能输出,但是如果字符流不使用close方法的话,则不会输出任何内容</strong>。</p>
-<p>3.在所有的<code>硬盘</code>上保存文件或进行传输的时候都是以<code>字节</code>的方法进行的,包括图片也是按字节完成,而<code>字符</code>是只有在<code>内存</code>中才会形成的,所以<code>使用字节</code>的操作是<code>最多</code>的。</p>
-<p>4.<strong>字节流提供了处理任何类型的IO操作的功能,但它不能直接处理Unicode字符,而字符流就可以。</strong></p>
-<p>5.字节流按字节读数据,而字节不需要编码、解码,<strong>只有字节与字符之间转换时才需要编码、解码</strong>！</p>
+        <h1 id="Solution-java-net-BindException-Address-already-in-use-bind"><a href="#Solution-java-net-BindException-Address-already-in-use-bind" class="headerlink" title="Solution : java.net.BindException: Address already in use: bind"></a>Solution : java.net.BindException: Address already in use: bind</h1><p>*<strong>Step 1*</strong></p>
+<p>Run command-line as an Administrator. Then run the below mention command.</p>
+<p><code>netstat -ano | findstr : port number</code></p>
+<p><img src="C:\Users\Powerwenwh\Documents\文档\MyBlog\source_posts\netstat命令.assets\image-20211028155727966.png" alt="image-20211028155727966"></p>
+<p>Red colored circled area shows the PID (process identifier)</p>
+<p>*<strong>Step 2*</strong></p>
+<p>Then you execute this command after identify the PID.</p>
+<p><code>taskkill /PID typeyourPIDhere /F</code></p>
+<p><img src="C:\Users\Powerwenwh\Documents\文档\MyBlog\source_posts\netstat命令.assets\image-20211028155808570.png" alt="image-20211028155808570"></p>
+<p>Run the first command again to check if process is still available or not. You’ll get empty line if process is successfully ended</p>
 
         
         <br />

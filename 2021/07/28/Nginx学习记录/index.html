@@ -93,7 +93,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Windows"><span class="toc-text">1.Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Ubantu"><span class="toc-text">2.Ubantu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Windows"><span class="toc-text">1.Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Ubantu"><span class="toc-text">2.Ubantu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-text">配置文件详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E8%B5%84%E6%96%99"><span class="toc-text">一些配置资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A81%EF%BC%9AMIME-%E7%B1%BB%E5%9E%8B"><span class="toc-text">注1：MIME 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-text">几个常见配置项</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -187,180 +187,31 @@
 </li>
 </ol>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><hr>
-<ol>
-<li><p>配置文件详解</p>
-<ul>
-<li>1、全局块：配置影响nginx全局的指令。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等。</li>
-<li>2、events块：配置影响nginx服务器或与用户的网络连接。有每个进程的最大连接数，选取哪种事件驱动模型处理连接请求，是否允许同时接受多个网路连接，开启多个网络连接序列化等。</li>
-<li>3、http块：可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。如文件引入，mime-type定义，日志自定义，是否使用sendfile传输文件，连接超时时间，单连接请求数等。</li>
-<li>4、server块：配置虚拟主机的相关参数，一个http中可以有多个server。</li>
-<li>5、location块：配置请求的路由，以及各种页面的处理情况。<br>server 部分的指令主要用于制定虚拟主机域名、IP 和端口号；location 部分用于匹配网页位置（比如，根目录“/”，“/images”，等等）。他们之间的关系：server 继承 main，location 继承 server。</li>
+<h3 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h3><ul>
+<li>全局块：配置影响nginx全局的指令。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等。</li>
+<li>events块：配置影响nginx服务器或与用户的网络连接。有每个进程的最大连接数，选取哪种事件驱动模型处理连接请求，是否允许同时接受多个网路连接，开启多个网络连接序列化等。</li>
+<li>http块：可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。如文件引入，mime-type定义，日志自定义，是否使用sendfile传输文件，连接超时时间，单连接请求数等。</li>
+<li>server块：配置虚拟主机的相关参数，一个http中可以有多个server。</li>
+<li>location块：配置请求的路由，以及各种页面的处理情况。<br>server 部分的指令主要用于制定虚拟主机域名、IP 和端口号；location 部分用于匹配网页位置（比如，根目录“/”，“/images”，等等）。他们之间的关系：server 继承 main，location 继承 server。</li>
 </ul>
-<p>一些配置资料</p>
-<pre><code>#user administrator administrators;  # 配置用户或者组，默认为nobody nobody。
+<h3 id="一些配置资料"><a href="#一些配置资料" class="headerlink" title="一些配置资料"></a>一些配置资料</h3><p>​    #user administrator administrators;  # 配置用户或者组，默认为nobody nobody。<br>​    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">#pid &#x2F;nginx&#x2F;pid&#x2F;nginx.pid;  # 指定nginx进程运行文件存放地址</span><br><span class="line"></span><br><span class="line">worker_processes  1;  # 允许生成的进程数，默认为1，一般设置为cpu核心数,值越大可以支持的并发处理量越多</span><br><span class="line"></span><br><span class="line">#error_log  logs&#x2F;error.log;</span><br><span class="line">#error_log  logs&#x2F;error.log  notice;</span><br><span class="line">#error_log  logs&#x2F;error.log  info;</span><br><span class="line"></span><br><span class="line">#进程pid文件</span><br><span class="line">#pid        logs&#x2F;nginx.pid;</span><br><span class="line">events &#123;</span><br><span class="line"></span><br><span class="line">    # 最大连接数，一般设置为cpu*2048</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include mime.types;  # 注1</span><br><span class="line">    default_type  application&#x2F;octet-stream; # 默认文件类型，默认为text&#x2F;plain</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">    #                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span><br><span class="line">    #                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;  # 允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。</span><br><span class="line">    sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。</span><br><span class="line">    keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    #当配置多个server节点时，默认server names的缓存区大小就不够了，需要手动设置大一点</span><br><span class="line">    server_names_hash_bucket_size 512;</span><br><span class="line"></span><br><span class="line">    #server表示虚拟主机可以理解为一个站点，可以配置多个server节点搭建多个站点</span><br><span class="line">    #每一个请求进来确定使用哪个server由server_name确定</span><br><span class="line">    server &#123;</span><br><span class="line">        #站点监听端口</span><br><span class="line">        #80端口是网站默认端口号，如果你在浏览器你直接输入网址，不带端口号，那么浏览器就会请求服务器的80端口。</span><br><span class="line">        listen       80;</span><br><span class="line">        #站点访问域名</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        #编码格式，避免url参数乱码</span><br><span class="line">        charset utf-8;</span><br><span class="line"></span><br><span class="line">        #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">        #location用来匹配同一域名下多个URI的访问规则</span><br><span class="line">        #比如动态资源如何跳转，静态资源如何跳转等</span><br><span class="line">        #location后面跟着的&#x2F;代表匹配规则</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            #站点根目录，可以是相对路径，也可以使绝对路径</span><br><span class="line">            root   html;</span><br><span class="line">            #默认主页</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            </span><br><span class="line">            #转发后端站点地址，一般用于做软负载，轮询后端服务器</span><br><span class="line">            #proxy_pass http:&#x2F;&#x2F;10.11.12.237:8080;</span><br><span class="line"></span><br><span class="line">            #拒绝请求，返回403，一般用于某些目录禁止访问</span><br><span class="line">            #deny all;</span><br><span class="line">            </span><br><span class="line">            #允许请求</span><br><span class="line">            #allow all;</span><br><span class="line">            </span><br><span class="line">            add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;</span><br><span class="line">            add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;</span><br><span class="line">            add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">            add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#39;;</span><br><span class="line">            #重新定义或者添加发往后端服务器的请求头</span><br><span class="line">            #给请求头中添加客户请求主机名</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            #给请求头中添加客户端IP</span><br><span class="line">            proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">            #将$remote_addr变量值添加在客户端“X-Forwarded-For”请求头的后面，并以逗号分隔。 如果客户端请求未携带“X-Forwarded-For”请求头，$proxy_add_x_forwarded_for变量值将与$remote_addr变量相同  </span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            #给请求头中添加客户端的Cookie</span><br><span class="line">            proxy_set_header Cookie $http_cookie;</span><br><span class="line">            #将使用代理服务器的主域名和端口号来替换。如果端口是80，可以不加。</span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            </span><br><span class="line">            #浏览器对 Cookie 有很多限制，如果 Cookie 的 Domain 部分与当前页面的 Domain 不匹配就无法写入。</span><br><span class="line">            #所以如果请求 A 域名，服务器 proxy_pass 到 B 域名，然后 B 服务器输出 Domian&#x3D;B 的 Cookie，</span><br><span class="line">            #前端的页面依然停留在 A 域名上，于是浏览器就无法将 Cookie 写入。</span><br><span class="line">            </span><br><span class="line">　　         #不仅是域名，浏览器对 Path 也有限制。我们经常会 proxy_pass 到目标服务器的某个 Path 下，</span><br><span class="line">            #不把这个 Path 暴露给浏览器。这时候如果目标服务器的 Cookie 写死了 Path 也会出现 Cookie 无法写入的问题。</span><br><span class="line">            </span><br><span class="line">            #设置“Set-Cookie”响应头中的domain属性的替换文本，其值可以为一个字符串、正则表达式的模式或一个引用的变量</span><br><span class="line">            #转发后端服务器如果需要Cookie则需要将cookie domain也进行转换，否则前端域名与后端域名不一致cookie就会无法存取</span><br><span class="line">　　　　　　  #配置规则：proxy_cookie_domain serverDomain(后端服务器域) nginxDomain(nginx服务器域)</span><br><span class="line">            proxy_cookie_domain localhost .testcaigou800.com;</span><br><span class="line">            </span><br><span class="line">            #取消当前配置级别的所有proxy_cookie_domain指令</span><br><span class="line">            #proxy_cookie_domain off;</span><br><span class="line">            #与后端服务器建立连接的超时时间。一般不可能大于75秒；</span><br><span class="line">            proxy_connect_timeout 30;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  404              &#x2F;404.html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the static page &#x2F;50x.html</span><br><span class="line">        #</span><br><span class="line">        error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">        location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">　　#当需要对同一端口监听多个域名时，使用如下配置，端口相同域名不同，server_name也可以使用正则进行配置</span><br><span class="line">　　#但要注意server过多需要手动扩大server_names_hash_bucket_size缓存区大小</span><br><span class="line">　　server &#123;</span><br><span class="line">　　　　listen 80;</span><br><span class="line">　　　　server_name www.abc.com;</span><br><span class="line">　　　　charset utf-8;</span><br><span class="line">　　　　location &#x2F; &#123;</span><br><span class="line">　　　　　　proxy_pass http:&#x2F;&#x2F;localhost:10001;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">　　server &#123;</span><br><span class="line">　　　　listen 80;</span><br><span class="line">　　　　server_name aaa.abc.com;</span><br><span class="line">　　　　charset utf-8;</span><br><span class="line">　　　　location &#x2F; &#123;</span><br><span class="line">　　　　　　proxy_pass http:&#x2F;&#x2F;localhost:20002;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-#pid /nginx/pid/nginx.pid;  # 指定nginx进程运行文件存放地址
-
-worker_processes  1;  # 允许生成的进程数，默认为1，一般设置为cpu核心数,值越大可以支持的并发处理量越多
-
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
-
-#进程pid文件
-#pid        logs/nginx.pid;
-</code></pre>
-<p>​    </p>
-<pre><code>events &#123;
-
-    # 最大连接数，一般设置为cpu*2048
-    worker_connections  1024;
-&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>http &#123;
-    include mime.types;  # 注1
-    default_type  application/octet-stream; # 默认文件类型，默认为text/plain
-
-    #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
-    #                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
-    #                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;
-
-    #access_log  logs/access.log  main;
-
-    sendfile        on;  # 允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。
-    sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。
-    keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。
-    #tcp_nopush     on;
-
-    #keepalive_timeout  0;
-
-    #gzip  on;
-
-    #当配置多个server节点时，默认server names的缓存区大小就不够了，需要手动设置大一点
-    server_names_hash_bucket_size 512;
-
-    #server表示虚拟主机可以理解为一个站点，可以配置多个server节点搭建多个站点
-    #每一个请求进来确定使用哪个server由server_name确定
-    server &#123;
-        #站点监听端口
-        #80端口是网站默认端口号，如果你在浏览器你直接输入网址，不带端口号，那么浏览器就会请求服务器的80端口。
-        listen       80;
-        #站点访问域名
-        server_name  localhost;
-        
-        #编码格式，避免url参数乱码
-        charset utf-8;
-
-        #access_log  logs/host.access.log  main;
-
-        #location用来匹配同一域名下多个URI的访问规则
-        #比如动态资源如何跳转，静态资源如何跳转等
-        #location后面跟着的/代表匹配规则
-        location / &#123;
-            #站点根目录，可以是相对路径，也可以使绝对路径
-            root   html;
-            #默认主页
-            index  index.html index.htm;
-            
-            #转发后端站点地址，一般用于做软负载，轮询后端服务器
-            #proxy_pass http://10.11.12.237:8080;
-
-            #拒绝请求，返回403，一般用于某些目录禁止访问
-            #deny all;
-            
-            #允许请求
-            #allow all;
-            
-            add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
-            add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;
-            add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;;
-            add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#39;;
-            #重新定义或者添加发往后端服务器的请求头
-            #给请求头中添加客户请求主机名
-            proxy_set_header Host $host;
-            #给请求头中添加客户端IP
-            proxy_set_header X-Real-IP $remote_addr;
-            #将$remote_addr变量值添加在客户端“X-Forwarded-For”请求头的后面，并以逗号分隔。 如果客户端请求未携带“X-Forwarded-For”请求头，$proxy_add_x_forwarded_for变量值将与$remote_addr变量相同  
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            #给请求头中添加客户端的Cookie
-            proxy_set_header Cookie $http_cookie;
-            #将使用代理服务器的主域名和端口号来替换。如果端口是80，可以不加。
-            proxy_redirect off;
-            
-            #浏览器对 Cookie 有很多限制，如果 Cookie 的 Domain 部分与当前页面的 Domain 不匹配就无法写入。
-            #所以如果请求 A 域名，服务器 proxy_pass 到 B 域名，然后 B 服务器输出 Domian=B 的 Cookie，
-            #前端的页面依然停留在 A 域名上，于是浏览器就无法将 Cookie 写入。
-            
-　　         #不仅是域名，浏览器对 Path 也有限制。我们经常会 proxy_pass 到目标服务器的某个 Path 下，
-            #不把这个 Path 暴露给浏览器。这时候如果目标服务器的 Cookie 写死了 Path 也会出现 Cookie 无法写入的问题。
-            
-            #设置“Set-Cookie”响应头中的domain属性的替换文本，其值可以为一个字符串、正则表达式的模式或一个引用的变量
-            #转发后端服务器如果需要Cookie则需要将cookie domain也进行转换，否则前端域名与后端域名不一致cookie就会无法存取
-　　　　　　  #配置规则：proxy_cookie_domain serverDomain(后端服务器域) nginxDomain(nginx服务器域)
-            proxy_cookie_domain localhost .testcaigou800.com;
-            
-            #取消当前配置级别的所有proxy_cookie_domain指令
-            #proxy_cookie_domain off;
-            #与后端服务器建立连接的超时时间。一般不可能大于75秒；
-            proxy_connect_timeout 30;
-        &#125;
-
-        #error_page  404              /404.html;
-
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html &#123;
-            root   html;
-        &#125;
-
-    &#125;
-    
-　　#当需要对同一端口监听多个域名时，使用如下配置，端口相同域名不同，server_name也可以使用正则进行配置
-　　#但要注意server过多需要手动扩大server_names_hash_bucket_size缓存区大小
-　　server &#123;
-　　　　listen 80;
-　　　　server_name www.abc.com;
-　　　　charset utf-8;
-　　　　location / &#123;
-　　　　　　proxy_pass http://localhost:10001;
-　　　　&#125;
-　　&#125;
-　　server &#123;
-　　　　listen 80;
-　　　　server_name aaa.abc.com;
-　　　　charset utf-8;
-　　　　location / &#123;
-　　　　　　proxy_pass http://localhost:20002;
-　　　　&#125;
-　　&#125;
-&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>注1：MIME 类型
-</code></pre>
-<p> 媒体类型（通常称为 Multipurpose Internet Mail Extensions 或 MIME 类型 ）是一种标准，用来表示文档、文件或字节流的性质和格式。</p>
-<p> <strong>重要：</strong>浏览器通常使用MIME类型（而不是文件扩展名）来确定如何处理URL，因此Web服务器在响应头中添加正确的MIME类型非常重要。如果配置不正确，浏览器可能会曲解文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。</p>
-<pre><code>**语法**
-通用结构 `type/subtype`
-MIME的组成结构非常简单；由类型与子类型两个字符串中间用``&#39;/&#39;``分隔而组成。不允许空格存在。type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。MIME类型对大小写不敏感，但是传统写法都是小写。
-</code></pre>
-<p> <strong>几个常见配置项：</strong></p>
-<ul>
-<li>1.$remote_addr 与 $http_x_forwarded_for 用以记录客户端的ip地址；</li>
-<li>2.$remote_user ：用来记录客户端用户名称；</li>
-<li>3.$time_local ： 用来记录访问时间与时区；</li>
-<li>4.$request ： 用来记录请求的url与http协议；</li>
-<li>5.$status ： 用来记录请求状态；成功是200；</li>
-<li>6.$body_bytes_s ent ：记录发送给客户端文件主体内容大小；</li>
-<li>7.$http_referer ：用来记录从那个页面链接访问过来的；</li>
-<li>8.$http_user_agent ：记录客户端浏览器的相关信息；</li>
-</ul>
+<h3 id="注1：MIME-类型"><a href="#注1：MIME-类型" class="headerlink" title="注1：MIME 类型"></a>注1：MIME 类型</h3><p> 媒体类型（通常称为 Multipurpose Internet Mail Extensions 或 MIME 类型 ）是一种标准，用来表示文档、文件或字节流的性质和格式。</p>
+<p> <strong>重要</strong></p>
+<p>浏览器通常使用MIME类型（而不是文件扩展名）来确定如何处理URL，因此Web服务器在响应头中添加正确的MIME类型非常重要。如果配置不正确，浏览器可能会曲解文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。</p>
+<p><strong>语法</strong></p>
+<p>通用结构 <code>type/subtype</code><br>MIME的组成结构非常简单；由类型与子类型两个字符串中间用<code>&#39;/&#39;</code>分隔而组成。不允许空格存在。type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。MIME类型对大小写不敏感，但是传统写法都是小写。</p>
+<h3 id="几个常见配置项"><a href="#几个常见配置项" class="headerlink" title="几个常见配置项"></a><strong>几个常见配置项</strong></h3><p>1.$remote_addr 与 $http_x_forwarded_for 用以记录客户端的ip地址；</p>
+<p>2.$remote_user ：用来记录客户端用户名称；</p>
+<p>3.$time_local ： 用来记录访问时间与时区；</p>
+<p>4.$request ： 用来记录请求的url与http协议；</p>
+<p>5.$status ： 用来记录请求状态；成功是200；</p>
+<p>6.$body_bytes_s ent ：记录发送给客户端文件主体内容大小；</p>
+<p>7.$http_referer ：用来记录从那个页面链接访问过来的；</p>
+<p>8.$http_user_agent ：记录客户端浏览器的相关信息；</p>
 <p> 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。</p>
 <p> 每个指令必须有分号结束。</p>
-</li>
-</ol>
 
         
         <br />
