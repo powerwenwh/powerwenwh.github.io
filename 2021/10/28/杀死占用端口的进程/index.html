@@ -11,7 +11,7 @@
 
     <title>
         
-        How to kill the process currently using a port on localhost in windows - undefined
+        杀死占用端口的进程 - undefined
         
     </title>
 
@@ -124,15 +124,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        How to kill the process currently using a port on localhost in windows
+        杀死占用端口的进程
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2021-10-28 11:25:17</span></span>
+        <span class="attr">发布于：<span>2021-10-28 17:11:17</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#未分类" title="未分类">未分类</a>
+        <a class="tag" href="/tags/#其他" title="其他">其他</a>
         <span>/</span>
         
         
@@ -142,15 +142,18 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h1 id="Solution-java-net-BindException-Address-already-in-use-bind"><a href="#Solution-java-net-BindException-Address-already-in-use-bind" class="headerlink" title="Solution : java.net.BindException: Address already in use: bind"></a>Solution : java.net.BindException: Address already in use: bind</h1><p>*<strong>Step 1*</strong></p>
+        <h1 id="Solution-java-net-BindException-Address-already-in-use-bind"><a href="#Solution-java-net-BindException-Address-already-in-use-bind" class="headerlink" title="Solution : java.net.BindException: Address already in use: bind"></a>Solution : java.net.BindException: Address already in use: bind</h1><p>启动程序时遇到如题报错，原因是端口被其他进程占用了，这个时候需要把占用端口的程序关闭（kill），步骤如下。</p>
+<p>*<strong>Step 1*</strong></p>
 <p>Run command-line as an Administrator. Then run the below mention command.</p>
 <p><code>netstat -ano | findstr : port number</code></p>
-<p><img src="C:\Users\Powerwenwh\Documents\文档\MyBlog\source_posts\netstat命令.assets\image-20211028155727966.png" alt="image-20211028155727966"></p>
+<img src="/2021/10/28/%E6%9D%80%E6%AD%BB%E5%8D%A0%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9A%84%E8%BF%9B%E7%A8%8B/image-20211028170018042.png" class="" title="image-20211028170018042">
+
 <p>Red colored circled area shows the PID (process identifier)</p>
 <p>*<strong>Step 2*</strong></p>
 <p>Then you execute this command after identify the PID.</p>
 <p><code>taskkill /PID typeyourPIDhere /F</code></p>
-<p><img src="C:\Users\Powerwenwh\Documents\文档\MyBlog\source_posts\netstat命令.assets\image-20211028155808570.png" alt="image-20211028155808570"></p>
+<img src="/2021/10/28/%E6%9D%80%E6%AD%BB%E5%8D%A0%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9A%84%E8%BF%9B%E7%A8%8B/image-20211028170037411.png" class="" title="image-20211028170037411">
+
 <p>Run the first command again to check if process is still available or not. You’ll get empty line if process is successfully ended</p>
 
         
