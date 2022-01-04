@@ -1,147 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
 
-    <title>
-        
-        Java中的接口 - undefined
-        
-    </title>
 
-    <!-- Custom CSS -->
-    
-<link rel="stylesheet" href="/css/aircloud.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/gitment.css">
+<link rel="stylesheet" href="/css/main.css">
 
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
 
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<div class="index-about">
-    <i> sometimes code， sometimes design </i>
-</div>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wenwenhuan.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Java接口1、几个问题 为什么不直接在类里面写对应的方法, 而要多写1个接口(或抽象类)?  既然接口跟抽象类差不多, 什么情况下要用接口而不是抽象类.  为什么interface叫做接口呢? 跟一般范畴的接口例如usb接口, 显卡接口有什么联系呢?   2、接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象.假如类A impletments 了接口B 那么下面是合法的: B b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的接口">
+<meta property="og:url" content="https://wenwenhuan.gitee.io/2021/02/28/Java%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="Wenhuan Blog">
+<meta property="og:description" content="Java接口1、几个问题 为什么不直接在类里面写对应的方法, 而要多写1个接口(或抽象类)?  既然接口跟抽象类差不多, 什么情况下要用接口而不是抽象类.  为什么interface叫做接口呢? 跟一般范畴的接口例如usb接口, 显卡接口有什么联系呢?   2、接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象.假如类A impletments 了接口B 那么下面是合法的: B b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-28T14:08:32.000Z">
+<meta property="article:modified_time" content="2021-02-28T14:09:04.000Z">
+<meta property="article:author" content="温文焕">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
 
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/avatar.jpg" />
-        </div>
-        <div class="name">
-            <i>温文焕</i>
-        </div>
+
+<link rel="canonical" href="https://wenwenhuan.gitee.io/2021/02/28/Java%E6%8E%A5%E5%8F%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wenwenhuan.gitee.io/2021/02/28/Java%E6%8E%A5%E5%8F%A3/","path":"2021/02/28/Java接口/","title":"Java中的接口"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java中的接口 | Wenhuan Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Wenhuan Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">即使天无雨 我亦留此地</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%8E%A5%E5%8F%A3"><span class="toc-text">Java接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="toc-text">1、几个问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%8E%A5%E5%8F%A3%E6%98%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%AE%9E%E4%BE%8B%E5%8C%96-%E4%BD%86%E6%98%AF%E6%8E%A5%E5%8F%A3%E5%BC%95%E7%94%A8%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%90%911%E4%B8%AA%E5%AE%9E%E7%8E%B0%E8%AF%A5%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%8E%A5%E5%8F%A3-%E6%88%96%E6%8A%BD%E8%B1%A1%E7%B1%BB-%E7%9A%84%E5%AD%98%E5%9C%A8%E6%98%AF%E4%B8%BA%E4%BA%86%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">3、接口(或抽象类)的存在是为了多态的实现.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-Animal%E7%B1%BB"><span class="toc-text">3.1 Animal类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Mammal%E7%B1%BB"><span class="toc-text">3.2 Mammal类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Reptile%E7%B1%BB"><span class="toc-text">3.3 Reptile类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-Goat%E7%B1%BB-%E5%92%8C-Rabbit%E7%B1%BB"><span class="toc-text">3.5 Goat类 和 Rabbit类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-Snake%E7%B1%BB"><span class="toc-text">3.6 Snake类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-Farmer-%E7%B1%BB"><span class="toc-text">3.7 Farmer 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E6%89%A7%E8%A1%8C%E5%86%9C%E5%A4%AB%E5%96%82%E6%B0%B4%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">3.7 执行农夫喂水的代码.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8%E6%80%BB%E7%BB%93"><span class="toc-text">3.8总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E8%A7%A3%E5%86%B3%E4%B8%8D%E4%BA%86%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">4、抽象类解决不了的问题.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%A4%9A%E6%80%81-%E4%BB%A5%E5%8F%8A-%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="toc-text">5、接口与多态 以及 多继承性.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-Huntable%E6%8E%A5%E5%8F%A3"><span class="toc-text">5.1 Huntable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-Tiger-%E7%B1%BB"><span class="toc-text">5.2 Tiger 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-Snake%E7%B1%BB"><span class="toc-text">5.3 Snake类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-Farmer%E7%B1%BB"><span class="toc-text">5.4 Farmer类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8A%E5%BA%94%E7%94%A8%E6%B3%9B%E5%9E%8B"><span class="toc-text">6、接口上应用泛型.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-Huntable%E6%8E%A5%E5%8F%A3"><span class="toc-text">6.1 Huntable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Tiger%E7%B1%BB-%E5%92%8CSnake%E7%B1%BB"><span class="toc-text">6.2 Tiger类(和Snake类)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%80%8C%E4%B8%8D%E7%94%A8%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">7、什么情况下应该使用接口而不用抽象类.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81"><span class="toc-text">7.1 需要实现多态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95-%E5%8A%9F%E8%83%BD-%E4%B8%8D%E6%98%AF%E5%BD%93%E5%89%8D%E7%B1%BB%E6%97%8F%E7%9A%84%E5%BF%85%E8%A6%81-%E5%B1%9E%E6%80%A7"><span class="toc-text">7.2. 要实现的方法(功能)不是当前类族的必要(属性).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-%E8%A6%81%E4%B8%BA%E4%B8%8D%E5%90%8C%E7%B1%BB%E6%97%8F%E7%9A%84%E5%A4%9A%E4%B8%AA%E7%B1%BB%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%A0%B7%E7%9A%84%E6%96%B9%E6%B3%95-%E5%8A%9F%E8%83%BD"><span class="toc-text">7.3  . 要为不同类族的多个类实现同样的方法(功能).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%A2%AB%E5%8F%AB%E5%81%9A%E6%8E%A5%E5%8F%A3-%E8%B7%9F%E7%9C%9F%E6%AD%A3%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BE%8B%E5%A6%82usb%E6%8E%A5%E5%8F%A3%E6%9C%89%E8%81%94%E7%B3%BB%E5%90%97"><span class="toc-text">8、接口为什么会被叫做接口, 跟真正的接口例如usb接口有联系吗?</span></a></li></ol></li></ol></li></ol>
-</div>
-    
+  </div>
 </div>
 
 
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">Java接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">1、几个问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%8E%A5%E5%8F%A3%E6%98%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%AE%9E%E4%BE%8B%E5%8C%96-%E4%BD%86%E6%98%AF%E6%8E%A5%E5%8F%A3%E5%BC%95%E7%94%A8%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%90%911%E4%B8%AA%E5%AE%9E%E7%8E%B0%E8%AF%A5%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">2、接口是不可以被实例化, 但是接口引用可以指向1个实现该接口的对象.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%8E%A5%E5%8F%A3-%E6%88%96%E6%8A%BD%E8%B1%A1%E7%B1%BB-%E7%9A%84%E5%AD%98%E5%9C%A8%E6%98%AF%E4%B8%BA%E4%BA%86%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">3、接口(或抽象类)的存在是为了多态的实现.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Animal%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 Animal类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-Mammal%E7%B1%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 Mammal类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-Reptile%E7%B1%BB"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 Reptile类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-Goat%E7%B1%BB-%E5%92%8C-Rabbit%E7%B1%BB"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.5 Goat类 和 Rabbit类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-Snake%E7%B1%BB"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.6 Snake类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-Farmer-%E7%B1%BB"><span class="nav-number">1.3.6.</span> <span class="nav-text">3.7 Farmer 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-%E6%89%A7%E8%A1%8C%E5%86%9C%E5%A4%AB%E5%96%82%E6%B0%B4%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.7.</span> <span class="nav-text">3.7 执行农夫喂水的代码.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.8.</span> <span class="nav-text">3.8总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E8%A7%A3%E5%86%B3%E4%B8%8D%E4%BA%86%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">4、抽象类解决不了的问题.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%A4%9A%E6%80%81-%E4%BB%A5%E5%8F%8A-%E5%A4%9A%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">5、接口与多态 以及 多继承性.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-Huntable%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 Huntable接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-Tiger-%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 Tiger 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-Snake%E7%B1%BB"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 Snake类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-Farmer%E7%B1%BB"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4 Farmer类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8A%E5%BA%94%E7%94%A8%E6%B3%9B%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">6、接口上应用泛型.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-Huntable%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 Huntable接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-Tiger%E7%B1%BB-%E5%92%8CSnake%E7%B1%BB"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 Tiger类(和Snake类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%80%8C%E4%B8%8D%E7%94%A8%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">1.7.</span> <span class="nav-text">7、什么情况下应该使用接口而不用抽象类.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 需要实现多态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95-%E5%8A%9F%E8%83%BD-%E4%B8%8D%E6%98%AF%E5%BD%93%E5%89%8D%E7%B1%BB%E6%97%8F%E7%9A%84%E5%BF%85%E8%A6%81-%E5%B1%9E%E6%80%A7"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2. 要实现的方法(功能)不是当前类族的必要(属性).</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-%E8%A6%81%E4%B8%BA%E4%B8%8D%E5%90%8C%E7%B1%BB%E6%97%8F%E7%9A%84%E5%A4%9A%E4%B8%AA%E7%B1%BB%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%A0%B7%E7%9A%84%E6%96%B9%E6%B3%95-%E5%8A%9F%E8%83%BD"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3  . 要为不同类族的多个类实现同样的方法(功能).</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%A2%AB%E5%8F%AB%E5%81%9A%E6%8E%A5%E5%8F%A3-%E8%B7%9F%E7%9C%9F%E6%AD%A3%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%BE%8B%E5%A6%82usb%E6%8E%A5%E5%8F%A3%E6%9C%89%E8%81%94%E7%B3%BB%E5%90%97"><span class="nav-number">1.7.4.</span> <span class="nav-text">8、接口为什么会被叫做接口, 跟真正的接口例如usb接口有联系吗?</span></a></li></ol></li></ol></li></ol></div>
         </div>
-    </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">温文焕</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-        <div class="index-about-mobile">
-            <i> sometimes code， sometimes design </i>
+
+
         </div>
+      </div>
     </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
     
-    <div class="index-middle">
-        <!-- Main Content -->
-        
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-<div class="post-container">
-    <div class="post-title">
-        Java中的接口
-    </div>
+    <div class="main-inner post posts-expand">
 
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2021-02-28 22:08:32</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content no-indent">
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/02/28/Java%E6%8E%A5%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java中的接口
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-02-28 22:08:32 / 修改时间：22:09:04" itemprop="dateCreated datePublished" datetime="2021-02-28T22:08:32+08:00">2021-02-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
         <h2 id="Java接口"><a href="#Java接口" class="headerlink" title="Java接口"></a>Java接口</h2><h3 id="1、几个问题"><a href="#1、几个问题" class="headerlink" title="1、几个问题"></a>1、几个问题</h3><ol>
 <li><p>为什么不直接在类里面写对应的方法, 而要多写1个接口(或抽象类)?</p>
 </li>
@@ -342,89 +416,76 @@
 <p>例如一些pc派生类选择实现蓝光光驱, 有些选择刻录机.  但是usb接口本身并不关心. 取决与实现接口的类.</p>
 <p>这个就是现实意义上的多态性啊.<br>————————————————<br>版权声明：本文为CSDN博主「nvd11」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/nvd11/article/details/41129935">https://blog.csdn.net/nvd11/article/details/41129935</a></p>
 
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
     </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/28/Springboot/" rel="prev" title="Springboot">
+                  <i class="fa fa-chevron-left"></i> Springboot
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/03/Java%E4%B8%AD%E7%9A%84%E9%99%A4%E6%B3%95%E4%BF%9D%E7%95%99%E5%85%A8%E9%83%A8%E5%B0%8F%E6%95%B0%E4%BD%8D/" rel="next" title="Java中的除法保留全部小数位">
+                  Java中的除法保留全部小数位 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-    </div>
+
+
+
+
+
 </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">温文焕</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
 
-        
-        <li>
-            <a target="_blank" href="http://weibo.com/2809403392">
-                            <span class="fa-stack fa-lg">
-                                  <i class="iconfont icon-weibo"></i>
-                            </span>
-            </a>
-        </li>
-        
+    </div>
+  </footer>
 
-        
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
-        
-        <li>
-            <a target="_blank"  href="https://github.com/powerwenwh">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
+  
 
-        
 
-    </ul>
-    
-    <p>
-        <span>/</span>
-        
-        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
-        <span>/</span>
-        
-    </p>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+
+
+
+  
+
 
 
 
 
 </body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-
-<script src="/js/index.js"></script>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
 </html>

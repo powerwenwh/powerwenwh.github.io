@@ -1,147 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
 
-    <title>
-        
-        Java的一些基础知识点 - undefined
-        
-    </title>
 
-    <!-- Custom CSS -->
-    
-<link rel="stylesheet" href="/css/aircloud.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/gitment.css">
+<link rel="stylesheet" href="/css/main.css">
 
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
 
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<div class="index-about">
-    <i> sometimes code， sometimes design </i>
-</div>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wenwenhuan.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="hashmap如何实现HashMap是使用hash算法,然后基于数组+链表+红黑树来实现的,或许还知道HashMap内部数组的初始长度为16,并且还能自动扩容. 简单来说，HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java的一些基础知识点">
+<meta property="og:url" content="https://wenwenhuan.gitee.io/2021/04/12/Java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Wenhuan Blog">
+<meta property="og:description" content="hashmap如何实现HashMap是使用hash算法,然后基于数组+链表+红黑树来实现的,或许还知道HashMap内部数组的初始长度为16,并且还能自动扩容. 简单来说，HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C1024555-20161113235348670-746615111.png">
+<meta property="og:image" content="c:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C1292434-20171210003109576-1016700625.jpg">
+<meta property="og:image" content="c:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5CQQ20180624-150918.png">
+<meta property="og:image" content="c:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C11.png">
+<meta property="og:image" content="c:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C20170615230126453.jpeg">
+<meta property="article:published_time" content="2021-04-12T15:11:00.000Z">
+<meta property="article:modified_time" content="2021-04-12T15:17:58.000Z">
+<meta property="article:author" content="温文焕">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C1024555-20161113235348670-746615111.png">
 
-<div class="index-container">
-    
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/avatar.jpg" />
-        </div>
-        <div class="name">
-            <i>温文焕</i>
-        </div>
+
+<link rel="canonical" href="https://wenwenhuan.gitee.io/2021/04/12/Java%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wenwenhuan.gitee.io/2021/04/12/Java%E5%9F%BA%E7%A1%80/","path":"2021/04/12/Java基础/","title":"Java的一些基础知识点"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java的一些基础知识点 | Wenhuan Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Wenhuan Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">即使天无雨 我亦留此地</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">hashmap如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReentrantLock%E4%B8%8Esynchronized%EF%BC%88%E5%90%8C%E6%AD%A5%E9%94%81%EF%BC%89%E9%94%81"><span class="toc-text">ReentrantLock与synchronized（同步锁）锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E4%B8%AD%E7%9A%84%E9%94%81%E5%88%86%E7%B1%BB"><span class="toc-text">Java中的锁分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B9%90%E8%A7%82%E9%94%81-amp-%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">1、乐观锁 &amp; 悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%8B%AC%E4%BA%AB%E9%94%81-amp-%E5%85%B1%E4%BA%AB%E9%94%81"><span class="toc-text">2、独享锁 &amp; 共享锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%BA%92%E6%96%A5%E9%94%81-amp-%E8%AF%BB%E5%86%99%E9%94%81"><span class="toc-text">3、互斥锁 &amp; 读写锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="toc-text">4、可重入锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%85%AC%E5%B9%B3%E9%94%81-amp-%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="toc-text">5、公平锁 &amp; 非公平锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%88%86%E6%AE%B5%E9%94%81"><span class="toc-text">6、分段锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%81%8F%E5%90%91%E9%94%81-amp-%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81-amp-%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="toc-text">7、偏向锁 &amp; 轻量级锁 &amp; 重量级锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">Java数组和链表的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E4%B8%BE%E4%B8%A4%E7%A7%8D%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-text">列举两种单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B"><span class="toc-text">饿汉式单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B"><span class="toc-text">懒汉式单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9A"><span class="toc-text">1、线程安全：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%80%A7%E8%83%BD%EF%BC%9A"><span class="toc-text">2、资源加载和性能：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">为什么要用单例模式？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">重写和重载的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%BD%BD"><span class="toc-text">重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%86%99"><span class="toc-text">重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="toc-text">面向对象三大特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%81%E8%A3%85-Encapsulation"><span class="toc-text">(1)封装(Encapsulation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%A7%E6%89%BF-Inheritance"><span class="toc-text">(2)继承(Inheritance)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E6%80%81-Polymorphism"><span class="toc-text">(3)多态(Polymorphism)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E4%B8%A4%E7%A7%8D%E5%BC%95%E6%93%8E"><span class="toc-text">MySQL两种引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="toc-text">预防死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-VS-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-VS-Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">JVM内存结构 VS Java内存模型 VS Java对象模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="toc-text">JVM内存结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">Java内存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">Java对象模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol>
-</div>
-    
+  </div>
 </div>
 
 
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hashmap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">hashmap如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantLock%E4%B8%8Esynchronized%EF%BC%88%E5%90%8C%E6%AD%A5%E9%94%81%EF%BC%89%E9%94%81"><span class="nav-number">2.</span> <span class="nav-text">ReentrantLock与synchronized（同步锁）锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%B8%AD%E7%9A%84%E9%94%81%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">Java中的锁分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E4%B9%90%E8%A7%82%E9%94%81-amp-%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-number">3.1.</span> <span class="nav-text">1、乐观锁 &amp; 悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%8B%AC%E4%BA%AB%E9%94%81-amp-%E5%85%B1%E4%BA%AB%E9%94%81"><span class="nav-number">3.2.</span> <span class="nav-text">2、独享锁 &amp; 共享锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E4%BA%92%E6%96%A5%E9%94%81-amp-%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-number">3.3.</span> <span class="nav-text">3、互斥锁 &amp; 读写锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">3.4.</span> <span class="nav-text">4、可重入锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%85%AC%E5%B9%B3%E9%94%81-amp-%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="nav-number">3.5.</span> <span class="nav-text">5、公平锁 &amp; 非公平锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E5%88%86%E6%AE%B5%E9%94%81"><span class="nav-number">3.6.</span> <span class="nav-text">6、分段锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E5%81%8F%E5%90%91%E9%94%81-amp-%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81-amp-%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="nav-number">3.7.</span> <span class="nav-text">7、偏向锁 &amp; 轻量级锁 &amp; 重量级锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Java数组和链表的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E4%B8%BE%E4%B8%A4%E7%A7%8D%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">列举两种单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">5.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B"><span class="nav-number">5.2.</span> <span class="nav-text">饿汉式单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B"><span class="nav-number">5.3.</span> <span class="nav-text">懒汉式单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9A"><span class="nav-number">5.4.</span> <span class="nav-text">1、线程安全：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%80%A7%E8%83%BD%EF%BC%9A"><span class="nav-number">5.5.</span> <span class="nav-text">2、资源加载和性能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">5.6.</span> <span class="nav-text">为什么要用单例模式？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">重写和重载的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%BD%BD"><span class="nav-number">7.</span> <span class="nav-text">重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%86%99"><span class="nav-number">8.</span> <span class="nav-text">重写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="nav-number">9.</span> <span class="nav-text">面向对象三大特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%81%E8%A3%85-Encapsulation"><span class="nav-number">9.1.</span> <span class="nav-text">(1)封装(Encapsulation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%A7%E6%89%BF-Inheritance"><span class="nav-number">9.2.</span> <span class="nav-text">(2)继承(Inheritance)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A4%9A%E6%80%81-Polymorphism"><span class="nav-number">9.3.</span> <span class="nav-text">(3)多态(Polymorphism)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E4%B8%A4%E7%A7%8D%E5%BC%95%E6%93%8E"><span class="nav-number">10.</span> <span class="nav-text">MySQL两种引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="nav-number">11.</span> <span class="nav-text">预防死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-VS-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-VS-Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">12.</span> <span class="nav-text">JVM内存结构 VS Java内存模型 VS Java对象模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-number">12.1.</span> <span class="nav-text">JVM内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">12.2.</span> <span class="nav-text">Java内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">12.3.</span> <span class="nav-text">Java对象模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">12.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         </div>
-    </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">温文焕</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
-        <div class="index-about-mobile">
-            <i> sometimes code， sometimes design </i>
+
+
         </div>
+      </div>
     </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
     
-    <div class="index-middle">
-        <!-- Main Content -->
-        
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-<div class="post-container">
-    <div class="post-title">
-        Java的一些基础知识点
-    </div>
+    <div class="main-inner post posts-expand">
 
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2021-04-12 23:11:00</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content no-indent">
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/04/12/Java%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java的一些基础知识点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-12 23:11:00 / 修改时间：23:17:58" itemprop="dateCreated datePublished" datetime="2021-04-12T23:11:00+08:00">2021-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
         <h2 id="hashmap如何实现"><a href="#hashmap如何实现" class="headerlink" title="hashmap如何实现"></a>hashmap如何实现</h2><p>HashMap是使用<strong>hash算法</strong>,然后基于<strong>数组+链表+红黑树</strong>来实现的,或许还知道HashMap内部数组的初始长度为<strong>16</strong>,并且还能<strong>自动扩容</strong>.</p>
 <p><strong>简单来说，HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度为O(n)，首先遍历链表，存在即覆盖，否则新增；对于查找操作来讲，仍需遍历链表，然后通过key对象的equals方法逐一比对查找。所以，性能考虑，HashMap中的链表出现越少，性能才会越好。</strong></p>
 <p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5CMyBlog%5Csource%5C_posts%5Cimgs%5CJava%E5%9F%BA%E7%A1%80%5C1024555-20161113235348670-746615111.png" alt="img"></p>
@@ -311,89 +391,76 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我们再来区分下JVM内存结构、 Java内存模型 以及 Java对象模型 三个概念。</p>
 <p>JVM内存结构，和Java虚拟机的运行时区域有关。 Java内存模型，和Java的并发编程有关。 Java对象模型，和Java对象在虚拟机中的表现形式有关。</p>
 
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
     </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/12/Java%E9%9B%86%E5%90%88%E5%B9%B6%E5%8F%91/" rel="prev" title="Java的集合并发常用知识点">
+                  <i class="fa fa-chevron-left"></i> Java的集合并发常用知识点
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/16/wldd/" rel="next" title="外伶仃岛攻略">
+                  外伶仃岛攻略 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-    </div>
+
+
+
+
+
 </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">温文焕</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
 
-        
-        <li>
-            <a target="_blank" href="http://weibo.com/2809403392">
-                            <span class="fa-stack fa-lg">
-                                  <i class="iconfont icon-weibo"></i>
-                            </span>
-            </a>
-        </li>
-        
+    </div>
+  </footer>
 
-        
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
-        
-        <li>
-            <a target="_blank"  href="https://github.com/powerwenwh">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
+  
 
-        
 
-    </ul>
-    
-    <p>
-        <span>/</span>
-        
-        <span><a target="_blank" rel="noopener" href="https://github.com/">github</a></span>
-        <span>/</span>
-        
-    </p>
-    
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+
+
+
+  
+
 
 
 
 
 </body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-
-<script src="/js/index.js"></script>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
 </html>

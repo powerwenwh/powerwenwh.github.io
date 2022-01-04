@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wenwenhuan.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed配置数据库或者登录数据库报这个错误可以通过改..\app\admin\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora文件 Original Entry - SQLNET.AUTHENTICATION_SERVICES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle11g学习记录">
+<meta property="og:url" content="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Wenhuan Blog">
+<meta property="og:description" content="1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed配置数据库或者登录数据库报这个错误可以通过改..\app\admin\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora文件 Original Entry - SQLNET.AUTHENTICATION_SERVICES">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234531194.png">
+<meta property="og:image" content="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234708091.png">
+<meta property="og:image" content="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234648563.png">
+<meta property="article:published_time" content="2021-07-28T08:15:28.000Z">
+<meta property="article:modified_time" content="2021-12-21T09:28:32.000Z">
+<meta property="article:author" content="温文焕">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234531194.png">
+
+
+<link rel="canonical" href="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/","path":"2021/07/28/Oracle11g学习记录/","title":"Oracle11g学习记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Oracle11g学习记录 | Wenhuan Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Wenhuan Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">即使天无雨 我亦留此地</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81TNS-12560-TNS-%E5%8D%8F%E8%AE%AE%E9%80%82%E9%85%8D%E5%99%A8%E9%94%99%E8%AF%AF%E6%88%96%E8%80%85ORA-12638-credential-retrieval-failed"><span class="nav-number">1.</span> <span class="nav-text">1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%AF%86%E7%A0%81%E4%B8%8D%E8%A6%81%E8%AE%BE%E7%BD%AE%E6%95%B0%E5%AD%97%E5%BC%80%E5%A4%B4"><span class="nav-number">2.</span> <span class="nav-text">2、密码不要设置数字开头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%90%AF%E5%8A%A8Oracle-SQL-Developer%E6%8A%A5%E9%94%99WARNING-Could-not-find-jvm-cfg"><span class="nav-number">3.</span> <span class="nav-text">3、启动Oracle SQL Developer报错WARNING: Could not find jvm.cfg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81ORA-01950-%E5%AF%B9%E8%A1%A8%E7%A9%BA%E9%97%B4-%E2%80%98USERS%E2%80%99-%E6%97%A0%E6%9D%83%E9%99%90"><span class="nav-number">4.</span> <span class="nav-text">4、ORA-01950: 对表空间 ‘USERS’ 无权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81SQL%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BE%97%E5%B8%A6%E2%80%9D-%E2%80%9D"><span class="nav-number">5.</span> <span class="nav-text">5、SQL语法记得带”;”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81ORA-01045-user-lacks-CREATE-SESSION-privilege-logon-denied"><span class="nav-number">6.</span> <span class="nav-text">6、ORA-01045: user lacks CREATE SESSION privilege; logon denied</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E5%8F%98%E6%9B%B4%E7%94%A8%E6%88%B7"><span class="nav-number">7.</span> <span class="nav-text">7、变更用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="nav-number">8.</span> <span class="nav-text">8、查询用户相关信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%E3%80%81%E6%9F%A5%E8%AF%A2%E6%9D%83%E9%99%90%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="nav-number">9.</span> <span class="nav-text">9、查询权限相关信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Querying-DBA-USER-Privilege-Views"><span class="nav-number">9.1.</span> <span class="nav-text">Querying DBA&#x2F;USER Privilege Views</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Querying-the-Current-User%E2%80%99s-Privileges"><span class="nav-number">9.2.</span> <span class="nav-text">Querying the Current User’s Privileges</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10%E3%80%81%E4%BD%BF%E7%94%A8Oracle-SQL-Developer%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%BC%8F"><span class="nav-number">10.</span> <span class="nav-text">10、使用Oracle SQL Developer创建模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11%E3%80%81%E8%A1%A8%E7%A9%BA%E9%97%B4%E7%9B%B8%E5%85%B3%E8%AF%AD%E5%8F%A5"><span class="nav-number">11.</span> <span class="nav-text">11、表空间相关语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12%E3%80%81%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="nav-number">12.</span> <span class="nav-text">12、创建用户</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">温文焕</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Oracle11g学习记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-28 16:15:28" itemprop="dateCreated datePublished" datetime="2021-07-28T16:15:28+08:00">2021-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-21 17:28:32" itemprop="dateModified" datetime="2021-12-21T17:28:32+08:00">2021-12-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1、TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed"><a href="#1、TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed" class="headerlink" title="1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed"></a>1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed</h3><p>配置数据库或者登录数据库报这个错误可以通过改..\app\admin\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora文件</p>
+<p><code>Original Entry - SQLNET.AUTHENTICATION_SERVICES= (NTS)</code><br><code>Modified Entry - SQLNET.AUTHENTICATION_SERVICES= (NONE) </code></p>
+<h3 id="2、密码不要设置数字开头"><a href="#2、密码不要设置数字开头" class="headerlink" title="2、密码不要设置数字开头"></a>2、密码不要设置数字开头</h3><p>oracle有个毛病，密码必须以字母开头，如果以数字开头，它不会创建用户</p>
+<h3 id="3、启动Oracle-SQL-Developer报错WARNING-Could-not-find-jvm-cfg"><a href="#3、启动Oracle-SQL-Developer报错WARNING-Could-not-find-jvm-cfg" class="headerlink" title="3、启动Oracle SQL Developer报错WARNING: Could not find jvm.cfg"></a>3、启动Oracle SQL Developer报错WARNING: Could not find jvm.cfg</h3><p><strong>原因：</strong>oracle 11g中安装的Oracle SQL Developer是32位的，而我们现在给他指定的java.exe却是64位的，所以会出现这种错误。</p>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li><p>从网上下载Oracle SQL Developer x64，然后替换原目录：D:\app\oracle\product\11.1.0\db_1\sqldeveloper下的32位的Oracle SQL Developer。这样重新启动Oracle SQL Developer 并制定java.exe的路径就可以了。</p>
+</li>
+<li><p>安装JDK6 x86，也就是32位的JDK，虽然我们的系统是64位的，但是也兼容32位的JDK。</p>
+</li>
+</ol>
+<h3 id="4、ORA-01950-对表空间-‘USERS’-无权限"><a href="#4、ORA-01950-对表空间-‘USERS’-无权限" class="headerlink" title="4、ORA-01950: 对表空间 ‘USERS’ 无权限"></a>4、ORA-01950: 对表空间 ‘USERS’ 无权限</h3><p>创建新的用户时，要指定default  tablespace，否则它会把system表空间当成自己的缺省表空间。这样做是不提倡的。估计原来创建某个用户的时候没有指定缺省表空间，而现在它使用系统表空间的权限被DBA给收回了。<br> 先用的简单的办法试试，一般缺省的ORACLE安装都是有USERS表空间的。<br> 比如你要在用户（或SCHEMA）usera中建表，那么你用SYSTEM登录ORACLE后，执行如下SQL </p>
+<p> <em><strong>*ALTER  USER  usera  QUOTA  UNLIMITED  ON  USERS;*</strong></em><br> 如果没有USERS表空间，则会报错，你可以找一个其他的表空间，从v$tablespace可以看到所有的表空间。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/leftfist/article/details/79654651">https://blog.csdn.net/leftfist/article/details/79654651</a></p>
+<h3 id="5、SQL语法记得带”-”"><a href="#5、SQL语法记得带”-”" class="headerlink" title="5、SQL语法记得带”;”"></a>5、SQL语法记得带”;”</h3><h3 id="6、ORA-01045-user-lacks-CREATE-SESSION-privilege-logon-denied"><a href="#6、ORA-01045-user-lacks-CREATE-SESSION-privilege-logon-denied" class="headerlink" title="6、ORA-01045: user lacks CREATE SESSION privilege; logon denied"></a>6、ORA-01045: user lacks CREATE SESSION privilege; logon denied</h3><p><strong>Roles in Oracle</strong></p>
+<p>When you create a new user, you must at least assign CREATE SESSIONS privilege so the user can connect to the database</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant create session to usr1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7、变更用户"><a href="#7、变更用户" class="headerlink" title="7、变更用户"></a>7、变更用户</h3><p>You <em>can</em> temporarily change to another user in that SQL Worksheet by doing:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">connect</span> <span class="operator">&lt;</span>username<span class="operator">&gt;</span><span class="operator">/</span><span class="operator">&lt;</span>password<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8、查询用户相关信息"><a href="#8、查询用户相关信息" class="headerlink" title="8、查询用户相关信息"></a>8、查询用户相关信息</h3><p>List all users that are visible to the current user:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> all_users;</span><br></pre></td></tr></table></figure>
+
+<p>List all users in the Oracle Database:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> dba_users;</span><br></pre></td></tr></table></figure>
+
+<p>Show the information of the current user:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> user_users;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9、查询权限相关信息"><a href="#9、查询权限相关信息" class="headerlink" title="9、查询权限相关信息"></a>9、查询权限相关信息</h3><h4 id="Querying-DBA-USER-Privilege-Views"><a href="#Querying-DBA-USER-Privilege-Views" class="headerlink" title="Querying DBA/USER Privilege Views"></a>Querying DBA/USER Privilege Views</h4><p>A DBA wishing to view <strong>all <code>system</code> privileges</strong> granted to <strong>all users</strong> would issue the following query:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> DBA_SYS_PRIVS;</span><br></pre></td></tr></table></figure>
+
+<p>To determine which <strong>users</strong> have <em>direct</em> grant access to a <strong><code>table</code></strong> we’ll use the <code>DBA_TAB_PRIVS</code> view:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> DBA_TAB_PRIVS;</span><br></pre></td></tr></table></figure>
+
+<p>Finally, querying the <code>DBA_ROLE_PRIVS</code> view has much of the same information but applicable to <strong><code>roles</code></strong> instead, where the <code>GRANTED_ROLE</code> column specifies the role in question:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span>  DBA_ROLE_PRIVS;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Querying-the-Current-User’s-Privileges"><a href="#Querying-the-Current-User’s-Privileges" class="headerlink" title="Querying the Current User’s Privileges"></a>Querying the Current User’s Privileges</h4><blockquote>
+<p>refer to:<a target="_blank" rel="noopener" href="https://chartio.com/resources/tutorials/oracle-user-privileges--how-to-show-all-privileges-for-a-user/">https://chartio.com/resources/tutorials/oracle-user-privileges--how-to-show-all-privileges-for-a-user/</a></p>
+</blockquote>
+<h3 id="10、使用Oracle-SQL-Developer创建模式"><a href="#10、使用Oracle-SQL-Developer创建模式" class="headerlink" title="10、使用Oracle SQL Developer创建模式"></a>10、使用Oracle SQL Developer创建模式</h3><ol>
+<li><p>使用system账户（默认密码为安装Oracle时的密码）连接Oracle SQL Developer在其他用户中新建用户</p>
+<img src="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234531194.png" class="" title="image-20211220234531194"></li>
+<li><p>用户角色与权限配置</p>
+<img src="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234708091.png" class="" title="image-20211220234708091">
+
+<img src="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234648563.png" class="" title="image-20211220234648563">
+
+<h3 id="11、表空间相关语句"><a href="#11、表空间相关语句" class="headerlink" title="11、表空间相关语句"></a>11、表空间相关语句</h3><p>授权表空间</p>
+<p><code>alter user 用户名 quota unlimited on 表空间;</code></p>
+<p>查询所有表空间</p>
+<p><code>select * from dba_tablespaces;</code></p>
+<p>查看当前用户的缺省表空间</p>
+<p><code>select username,default_tablespace from user_users;</code></p>
+<h3 id="12、创建用户"><a href="#12、创建用户" class="headerlink" title="12、创建用户"></a>12、创建用户</h3></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/13/nacos/" rel="prev" title="nacos">
+                  <i class="fa fa-chevron-left"></i> nacos
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/28/Nginx%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="next" title="Nginx学习记录">
+                  Nginx学习记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">温文焕</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
