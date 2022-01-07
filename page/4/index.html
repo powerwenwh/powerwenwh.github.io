@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,6 +161,116 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/04/12/Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/12/Linux/" class="post-title-link" itemprop="url">Linux的一些基础知识点</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-12 23:11:00" itemprop="dateCreated datePublished" datetime="2021-04-12T23:11:00+08:00">2021-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-04-20 11:57:00" itemprop="dateModified" datetime="2021-04-20T11:57:00+08:00">2021-04-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Linux查看内存使用情况"><a href="#Linux查看内存使用情况" class="headerlink" title="Linux查看内存使用情况"></a>Linux查看内存使用情况</h2><p>包括：free、top、cat /proc/meminfo、vmstat、ps</p>
+<h3 id="1-top命令"><a href="#1-top命令" class="headerlink" title="1. top命令"></a>1. top命令</h3><img src="/2021/04/12/Linux/image-20210407204911221.png" class="" title="image-20210407204911221">
+
+<p>内容分析：</p>
+<p>   PID：进程的ID</p>
+<p>   USER：进程所有者</p>
+<p>​    PR：进程的优先级别，越小越优先被执行</p>
+<p>​    NI：进程Nice值，代表这个进程的优先值</p>
+<p>​    VIRT：进程占用的虚拟内存</p>
+<p>​    RES：进程占用的物理内存</p>
+<p>​    SHR：进程使用的共享内存</p>
+<p>   S：进程的状态。S表示休眠，R表示正在运行，Z表示僵死状态</p>
+<p>​    %CPU：进程占用CPU的使用</p>
+<p>​    %MEM：进程使用的物理内存和总内存的百分</p>
+<p>​    TIME+：该进程启动后占用的总的CPU时间，即占用CPU使用时间的累加值</p>
+<p>​    COMMAND：启动该进程的命令名称</p>
+<h3 id="2-free命令："><a href="#2-free命令：" class="headerlink" title="2. free命令："></a>2. free命令：</h3><p>输入命令分类：</p>
+<p>free   用KB为单位展示数据</p>
+<p>free -m   用MB为单位展示数据</p>
+<p>free -h   用GB为单位展示数据</p>
+<img src="/2021/04/12/Linux/image-20210407205121916.png" class="" title="image-20210407205121916">
+
+<p>total : 总计物理内存的大小</p>
+<p>used : 已使用内存的大小</p>
+<p>free : 可用内存的大小</p>
+<p>shared : 多个进程共享的内存总额</p>
+<p>buff/cache : 磁盘缓存大小</p>
+<p>available : 可用内存大小 ， 从应用程序的角度来说：available = free + buff/cache .</p>
+<h3 id="3-cat-proc-meminfo-命令："><a href="#3-cat-proc-meminfo-命令：" class="headerlink" title="3. cat  /proc/meminfo 命令："></a>3. cat  /proc/meminfo 命令：</h3><img src="/2021/04/12/Linux/image-20210407205332503.png" class="" title="image-20210407205332503">
+
+<p>这是用来查看RAM使用情况最简单的方法。 这个动态更新的虚拟文件实际上是许多其他内存相关工具的组合显示，就如上面说列的 top, free等。它列出了所有我们想了解的内存的使用情况。</p>
+<p>进程的内存使用信息也可以通过： /proc//statm 和 /proc//status 来查看。</p>
+<h3 id="4-ps-命令：用于显示当前进程的状态"><a href="#4-ps-命令：用于显示当前进程的状态" class="headerlink" title="4. ps 命令：用于显示当前进程的状态"></a>4. ps 命令：用于显示当前进程的状态</h3><p>输入内容方式：</p>
+<p>ps aux ：按照 pid 显示内容 （默认排序方式）</p>
+<p>ps aux –sort -rss : 按照 rss 排序显示内容</p>
+<img src="/2021/04/12/Linux/image-20210407205451578.png" class="" title="image-20210407205451578">
+
+<h3 id="5-vmstat-命令："><a href="#5-vmstat-命令：" class="headerlink" title="5. vmstat 命令："></a>5. vmstat 命令：</h3><p>输入命令：</p>
+<p>vmstat -s</p>
+<p>输出内容：</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1697,91 +1807,6 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">//@RequestMapping(value = &quot;/user&quot;,method = RequestMethod.GET)</span></span><br><span class="line">	<span class="meta">@GetMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;GET-张三&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//@RequestMapping(value = &quot;/user&quot;,method = RequestMethod.POST)</span></span><br><span class="line">	<span class="meta">@PostMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">saveUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;POST-张三&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//@RequestMapping(value = &quot;/user&quot;,method = RequestMethod.PUT)</span></span><br><span class="line">	<span class="meta">@PutMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">putUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;PUT-张三&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//@RequestMapping(value = &quot;/user&quot;,method = RequestMethod.DELETE)</span></span><br><span class="line">	<span class="meta">@DeleteMapping(&quot;/user&quot;)</span>	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">deleteUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;DELETE-张三&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean(HiddenHttpMethodFilter.class)</span></span><br><span class="line">    <span class="meta">@ConditionalOnProperty(prefix = &quot;spring.mvc.hiddenmethod.filter&quot;, name = &quot;enabled&quot;, matchIfMissing = false)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> OrderedHiddenHttpMethodFilter <span class="title">hiddenHttpMethodFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OrderedHiddenHttpMethodFilter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义filter</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> HiddenHttpMethodFilter <span class="title">hiddenHttpMethodFilter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        HiddenHttpMethodFilter methodFilter = <span class="keyword">new</span> HiddenHttpMethodFilter();</span><br><span class="line">        methodFilter.setMethodParam(<span class="string">&quot;_m&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> methodFilter;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/12/27/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/27/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/" class="post-title-link" itemprop="url">机器人的运动范围</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-27 10:00:00" itemprop="dateCreated datePublished" datetime="2020-12-27T10:00:00+08:00">2020-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-02-28 16:55:26" itemprop="dateModified" datetime="2021-02-28T16:55:26+08:00">2021-02-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="机器人的运动范围"><a href="#机器人的运动范围" class="headerlink" title="机器人的运动范围"></a>机器人的运动范围</h1><p>地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？</p>
-<h2 id="审题："><a href="#审题：" class="headerlink" title="审题："></a>审题：</h2><p>可以看出应该用dfs解题，但犯了两个错误：</p>
-<ol>
-<li>忘记标记已经遍历过的格子，导致无限循环。</li>
-<li>把行r和列c调换了位置，导致数组下标溢出异常。</li>
-</ol>
-<h2 id="查看答案后"><a href="#查看答案后" class="headerlink" title="查看答案后:"></a>查看答案后:</h2><p>答案的中心思想和我一样，但我依旧做了很多无用功！</p>
-<ol>
-<li><strong>这是一个有规律的方阵</strong>，关键的条件“行坐标和列坐标的数位之和”是一个依次递增的，其实不用向四个方向查询，只需要向下，和向右查询就可以。</li>
-</ol>
-<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5C%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4.assets%5Cimage-20201225155726090.png" alt="image-20201225155726090"></p>
-<p>这个特性也让我想起了之前做的另外一题———二维数组的查找，两者有同工异曲之妙。 </p>
-<ol start="2">
-<li>找规律的能力还要提升。</li>
-</ol>
 
       
     </div>

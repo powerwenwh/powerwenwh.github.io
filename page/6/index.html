@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,6 +161,214 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/11/01/spring5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/01/spring5/" class="post-title-link" itemprop="url">spring5</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-01 02:29:32" itemprop="dateCreated datePublished" datetime="2020-11-01T02:29:32+08:00">2020-11-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-05-12 12:09:56" itemprop="dateModified" datetime="2021-05-12T12:09:56+08:00">2021-05-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一、Spring-框架概述"><a href="#一、Spring-框架概述" class="headerlink" title="一、Spring 框架概述"></a>一、Spring 框架概述</h2><p>1、Spring 是轻量级的开源的 JavaEE 框架 </p>
+<p>2、Spring 可以解决企业应用开发的复杂性</p>
+<p>3、Spring 有两个核心部分：IOC 和 Aop </p>
+<p>==（1）IOC：控制反转，把创建对象过程交给 Spring 进行管理== </p>
+<p>==（2）Aop：面向切面，不修改源代码进行功能增强==</p>
+<p>4、Spring 特点 </p>
+<p>（1）方便解耦，简化开发</p>
+<p> （2）Aop 编程支持 </p>
+<p>（3）方便程序测试 </p>
+<p>（4）方便和其他框架进行整合 </p>
+<p>（5）方便进行事务操作 </p>
+<p>（6）降低 API 开发难度</p>
+<h2 id="二、入门案例"><a href="#二、入门案例" class="headerlink" title="二、入门案例"></a>二、入门案例</h2><p>1、下载spring后创建Java工程并导入相关jar包</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119110144781.png" alt="image-20210119110144781"></p>
+<p>2、创建普通类，在这个类创建普通方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        System.out.println(<span class="string">&quot;add......&quot;</span>);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、创建Spring配置文件，在配置文件配置创建的对象</p>
+<p>Spring配置文件使用xml格式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span> </span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置User对象创建--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.atguigu.spring5.User&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>4、进行测试代码编写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="comment">//1 加载spring配置文件 </span></span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;bean1.xml&quot;</span>); </span><br><span class="line">    <span class="comment">//2 获取配置创建的对象 </span></span><br><span class="line">    User user = context.getBean(<span class="string">&quot;user&quot;</span>, User.class); </span><br><span class="line">    System.out.println(user);<span class="comment">//输出全类名和地址 </span></span><br><span class="line">    user.add(); <span class="comment">//add......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、IOC"><a href="#三、IOC" class="headerlink" title="三、IOC"></a>三、IOC</h2><h3 id="概念和原理"><a href="#概念和原理" class="headerlink" title="概念和原理"></a>概念和原理</h3><p>1、什么是IOC<br>（1）控制反转，把对象创建和对象之间的调用过程，交给Spring进行管理<br>（2）使用IOC目的：==为了耦合度降低==<br>（3）做入门案例就是IOC实现</p>
+<p>2、IOC底层原理<br>（1）xml解析、工厂模式、反射</p>
+<p>3、画图讲解IOC底层原理<br><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119105608434.png" alt="image-20210119105608434"></p>
+<h3 id="BeanFactory接口"><a href="#BeanFactory接口" class="headerlink" title="BeanFactory接口"></a>BeanFactory接口</h3><p>1、IOC思想基于IOC容器完成，IOC容器底层就是对象工厂<br>2、Spring提供IOC容器实现两种方式：（两个接口）<br>（1）BeanFactory：IOC容器基本实现，是Spring内部的使用接口，不提供开发人员进行使用</p>
+<ul>
+<li>加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象</li>
+</ul>
+<p>（2）ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能，一般由开发人员进行使用</p>
+<ul>
+<li>加载配置文件时候就会把在配置文件对象进行创建</li>
+</ul>
+<p>3、ApplicationContext接口有实现类<br><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119112255505.png" alt="image-20210119112255505"></p>
+<h3 id="IOC操作-Bean管理（概念）"><a href="#IOC操作-Bean管理（概念）" class="headerlink" title="IOC操作 Bean管理（概念）"></a>IOC操作 Bean管理（概念）</h3><p>1、什么是Bean管理<br>（0）Bean管理指的是两个操作</p>
+<ul>
+<li>Spring创建对象</li>
+<li>Spirng注入属性</li>
+</ul>
+<p>2、Bean管理操作有两种方式<br>（1）基于xml配置文件方式实现<br>（2）基于注解方式实现</p>
+<h3 id="IOC操作-Bean管理-基于注解方式"><a href="#IOC操作-Bean管理-基于注解方式" class="headerlink" title="IOC操作 Bean管理 (基于注解方式)"></a>IOC操作 Bean管理 (基于注解方式)</h3><p>1、 什么是注解<br>（1）注解是代码特殊标记，格式：@注解名称(属性名称=属性值, 属性名称=属性值..)<br>（2）使用注解，注解作用在类上面，方法上面，属性上面<br>（3）使用注解目的：简化xml配置</p>
+<p>2、Spring针对Bean管理中创建对象提供注解<br>（1）@Component<br>（2）@Service<br>（3）@Controller<br>（4）@Repository</p>
+<ul>
+<li>上面四个注解功能是一样的，都可以用来创建bean实例</li>
+</ul>
+<p>3、基于注解方式实现对象创建<br>第一步 引入依赖</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119174609094.png" alt="image-20210119174609094"></p>
+<p>第二步 开启组件扫描 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--开启组件扫描 </span></span><br><span class="line"><span class="comment">1 如果扫描多个包，多个包使用逗号隔开 </span></span><br><span class="line"><span class="comment">2 扫描包上层目录 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu&quot;</span>&gt;</span>/context:component-scan</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三步 创建类,在类上面添加创建对象注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在注解里面value属性值可以省略不写， </span></span><br><span class="line"><span class="comment">//默认值是类名称，首字母小写</span></span><br><span class="line"><span class="comment">//UserService -- userService</span></span><br><span class="line"><span class="meta">@Component(value = &quot;userService&quot;)</span> <span class="comment">//&lt;bean id=&quot;userService&quot; class=&quot;..&quot;/&gt; </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        System.out.println(<span class="string">&quot;service add.......&quot;</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4、开启组件扫描细节配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!--示例1 </span></span><br><span class="line"><span class="comment">use-default-filters=&quot;false&quot; 表示现在不使用默认filter，自己配置filter </span></span><br><span class="line"><span class="comment">context:include-filter ，设置扫描哪些内容 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu&quot;</span> <span class="attr">use-default-filters</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">&quot;annotation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;org.springframework.stereotype.Controller&quot;</span>/&gt;</span> <span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--示例2 </span></span><br><span class="line"><span class="comment">下面配置扫描包所有内容 context:exclude-filter： 设置哪些内容不进行扫描 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;annotation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;org.springframework.stereotype.Controller&quot;</span>/&gt;</span> <span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>5、基于注解方式实现属性注入<br>（1）@Autowired：根据属性类型进行自动装配<br>第一步 把service和dao对象创建，在service和dao类添加创建对象注解<br>第二步 在service注入dao对象，在service类添加dao类型属性，在属性上面使用注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123; </span><br><span class="line">    <span class="comment">//定义dao类型属性 </span></span><br><span class="line">    <span class="comment">//不需要添加set方法 </span></span><br><span class="line">    <span class="comment">//添加注入属性注解</span></span><br><span class="line">    <span class="meta">@Autowired</span> </span><br><span class="line">    <span class="keyword">private</span> UserDao userDao; </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        System.out.println(<span class="string">&quot;service add.......&quot;</span>); </span><br><span class="line">        userDao.add(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）@Qualifier：根据名称进行注入<br>这个@Qualifier注解的使用，和上面@Autowired一起使用</p>
+<p>//定义dao类型属性 //不需要添加set方法//添加注入属性注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span> <span class="comment">//根据类型进行注入 </span></span><br><span class="line"><span class="meta">@Qualifier(value = &quot;userDaoImpl1&quot;)</span> <span class="comment">//根据名称进行注入 </span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br></pre></td></tr></table></figure>
+
+<p>（3）@Resource：可以根据类型注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Resource //根据类型进行注入 </span></span><br><span class="line"><span class="meta">@Resource(name = &quot;userDaoImpl1&quot;)</span> <span class="comment">//根据名称进行注入</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>（4）@Value：注入普通类型属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Value(value = &quot;abc&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure>
+
+<p>6、完全注解开发 </p>
+<p>（1）创建配置类，替代xml配置文件 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//作为配置类，替代xml配置文件</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages = &#123;&quot;com.atguigu&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfig</span> </span>&#123; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p>（2）编写测试类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testService2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//加载配置类 </span></span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfig.class); </span><br><span class="line">    UserService userService = context.getBean(<span class="string">&quot;userService&quot;</span>, UserService.class); </span><br><span class="line">    System.out.println(userService); </span><br><span class="line">    userService.add(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四、AOP"><a href="#四、AOP" class="headerlink" title="四、AOP"></a>四、AOP</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>1、什么是AOP </p>
+<p>（1）面向切面编程（方面），利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。<br>（2）通俗描述：不通过修改源代码方式，在主干功能里面添加新功能<br>（3）使用登录例子说明AOP</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119180333459.png" alt="image-20210119180333459"></p>
+<h3 id="AOP（底层原理）"><a href="#AOP（底层原理）" class="headerlink" title="AOP（底层原理）"></a>AOP（底层原理）</h3><p>1、AOP底层使用动态代理</p>
+<p>（1）有两种情况动态代理</p>
+<p>第一种 有接口情况，使用JDK动态代理</p>
+<ul>
+<li><p>创建接口实现类代理对象，增强类的方法</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119203435084.png" alt="image-20210119203435084"></p>
+</li>
+</ul>
+<p>第二种 没有接口情况，使用CGLIB动态代理</p>
+<ul>
+<li>创建子类的代理对象，增强类的方法<br><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119203418805.png" alt="image-20210119203418805"></li>
+</ul>
+<h3 id="JDK-动态代理"><a href="#JDK-动态代理" class="headerlink" title="JDK 动态代理"></a>JDK 动态代理</h3><p>1、使用JDK动态代理，使用Proxy类里面的方法创建代理对象</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119204311177.png" alt="image-20210119204311177"></p>
+<p>（1）调用newProxyInstance方法</p>
+<p><img src="C:%5CUsers%5CPowerwenwh%5CDocuments%5C_posts%5Cimgs%5Cspring5%5Cimage-20210119204324994.png" alt="image-20210119204324994"></p>
+<p>方法有三个参数：<br>第一参数，类加载器<br>第二参数，增强方法所在的类，这个类实现的接口，支持多个接口<br>第三参数，实现这个接口InvocationHandler，创建代理对象，写增强的部分</p>
+<p>2、编写JDK动态代理代码</p>
+<p>（1）创建接口，定义方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(String id)</span></span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>（2）创建接口实现类，实现方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123; </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> a+b; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(String id)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> id; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）使用Proxy类创建接口代理对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDKProxy</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </span><br><span class="line">    <span class="comment">//创建接口实现类代理对象 </span></span><br><span class="line">    Class[] interfaces = &#123;UserDao.class&#125;; </span><br><span class="line">    <span class="comment">// Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, new InvocationHandler() &#123; </span></span><br><span class="line">    <span class="comment">// @Override </span></span><br><span class="line">    <span class="comment">// public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123; </span></span><br><span class="line">    <span class="comment">// return null; </span></span><br><span class="line">    <span class="comment">// &#125; </span></span><br><span class="line">    <span class="comment">// &#125;);</span></span><br><span class="line">    UserDaoImpl userDao = <span class="keyword">new</span> UserDaoImpl(); </span><br><span class="line">    UserDao dao = (UserDao)Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, <span class="keyword">new</span> UserDaoProxy(userDao));</span><br><span class="line">    <span class="keyword">int</span> result = dao.add(<span class="number">1</span>, <span class="number">2</span>); System.out.println(<span class="string">&quot;result:&quot;</span>+result); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建代理对象代码 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserDaoProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123; </span><br><span class="line">    <span class="comment">//1 把创建的是谁的代理对象，把谁传递过来 </span></span><br><span class="line">    <span class="comment">//有参数构造传递 </span></span><br><span class="line">    <span class="keyword">private</span> Object obj; <span class="function"><span class="keyword">public</span> <span class="title">UserDaoProxy</span><span class="params">(Object obj)</span> </span>&#123; <span class="keyword">this</span>.obj = obj; &#125; </span><br><span class="line">    <span class="comment">//增强的逻辑 </span></span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123; </span><br><span class="line">        <span class="comment">//方法之前 </span></span><br><span class="line">        System.out.println(<span class="string">&quot;方法之前执行....&quot;</span>+method.getName()+<span class="string">&quot; :传递的参数...&quot;</span>+ Arrays.toString(args)); </span><br><span class="line">        <span class="comment">//被增强的方法执行 </span></span><br><span class="line">        Object res = method.invoke(obj, args); </span><br><span class="line">        <span class="comment">//方法之后 </span></span><br><span class="line">        System.out.println(<span class="string">&quot;方法之后执行....&quot;</span>+obj); </span><br><span class="line">        <span class="keyword">return</span> res; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p>1、连接点</p>
+<ul>
+<li>类里面可以增强的方法</li>
+</ul>
+<p>2、切入点</p>
+<ul>
+<li>实际被增强的方法</li>
+</ul>
+<p>3、通知（增强）</p>
+<ul>
+<li>实际增强的逻辑部分<ul>
+<li>前置通知</li>
+<li>后置通知</li>
+<li>环绕通知</li>
+<li>异常通知</li>
+<li>最终通知</li>
+</ul>
+</li>
+</ul>
+<p>4、切面</p>
+<ul>
+<li>是一个动作，把通知应用到切入点的过程</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1533,103 +1741,6 @@ public String    usePathVariable(@PathVariable(&quot;id&quot;) Integer id) &#123
 <p><strong>新知识</strong>：Set类,HashSet类,foreach句式。</p>
 <p><strong>面试注意点</strong>：它考察的是程序员的沟通能力，先问面试官要时间/空间需求！！！</p>
 <p><strong>总结</strong>：解题利用了<code>HashSet</code>中不允许集合中有重复的值这个特点，依次把数组的元素加入集合中，当有重复的数字加入的时候，<code>add()</code>函数会返回false，这时候根据返回值可以判断是否为重复数字。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/10/12/java%E4%B8%AD%E7%9A%84HashTable,HashMap%E5%92%8CHashSet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/12/java%E4%B8%AD%E7%9A%84HashTable,HashMap%E5%92%8CHashSet/" class="post-title-link" itemprop="url">java中的HashTable,HashMap和HashSet</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-12 17:29:32" itemprop="dateCreated datePublished" datetime="2020-10-12T17:29:32+08:00">2020-10-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-05-17 11:09:04" itemprop="dateModified" datetime="2021-05-17T11:09:04+08:00">2021-05-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="HashTable和HashMap的区别"><a href="#HashTable和HashMap的区别" class="headerlink" title="HashTable和HashMap的区别"></a>HashTable和HashMap的区别</h2><p><code> HashMap</code>和<code>Hashtable</code>都实现了Map接口，但决定用哪一个之前先要弄清楚它们之间的分别。<strong>主要的区别有：线程安全性，同步(synchronization)，以及速度。</strong></p>
-<h3 id="线程安全性，同步"><a href="#线程安全性，同步" class="headerlink" title="线程安全性，同步"></a>线程安全性，同步</h3><p><code>HashMap</code>几乎可以等价于<code>Hashtable</code>，除了<code>HashMap</code>是<strong>非synchronized的</strong>，并<strong>可以接受null</strong>(HashMap allows one null key and any number of null values.，而Hashtable则不行)。这就是说，<code>HashMap</code>中如果在表中没有发现搜索键，或者如果发现了搜索键，但它是一个空的值，那么get()将返回null。如果有必要，<em>用containKey()方法来区别这两种情况。</em></p>
-<p><strong><code>HashMap</code>是非synchronized，而<code>Hashtable</code>是synchronized</strong>，这意味着<strong>Hashtable是线程安全的，多个线程可以共享一个Hashtable</strong>；而如果没有正确的同步的话，多个线程是不能共享<code>HashMap</code>的。 即是说，在多线程应用程序中，不用专门的操作就安全地可以使用<code>Hashtable</code>了；而对于<code>HashMap</code>，则需要额外的同步机制。但<code>HashMap</code>的同步问题可通过Collections的一个静态方法得到解决：<code>Map Collections.synchronizedMap(Map m)</code>这个方法返回一个同步的Map，这个Map封装了底层的<code>HashMap</code>的所有方法，使得底层的<code>HashMap</code>即使是在多线程的环境中也是安全的。</p>
-<p><em>另一个区别是<code>HashMap</code>的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。</em>所以当有其它线程改变了<code>HashMap</code>的结构（增加或者移除元素），将会抛出<code>ConcurrentModificationException</code>，但迭代器本身的remove()方法移除元素则不会抛出<code>ConcurrentModificationException</code>异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。</p>
-<h3 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h3><p>由于<code>Hashtable</code>是线程安全的也是synchronized，所以<strong>在单线程环境下它比HashMap要慢</strong>。如果你不需要同步，只需要单一线程，那么使用<code>HashMap</code>性能要好过<code>Hashtable</code>。</p>
-<p><code>HashMap</code>不能保证随着时间的推移Map中的元素次序是不变的。<br>哈希值的使用不同，<code>HashTable</code>直接使用对象的hashCode，代码是这样的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> hash = key.hashCode();</span><br><span class="line"><span class="keyword">int</span> index = (hash &amp; <span class="number">0x7FFFFFFF</span>) % tab.length;</span><br></pre></td></tr></table></figure>
-<p>而<code>HashMap</code>重新计算hash值，而且用与代替求模：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> hash = hash(k);</span><br><span class="line"><span class="keyword">int</span> i = indexFor(hash, table.length);</span><br></pre></td></tr></table></figure>
-
-<p>要注意的一些重要术语：</p>
-<ol>
-<li><p>sychronized意味着在一次仅有一个线程能够更改<code>Hashtable</code>。就是说任何线程要更新<code>Hashtable</code>时要首先获得同步锁，其它线程要等到同步锁被释放之后才能再次获得同步锁更新<code>Hashtable</code>。</p>
-</li>
-<li><p>Fail-safe和iterator迭代器相关。如果某个集合对象创建了Iterator或者ListIterator，然后其它的线程试图“结构上”更改集合对象，将会抛出ConcurrentModificationException异常。但其它是假如已经从结构上进行了更改，再调用set()方法，将会抛出IllegalArgumentException异常。</p>
-</li>
-<li><p>结构上的更改指的是删除或者插入一个元素，这样会影响到map的结构。</p>
-</li>
-</ol>
-<h2 id="HashSet和HashMap的区别"><a href="#HashSet和HashMap的区别" class="headerlink" title="HashSet和HashMap的区别"></a>HashSet和HashMap的区别</h2><h3 id="什么是HashSet？"><a href="#什么是HashSet？" class="headerlink" title="什么是HashSet？"></a>什么是HashSet？</h3><p>HashSet实现了Set接口，<strong>它不允许集合中有重复的值</strong>，当我们提到HashSet时，第一件事情就是在将对象存储在HashSet之前，要先确保对象重写equals()和hashCode()方法，这样才能比较对象的值是否相等，以确保set中没有储存相等的对象。如果我们没有重写这两个方法，将会使用这个方法的默认实现。详见《探索equals()和hashCode()方法》。</p>
-<p>public boolean add(Object o)方法用来在Set中添加元素，当元素值重复时则会立即返回false，如果成功添加的话会返回true。</p>
-<p><strong>什么是HashMap？</strong><br>HashMap实现了Map接口，Map接口对键值对进行映射。<strong>Map中不允许重复的键</strong>。Map接口有两个基本的实现，HashMap和TreeMap。TreeMap保存了对象的排列次序，而HashMap则不能。HashMap允许键和值为null。HashMap是非synchronized的，但collection框架提供方法能保证HashMap synchronized，这样多个线程同时访问HashMap时，能保证只有一个线程更改Map。</p>
-<p><code>public Object put(Object Key,Object value)</code>方法用来将元素添加到map中。</p>
-<p><strong>HashSet和HashMap的区别</strong><br>HashMap | HashSet<br>—|—<br>HashMap实现了Map接口 |HashSet实现了Set接口<br>HashMap储存键值对 |HashSet仅仅存储对象（且无重复对象）<br>使用put()方法将元素放入map中|使用add()方法将元素放入set中<br>HashMap中使用键对象来计算hashcode值|HashSet使用成员对象来计算hashcode值，对于两个对象来说hashcode可能相同，所以equals()方法用来判断对象的相等性，如果两个对象不同的话，那么返回false<br>HashMap比较快，因为是使用唯一的键来获取对象    |HashSet较HashMap来说比较慢</p>
-<h2 id="HashMap工作原理"><a href="#HashMap工作原理" class="headerlink" title="HashMap工作原理"></a>HashMap工作原理</h2><p>待补充</p>
-<h2 id="HashSet工作原理"><a href="#HashSet工作原理" class="headerlink" title="HashSet工作原理"></a>HashSet工作原理</h2><p>待补充</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/speedme/article/details/22485681">https://blog.csdn.net/speedme/article/details/22485681</a></p>
 
       
     </div>
