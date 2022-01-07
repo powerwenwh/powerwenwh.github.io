@@ -82,7 +82,6 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
   </ul>
@@ -127,13 +126,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -162,6 +161,334 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Oracle11g学习记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-28 16:15:28" itemprop="dateCreated datePublished" datetime="2021-07-28T16:15:28+08:00">2021-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-21 17:28:32" itemprop="dateModified" datetime="2021-12-21T17:28:32+08:00">2021-12-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1、TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed"><a href="#1、TNS-12560-TNS-协议适配器错误或者ORA-12638-credential-retrieval-failed" class="headerlink" title="1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed"></a>1、TNS-12560: TNS: 协议适配器错误或者ORA-12638: credential retrieval failed</h3><p>配置数据库或者登录数据库报这个错误可以通过改..\app\admin\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora文件</p>
+<p><code>Original Entry - SQLNET.AUTHENTICATION_SERVICES= (NTS)</code><br><code>Modified Entry - SQLNET.AUTHENTICATION_SERVICES= (NONE) </code></p>
+<h3 id="2、密码不要设置数字开头"><a href="#2、密码不要设置数字开头" class="headerlink" title="2、密码不要设置数字开头"></a>2、密码不要设置数字开头</h3><p>oracle有个毛病，密码必须以字母开头，如果以数字开头，它不会创建用户</p>
+<h3 id="3、启动Oracle-SQL-Developer报错WARNING-Could-not-find-jvm-cfg"><a href="#3、启动Oracle-SQL-Developer报错WARNING-Could-not-find-jvm-cfg" class="headerlink" title="3、启动Oracle SQL Developer报错WARNING: Could not find jvm.cfg"></a>3、启动Oracle SQL Developer报错WARNING: Could not find jvm.cfg</h3><p><strong>原因：</strong>oracle 11g中安装的Oracle SQL Developer是32位的，而我们现在给他指定的java.exe却是64位的，所以会出现这种错误。</p>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li><p>从网上下载Oracle SQL Developer x64，然后替换原目录：D:\app\oracle\product\11.1.0\db_1\sqldeveloper下的32位的Oracle SQL Developer。这样重新启动Oracle SQL Developer 并制定java.exe的路径就可以了。</p>
+</li>
+<li><p>安装JDK6 x86，也就是32位的JDK，虽然我们的系统是64位的，但是也兼容32位的JDK。</p>
+</li>
+</ol>
+<h3 id="4、ORA-01950-对表空间-‘USERS’-无权限"><a href="#4、ORA-01950-对表空间-‘USERS’-无权限" class="headerlink" title="4、ORA-01950: 对表空间 ‘USERS’ 无权限"></a>4、ORA-01950: 对表空间 ‘USERS’ 无权限</h3><p>创建新的用户时，要指定default  tablespace，否则它会把system表空间当成自己的缺省表空间。这样做是不提倡的。估计原来创建某个用户的时候没有指定缺省表空间，而现在它使用系统表空间的权限被DBA给收回了。<br> 先用的简单的办法试试，一般缺省的ORACLE安装都是有USERS表空间的。<br> 比如你要在用户（或SCHEMA）usera中建表，那么你用SYSTEM登录ORACLE后，执行如下SQL </p>
+<p> <em><strong>*ALTER  USER  usera  QUOTA  UNLIMITED  ON  USERS;*</strong></em><br> 如果没有USERS表空间，则会报错，你可以找一个其他的表空间，从v$tablespace可以看到所有的表空间。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/leftfist/article/details/79654651">https://blog.csdn.net/leftfist/article/details/79654651</a></p>
+<h3 id="5、SQL语法记得带”-”"><a href="#5、SQL语法记得带”-”" class="headerlink" title="5、SQL语法记得带”;”"></a>5、SQL语法记得带”;”</h3><h3 id="6、ORA-01045-user-lacks-CREATE-SESSION-privilege-logon-denied"><a href="#6、ORA-01045-user-lacks-CREATE-SESSION-privilege-logon-denied" class="headerlink" title="6、ORA-01045: user lacks CREATE SESSION privilege; logon denied"></a>6、ORA-01045: user lacks CREATE SESSION privilege; logon denied</h3><p><strong>Roles in Oracle</strong></p>
+<p>When you create a new user, you must at least assign CREATE SESSIONS privilege so the user can connect to the database</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant create session to usr1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7、变更用户"><a href="#7、变更用户" class="headerlink" title="7、变更用户"></a>7、变更用户</h3><p>You <em>can</em> temporarily change to another user in that SQL Worksheet by doing:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">connect</span> <span class="operator">&lt;</span>username<span class="operator">&gt;</span><span class="operator">/</span><span class="operator">&lt;</span>password<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8、查询用户相关信息"><a href="#8、查询用户相关信息" class="headerlink" title="8、查询用户相关信息"></a>8、查询用户相关信息</h3><p>List all users that are visible to the current user:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> all_users;</span><br></pre></td></tr></table></figure>
+
+<p>List all users in the Oracle Database:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> dba_users;</span><br></pre></td></tr></table></figure>
+
+<p>Show the information of the current user:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> user_users;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9、查询权限相关信息"><a href="#9、查询权限相关信息" class="headerlink" title="9、查询权限相关信息"></a>9、查询权限相关信息</h3><h4 id="Querying-DBA-USER-Privilege-Views"><a href="#Querying-DBA-USER-Privilege-Views" class="headerlink" title="Querying DBA/USER Privilege Views"></a>Querying DBA/USER Privilege Views</h4><p>A DBA wishing to view <strong>all <code>system</code> privileges</strong> granted to <strong>all users</strong> would issue the following query:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> DBA_SYS_PRIVS;</span><br></pre></td></tr></table></figure>
+
+<p>To determine which <strong>users</strong> have <em>direct</em> grant access to a <strong><code>table</code></strong> we’ll use the <code>DBA_TAB_PRIVS</code> view:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> DBA_TAB_PRIVS;</span><br></pre></td></tr></table></figure>
+
+<p>Finally, querying the <code>DBA_ROLE_PRIVS</code> view has much of the same information but applicable to <strong><code>roles</code></strong> instead, where the <code>GRANTED_ROLE</code> column specifies the role in question:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span>  DBA_ROLE_PRIVS;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Querying-the-Current-User’s-Privileges"><a href="#Querying-the-Current-User’s-Privileges" class="headerlink" title="Querying the Current User’s Privileges"></a>Querying the Current User’s Privileges</h4><blockquote>
+<p>refer to:<a target="_blank" rel="noopener" href="https://chartio.com/resources/tutorials/oracle-user-privileges--how-to-show-all-privileges-for-a-user/">https://chartio.com/resources/tutorials/oracle-user-privileges--how-to-show-all-privileges-for-a-user/</a></p>
+</blockquote>
+<h3 id="10、使用Oracle-SQL-Developer创建模式"><a href="#10、使用Oracle-SQL-Developer创建模式" class="headerlink" title="10、使用Oracle SQL Developer创建模式"></a>10、使用Oracle SQL Developer创建模式</h3><ol>
+<li><p>使用system账户（默认密码为安装Oracle时的密码）连接Oracle SQL Developer在其他用户中新建用户</p>
+<img src="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234531194.png" class="" title="image-20211220234531194"></li>
+<li><p>用户角色与权限配置</p>
+<img src="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234708091.png" class="" title="image-20211220234708091">
+
+<img src="/2021/07/28/Oracle11g%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20211220234648563.png" class="" title="image-20211220234648563">
+
+<h3 id="11、表空间相关语句"><a href="#11、表空间相关语句" class="headerlink" title="11、表空间相关语句"></a>11、表空间相关语句</h3><p>授权表空间</p>
+<p><code>alter user 用户名 quota unlimited on 表空间;</code></p>
+<p>查询所有表空间</p>
+<p><code>select * from dba_tablespaces;</code></p>
+<p>查看当前用户的缺省表空间</p>
+<p><code>select username,default_tablespace from user_users;</code></p>
+<h3 id="12、创建用户"><a href="#12、创建用户" class="headerlink" title="12、创建用户"></a>12、创建用户</h3></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/07/13/nacos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/13/nacos/" class="post-title-link" itemprop="url">nacos</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-13 10:57:30 / 修改时间：11:15:20" itemprop="dateCreated datePublished" datetime="2021-07-13T10:57:30+08:00">2021-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="什么是-Nacos？"><a href="#什么是-Nacos？" class="headerlink" title="什么是 Nacos？"></a>什么是 Nacos？</h2><hr>
+<p>Nacos 是阿里巴巴推出来的一个新开源项目，这是一个更易于<strong>构建云原生应用的动态服务发现</strong>、<strong>配置管理和服务管理平台</strong>。</p>
+<p>Nacos 致力于帮助您<strong>发现、配置和管理微服务</strong>。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。</p>
+<p>Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。</p>
+<h2 id="Nacos-vs-Spring-Cloud"><a href="#Nacos-vs-Spring-Cloud" class="headerlink" title="Nacos vs Spring Cloud"></a>Nacos vs Spring Cloud</h2><hr>
+<p>相对于 Spring Cloud Eureka 来说，Nacos 更强大。</p>
+<p>Nacos = Spring Cloud Eureka + Spring Cloud Config</p>
+<p>Nacos 可以与 Spring, Spring Boot, Spring Cloud 集成，并能代替 Spring Cloud Eureka, Spring Cloud Config。</p>
+<ul>
+<li>通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-config 实现配置的动态变更。</li>
+<li>通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现服务的注册与发现。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/07/13/%E9%85%8D%E7%BD%AEnext%E4%B8%BB%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/13/%E9%85%8D%E7%BD%AEnext%E4%B8%BB%E9%A2%98/" class="post-title-link" itemprop="url">next主题配置分类和标签</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-13 10:57:30" itemprop="dateCreated datePublished" datetime="2021-07-13T10:57:30+08:00">2021-07-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-20 14:29:24" itemprop="dateModified" datetime="2021-12-20T14:29:24+08:00">2021-12-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-配置分类"><a href="#1-配置分类" class="headerlink" title="1.配置分类"></a>1.配置分类</h2><h3 id="1-1-在主题里配置好分类"><a href="#1-1-在主题里配置好分类" class="headerlink" title="1.1 在主题里配置好分类"></a>1.1 在主题里配置好分类</h3><p>首先我们得先在主题里把分类这个选项打开，例如在 Next 主题下找到hexo 博客项目文件夹下 <strong>\themes\next_config.yml</strong> 这个路径得配置文件,然后打开这个文件并找到下面得代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || fa fa-home</span><br><span class="line">  # about: &#x2F;about&#x2F; || fa fa-user</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th</span><br><span class="line">  archives: &#x2F;archives&#x2F; || fa fa-archive</span><br><span class="line">  # schedule: &#x2F;schedule&#x2F; || fa fa-calendar</span><br><span class="line">  # sitemap: &#x2F;sitemap.xml || fa fa-sitemap</span><br><span class="line">  # commonweal: &#x2F;404&#x2F; || fa fa-heartbeat</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>然后放开  <strong>categories: /categories/ || fa fa-th</strong>  这行代码就已经配置好里分类。</p>
+<h3 id="1-2-创建分类目录文件"><a href="#1-2-创建分类目录文件" class="headerlink" title="1.2 创建分类目录文件"></a>1.2 创建分类目录文件</h3><blockquote>
+<p>因为分类页是没有默认页面的所以需要我们手动创建分类页。</p>
+</blockquote>
+<p>打开命令行，进入博客项目所在的文件夹下，执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<p>成功后会提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Created: ~&#x2F;blog&#x2F;source&#x2F;categories&#x2F;index.md</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就创建好了分类页面了。但是这个时候主题还不会识别这个页面为分类页；所以我们需要编辑这个新建的页面，让主题识别这个页面，并自动为这个页面显示分类。</p>
+<h3 id="1-3-编辑页面让主题识别页面为分类页面"><a href="#1-3-编辑页面让主题识别页面为分类页面" class="headerlink" title="1.3 编辑页面让主题识别页面为分类页面"></a>1.3 编辑页面让主题识别页面为分类页面</h3><p>上文说到需要编辑页面才能让主题识别这个页面为分类页面，我们只需要根据成功后到提示路径打开<code>index.md</code>这个页面文件，打开后默认内容是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2021-01-25 22:37:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>我们需要添加上<code>type: &quot;categories&quot;</code>这段代码就能让主题识别该页面为分类页面了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2021-01-25 22:37:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>我们就完成了整个分类页面的配置了</p>
+<h3 id="1-4-给文章设置分类属性"><a href="#1-4-给文章设置分类属性" class="headerlink" title="1.4 给文章设置分类属性"></a>1.4 给文章设置分类属性</h3><p>首先打开需要添加分类的文章，在文章里添加上以下文案就设置好分类了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">categories: </span><br><span class="line">- Android</span><br><span class="line">---</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如上<code>categories:Android</code>表示添加这边文章到 “<strong>Android</strong>” 这个分类下。 然后我们就可以在博客到分类里看到该分类了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;设置二级分类</span><br><span class="line">---</span><br><span class="line">categories: </span><br><span class="line">- Android</span><br><span class="line">- xxx</span><br><span class="line">---</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如上设置二级分类则该篇文章为 Android 分类下的 XXX 分类下。</p>
+<h2 id="2-配置标签"><a href="#2-配置标签" class="headerlink" title="2.配置标签"></a>2.配置标签</h2><h3 id="2-1-在主题里配置好标签"><a href="#2-1-在主题里配置好标签" class="headerlink" title="2.1 在主题里配置好标签"></a>2.1 在主题里配置好标签</h3><p>首先我们得先在主题里把分类这个选项打开，例如在 Next 主题下找到hexo 博客项目文件夹下 <strong>\themes\next_config.yml</strong> 这个路径得配置文件,然后打开这个文件并找到下面得代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || fa fa-home</span><br><span class="line">  # about: &#x2F;about&#x2F; || fa fa-user</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th</span><br><span class="line">  archives: &#x2F;archives&#x2F; || fa fa-archive</span><br><span class="line">  # schedule: &#x2F;schedule&#x2F; || fa fa-calendar</span><br><span class="line">  # sitemap: &#x2F;sitemap.xml || fa fa-sitemap</span><br><span class="line">  # commonweal: &#x2F;404&#x2F; || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
+
+<p>然后放开  <strong>tags: /tags/ || fa fa-tags</strong> 这行代码就已经配置好里分类。</p>
+<h3 id="2-2-创建标签目录文件"><a href="#2-2-创建标签目录文件" class="headerlink" title="2.2 创建标签目录文件"></a>2.2 创建标签目录文件</h3><blockquote>
+<p>和分类页一样，标签页也是没有默认页面的所以需要我们手动创建标签页。</p>
+</blockquote>
+<p>打开命令行，进入博客项目所在的文件夹下，执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<p>成功后会提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Created: ~&#x2F;blog&#x2F;source&#x2F;tags&#x2F;index.md</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就创建好了标签页面了。但是这个时候主题还不会识别这个页面为标签页；所以我们需要编辑这个新建的页面，让主题识别这个页面，并自动为这个页面显示标签。</p>
+<h3 id="2-3-编辑页面让主题识别页面为标签页面"><a href="#2-3-编辑页面让主题识别页面为标签页面" class="headerlink" title="2.3 编辑页面让主题识别页面为标签页面"></a>2.3 编辑页面让主题识别页面为标签页面</h3><p>上文说到需要编辑页面才能让主题识别这个页面为标签页面，我们只需要根据成功后到提示路径打开<code>index.md</code>这个页面文件，打开后默认内容是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2021-01-25 22:54:58</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>我们需要添加上<code>type: &quot;tags&quot;</code>这段代码就能让主题识别该页面为标签页面了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2021-01-25 22:54:58</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>我们就完成了整个标签页面的配置了</p>
+<h3 id="2-4-给文章设置标签属性"><a href="#2-4-给文章设置标签属性" class="headerlink" title="2.4 给文章设置标签属性"></a>2.4 给文章设置标签属性</h3><p>首先打开需要添加标签的文章，在文章里添加上以下文案，就设置好标签里了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;设置单标签</span><br><span class="line">---</span><br><span class="line">tags:</span><br><span class="line">- Facebook配置</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;设置多标签 并同时设置分类</span><br><span class="line">---</span><br><span class="line">categories: </span><br><span class="line">- Android</span><br><span class="line">tags:</span><br><span class="line">- Android</span><br><span class="line">- RecyclerView</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>如上<code>tags:- Facebook配置</code>表示给这篇文章添加 “<strong>Facebook配置</strong>” 这个分标签。 然后我们就可以在博客到标签里看到该标签了。</p>
+<p>作者：醉过才知酒浓<br>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6921750181297782798">https://juejin.cn/post/6921750181297782798</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1005,281 +1332,6 @@
 <p>&gt;&gt;    :   右移运算符，num &gt;&gt; 1,相当于num除以2</p>
 <p>&gt;&gt;&gt;   :   无符号右移，忽略符号位，空位都以0补齐</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">数据库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-05 16:00:23" itemprop="dateCreated datePublished" datetime="2021-05-05T16:00:23+08:00">2021-05-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-05-12 12:06:10" itemprop="dateModified" datetime="2021-05-12T12:06:10+08:00">2021-05-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h2><p>一张数据表的表结构所符合的某种设计标准的级别。主要解决<strong>数据冗余过大</strong>、<strong>插入异常</strong>、<strong>删除异常</strong>、<strong>修改异常</strong>。</p>
-<h3 id="第一范式（1NF）"><a href="#第一范式（1NF）" class="headerlink" title="第一范式（1NF）"></a><strong>第一范式（1NF）</strong></h3><p><strong>符合1NF的关系中的每个属性都不可再分。</strong></p>
-<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p><strong>2NF在1NF的基础之上，消除了非主属性对于码的部分函数依赖</strong>。</p>
-<h3 id="第三范式（3NF）"><a href="#第三范式（3NF）" class="headerlink" title="第三范式（3NF）"></a><strong>第三范式（3NF）</strong></h3><p><strong>3NF在2NF的基础之上，消除了非主属性对于码的传递函数依赖</strong>。</p>
-<h2 id="mysql数据库引擎"><a href="#mysql数据库引擎" class="headerlink" title="mysql数据库引擎"></a>mysql数据库引擎</h2><h3 id="两种存储引擎的大致区别表现在"><a href="#两种存储引擎的大致区别表现在" class="headerlink" title="==两种存储引擎的大致区别表现在=="></a><strong>==两种存储引擎的大致区别表现在==</strong></h3><p>最重要：两种类型最主要的差别就是<strong>Innodb 支持 <code>事务</code> 处理与 <code>外键</code> 和 <code>行级锁</code></strong></p>
-<ul>
-<li><strong>InnoDB支持事务，MyISAM不支持</strong>，这一点是非常之重要。事务是一种高级的处理方式，如在一些列增删改中只要哪个出错还可以回滚还原，而MyISAM就不可以了。</li>
-<li><strong>MyISAM适合查询以及插入为主的应用</strong>。</li>
-<li><strong>InnoDB适合频繁修改以及涉及到安全性较高的应用</strong>。</li>
-<li>InnoDB支持外键，MyISAM不支持。</li>
-<li><strong>从MySQL5.5.5以后，InnoDB是默认引擎</strong>。</li>
-<li>InnoDB不支持FULLTEXT（全文索引）类型的索引。</li>
-<li><strong>InnoDB中不保存表的行数</strong>，如<code>select count(*) from table</code>时，InnoDB需要扫描一遍整个表来计算有多少行，但是MyISAM只要简单的读出保存好的行数即可。注意的是，当count(*)语句包含where条件时MyISAM也需要扫描整个表。</li>
-<li>对于自增长的字段，InnoDB中必须包含只有该字段的索引，但是在MyISAM表中可以和其他字段一起建立联合索引。</li>
-<li><code>DELETE FROM table</code>时，<strong>InnoDB不会重新建立表，而是一行一行的 删除，效率非常慢</strong>。<strong>MyISAM则会重建表</strong>。</li>
-<li>InnoDB支持行锁（某些情况下还是锁整表，如 <code>update table set a=1 where user like &#39;%lee%&#39;</code>。</li>
-</ul>
-<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>事务是逻辑上的一组操作，要么都执行，要么都不执行。（转账例子）</p>
-<h3 id="事务的特性-ACID"><a href="#事务的特性-ACID" class="headerlink" title="事务的特性(ACID)"></a>事务的特性(ACID)</h3><ol>
-<li><strong>原子性：</strong> 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
-<li><strong>一致性：</strong> 执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；</li>
-<li><strong>隔离性：</strong> 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
-<li><strong>持久性：</strong> 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
-</ol>
-<h3 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h3><p><strong>脏读（Dirty read）</strong> ：只读一次，读取的是没提交的数据</p>
-<p><strong>不可重复读</strong> ： <strong>一个事务两次读取同一个数据，两次读取的数据不一致</strong> ，读取两次，第一次读取的时候事务的<strong>修改</strong>还没提交，第二次读取的时候事务提交了。</p>
-<p><strong>幻读</strong> ： <strong>一个事务两次读取一个范围的记录，两次读取的记录数不一致</strong> ，读取两次，第一次读取的时候事务的<strong>添加或者删除</strong>还没提交，第二次读取的时候事务提交了。</p>
-<p><strong>丢失修改（Lost to modify）:</strong> 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。 例如：事务1读取某表中的数据A=20，事务2也读取A=20，事务1修改A=A-1，事务2也修改A=A-1，最终结果A=19，事务1的修改被丢失。</p>
-<p>不可重复度和幻读区别：</p>
-<p>不可重复读的重点是修改，幻读的重点在于新增或者删除。</p>
-<h2 id="数据库调优（SQL调优）"><a href="#数据库调优（SQL调优）" class="headerlink" title="数据库调优（SQL调优）"></a>数据库调优（SQL调优）</h2><p>数据库组成结构图</p>
-<img src="/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/v2-9cd1e45ad32c2aa83725d57b3a956507_1440w.jpg" class="" title="img">
-
-<p>测试时排除缓存干扰：执行SQL的时候，加上SQL NoCache去跑SQL，这样跑出来的时间就是真实的查询时间了。</p>
-<p><a target="_blank" rel="noopener" href="https://sq.163yun.com/blog/article/183654375478206464">https://sq.163yun.com/blog/article/183654375478206464</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010520146/article/details/81161762">https://blog.csdn.net/u010520146/article/details/81161762</a></p>
-<h3 id="一-创建索引"><a href="#一-创建索引" class="headerlink" title="一.创建索引"></a>一.创建索引</h3><p>1.要尽量避免全表扫描，首先应考虑<strong>在 where 及 order by 涉及的列上建立索引</strong><br>2.(1)在经常需要进行检索的字段上创建索引，比如要按照表字段username进行检索，那么就应该在姓名字段上创建索引，如果经常要按照员工部门和员工岗位级别进行检索，那么就应该在员工部门和员工岗位级别这两个字段上创建索引。<br>(2)创建索引给检索带来的性能提升往往是巨大的，因此在发现检索速度过慢的时候应该首先想到的就是创建索引。<br>(3)一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有 必要。索引并不是越多越好，<strong>索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率</strong>，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。</p>
-<h3 id="二-避免在索引上使用计算"><a href="#二-避免在索引上使用计算" class="headerlink" title="二.避免在索引上使用计算"></a>二.避免在索引上使用计算</h3><p>在where字句中，如果索引列是计算或者函数的一部分，DBMS的优化器将不会使用索引而使用全表查询,函数<br>属于计算的一种,同时在in和exists中通常情况下使用EXISTS，因为in不走索引</p>
-<p>效率低：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where salary*22&gt;11000(salary是索引列)</span><br></pre></td></tr></table></figure>
-
-<p>效率高：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where salary&gt;11000&#x2F;22(salary是索引列)</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-使用预编译查询"><a href="#三-使用预编译查询" class="headerlink" title="三.使用预编译查询"></a>三.使用预编译查询</h3><p>程序中通常是根据用户的输入来动态执行SQL，这时应该尽量使用参数化SQL,这样不仅可以避免SQL注入漏洞<br>攻击，最重要数据库会对这些参数化SQL进行预编译，这样第一次执行的时候DBMS会为这个SQL语句进行查询优化<br>并且执行预编译，这样以后再执行这个SQL的时候就直接使用预编译的结果，这样可以大大提高执行的速度。</p>
-<h4 id="判断是否存在-Sql-注入漏洞：单引号判断法"><a href="#判断是否存在-Sql-注入漏洞：单引号判断法" class="headerlink" title="判断是否存在 Sql 注入漏洞：单引号判断法"></a>判断是否存在 Sql 注入漏洞：<strong>单引号判断法</strong></h4><h4 id="Sql-注入漏洞的类型：数字型、字符型"><a href="#Sql-注入漏洞的类型：数字型、字符型" class="headerlink" title="Sql 注入漏洞的类型：数字型、字符型"></a>Sql 注入漏洞的类型：数字型、字符型</h4><h4 id="防止SQL注入：对用户输入的数据进行转义"><a href="#防止SQL注入：对用户输入的数据进行转义" class="headerlink" title="防止SQL注入：对用户输入的数据进行转义"></a>防止SQL注入：对用户输入的数据进行转义</h4><h3 id="四-调整Where字句中的连接顺序"><a href="#四-调整Where字句中的连接顺序" class="headerlink" title="四.调整Where字句中的连接顺序"></a>四.调整Where字句中的连接顺序</h3><p>DBMS一般采用自下而上的顺序解析where字句，根据这个原理表连接最好写在其他where条件之前，那些可以<br>过滤掉最大数量记录。</p>
-<h4 id="五-尽量将多条SQL语句压缩到一句SQL中"><a href="#五-尽量将多条SQL语句压缩到一句SQL中" class="headerlink" title="五.尽量将多条SQL语句压缩到一句SQL中"></a>五.尽量将多条SQL语句压缩到一句SQL中</h4><p>每次执行SQL的时候都要建立网络连接、进行权限校验、进行SQL语句的查询优化、发送执行结果，这个过程<br>是非常耗时的，因此应该尽量避免过多的执行SQL语句，能够压缩到一句SQL执行的语句就不要用多条来执行。</p>
-<h4 id="六-用where字句替换HAVING字句"><a href="#六-用where字句替换HAVING字句" class="headerlink" title="六.用where字句替换HAVING字句"></a>六.用where字句替换HAVING字句</h4><p>避免使用HAVING字句，因为HAVING只会在检索出所有记录之后才对结果集进行过滤，而<strong>where则是在聚合前</strong><br><strong>刷选记录</strong>，如果能通过where字句限制记录的数目，那就能减少这方面的开销。HAVING中的条件一般用于聚合函数<br>的过滤，除此之外，应该将条件写在where字句中。</p>
-<h4 id="七-使用表的别名"><a href="#七-使用表的别名" class="headerlink" title="七.使用表的别名"></a>七.使用表的别名</h4><p>当在SQL语句中连接多个表时，请使用表的别名并把别名前缀于每个列名上。这样就可以减少解析的时间并减<br>少哪些友列名歧义引起的语法错误。</p>
-<h4 id="八-用union-all替换union"><a href="#八-用union-all替换union" class="headerlink" title="八.用union all替换union"></a>八.用union all替换union</h4><p>当SQL语句需要union两个查询结果集合时，即使检索结果中不会有重复的记录，如果使用union这两个结果集<br>同样会尝试进行合并，然后在输出最终结果前进行排序，因此如果可以判断检索结果中不会有重复的记录时候，应<br>该用union all，这样效率就会因此得到提高</p>
-<h4 id="九-考虑使用“临时表”暂存中间结果"><a href="#九-考虑使用“临时表”暂存中间结果" class="headerlink" title="九.考虑使用“临时表”暂存中间结果"></a>九.考虑使用“临时表”暂存中间结果</h4><p>简化SQL语句的重要方法就是采用临时表暂存中间结果，但是，临时表的好处远远不止这些，将临时结果暂存在临时表，后面的查询就在tempdb中了，这可以避免程序中多次扫描主表，也大大减少了程序执行中“共享锁”阻塞“更新锁”，减少了阻塞，提高了并发性能。<br>但是也得避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/04/26/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/26/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">面试题整理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-26 20:09:20 / 修改时间：20:11:16" itemprop="dateCreated datePublished" datetime="2021-04-26T20:09:20+08:00">2021-04-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>手写一种单例模式</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/" class="post-title-link" itemprop="url">青蛙跳台阶（动态规划）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-26 11:47:58" itemprop="dateCreated datePublished" datetime="2021-04-26T11:47:58+08:00">2021-04-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-05-17 11:10:10" itemprop="dateModified" datetime="2021-05-17T11:10:10+08:00">2021-05-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p>
-<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
-<p><strong>此类求多少种可能性的题目一般都有递推性质 ，即 f(n)和 f(n-1)…f(1)之间是有联系的。</strong></p>
-<img src="/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/image-20210426115331679.png" class="" title="image-20210426115331679">
-
-<img src="/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/108249e4d62d429f9cd6cab5bbd6afca581ee61c7d762a4c8ea0c62e08e10762-Picture13.png" class="" title="Picture13.png">
-
-<img src="/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/image-20210426115433377.png" class="" title="image-20210426115433377">
-
-<img src="/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/image-20210426115534280.png" class="" title="image-20210426115534280">
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i] = (dp[i - <span class="number">2</span>] + dp[i - <span class="number">1</span>]) % <span class="number">1000_000_007</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或者不借助数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">1</span>, sum;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            sum = (a + b) % <span class="number">1000000007</span>;</span><br><span class="line">            a = b;</span><br><span class="line">            b = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>求余问题：</p>
-<p>a+b的和求余等价于a求余和b求余的和再求余，在此题中，a与b都在上次循环中求余，所以可以直接写作</p>
-<p><code> sum = (a + b) % 1000000007;</code></p>
-<img src="/2021/04/26/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/image-20210426120026171.png" class="" title="image-20210426120026171">
       
     </div>
 

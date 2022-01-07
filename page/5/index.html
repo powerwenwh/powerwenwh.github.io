@@ -82,7 +82,6 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
   </ul>
@@ -127,13 +126,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -162,6 +161,317 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/12/24/%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/24/%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/" class="post-title-link" itemprop="url">矩阵中的路径</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-24 10:00:00" itemprop="dateCreated datePublished" datetime="2020-12-24T10:00:00+08:00">2020-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-28 20:00:34" itemprop="dateModified" datetime="2021-02-28T20:00:34+08:00">2021-02-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="矩阵中的路径"><a href="#矩阵中的路径" class="headerlink" title="矩阵中的路径"></a><strong>矩阵中的路径</strong></h1><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。<br>路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。<br>如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。<br>例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。</p>
+<pre><code>    [[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;e&quot;],
+    [&quot;s&quot;,&quot;f&quot;,&quot;c&quot;,&quot;s&quot;],
+    [&quot;a&quot;,&quot;d&quot;,&quot;e&quot;,&quot;e&quot;]]
+</code></pre>
+<p>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p>
+<p><strong>一开始做题思路偏差，想到的是递归，但没想到DFS，这道题和岛屿问题其实很像</strong></p>
+<p>调整思路：</p>
+<ol>
+<li><p>双for循环遍历每一格，当匹配到与某字符串第一个字符相同的字符时开始DFS</p>
+</li>
+<li><p>void DFS（char[][] board, String word，r，c，）：</p>
+<ul>
+<li><p>判断该格是否在矩阵内，是否遍历过（定义一个二维数组记录）</p>
+</li>
+<li><p>if（charAt！=current）{return ；}</p>
+</li>
+<li><p>else if（最后一个字符）{set true；return； }</p>
+</li>
+<li><p>else{四个方向遍历}</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>查看答案后总结：</p>
+<ol>
+<li><p>关于判断一个结点是否被访问过，我使用一个二维数组来做记录，需要自己控制它的回溯，不断传参，非常麻烦，答案用了一个非常巧妙的方法，遍历过后把那里的值设置为”\0”,先污染，代表访问过，在最后用<code>board[i][j] = word[k]</code>进行”治理”，以便下一次遍历可以正常使用。</p>
+</li>
+<li><p>每匹配到一个符合的char，需要记录是第几个char，我使用每次单独执行<code>word_current++</code>的方法，还放错了位置，其实只要每次传递的时候传递<code>word_current</code>的时候直接传<code>word_current++</code>，这样的写法减少了代码量，下次在递归里面写到判断相关的语句的时候都要仔细思考，什么时候判断，能不能用这种简洁方法判断！！</p>
+</li>
+<li><p>关于找到所有字符后，如何返回这个信息，我的方法是定义一个全局变量，找到之后修改这个全局变量，在DFS完了之后对这个变量进行判断，答案用的方法是“先污染”，我思考过，但想到“治理”的问题觉得麻烦—-我设定的DFS是没有返回值的，所以没用，当时的想法是，有返回值的话不知道如何处理，但显然这个方法更便捷。 也学到了处理返回值的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> res = DFS(board, word, r-<span class="number">1</span>, c, w++)|| DFS(board, word, r+<span class="number">1</span>, c, w++)||</span><br><span class="line">                    DFS(board, word, r, c-<span class="number">1</span>, w++)|| DFS(board, word, r, c+<span class="number">1</span>, w++);</span><br><span class="line">board[r][c] = word.charAt(w++);</span><br><span class="line"><span class="keyword">return</span> res;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>w++</code>和<code>w+1</code>的区别：要注意，值传递的时候，一定要使用后者，使用前者就改变了w的值！</p>
+</li>
+<li><p>不断的修改使得代码乱得一塌糊涂，调试过程没有善用“运行到鼠标处”，运行的时候总想着一步一步执行，浪费了大量时间，应该直接运行到最后一部查看参数找出问题。</p>
+</li>
+</ol>
+<p>回顾：</p>
+<p>其实解题的大致思路我是懂的，但是细节上仍然处理得不好。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/12/23/Leetcode%E5%88%B7%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/23/Leetcode%E5%88%B7%E9%A2%98/" class="post-title-link" itemprop="url">刷题学习记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-23 10:00:00" itemprop="dateCreated datePublished" datetime="2020-12-23T10:00:00+08:00">2020-12-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-05-08 07:07:30" itemprop="dateModified" datetime="2021-05-08T07:07:30+08:00">2021-05-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="刷题学习记录"><a href="#刷题学习记录" class="headerlink" title="刷题学习记录"></a>刷题学习记录</h1><h4 id="青蛙跳台阶"><a href="#青蛙跳台阶" class="headerlink" title="青蛙跳台阶"></a>青蛙跳台阶</h4><p>有些题目正着想难，但从结果出发容易，看似复杂的题目，可以通过分解情况找规律。</p>
+<h4 id="旋转数组的最小数字"><a href="#旋转数组的最小数字" class="headerlink" title="旋转数组的最小数字"></a>旋转数组的最小数字</h4><p>遇到排好序的</p>
+<h1 id="20-12-20"><a href="#20-12-20" class="headerlink" title="20-12-20"></a>20-12-20</h1><h3 id="01-在for循环中使用变量控制循环次数"><a href="#01-在for循环中使用变量控制循环次数" class="headerlink" title="01.在for循环中使用变量控制循环次数"></a>01.在for循环中使用变量控制循环次数</h3><p>在做题“使用两个堆栈实现队列的时候用<code>stack1.size()</code>来控制for循环的次数，但每循环一次，<code>stack1.size()</code>的值都会减一，导致错误。</p>
+<h1 id="2021-03-04"><a href="#2021-03-04" class="headerlink" title="2021-03-04"></a>2021-03-04</h1><h3 id="01-删除链表的节点"><a href="#01-删除链表的节点" class="headerlink" title="01.删除链表的节点"></a>01.删除链表的节点</h3><p>审题的时候没有看清题目，浪费了时间。</p>
+<h3 id="02-不熟悉Java中引用的性质"><a href="#02-不熟悉Java中引用的性质" class="headerlink" title="02.不熟悉Java中引用的性质"></a>02.不熟悉Java中引用的性质</h3><p>指针a指向c，令指针b等于a，则改变b，并不会改变指针a，也即全都是引用。</p>
+<h3 id="03-忘记控制空指针"><a href="#03-忘记控制空指针" class="headerlink" title="03.忘记控制空指针"></a>03.忘记控制空指针</h3><p>在访问数组时没注意数组访问越界问题，在使用指针的时候没注意使用前判断指针是否为空。</p>
+<h3 id="04-a的b次方"><a href="#04-a的b次方" class="headerlink" title="04.a的b次方"></a>04.a的b次方</h3><p><code>Math.pow(a,b)</code>返回类型时double</p>
+<h1 id="0201-03-05"><a href="#0201-03-05" class="headerlink" title="0201-03-05"></a>0201-03-05</h1><h2 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h2><h3 id="01-选用嵌套for循环"><a href="#01-选用嵌套for循环" class="headerlink" title="01.选用嵌套for循环"></a>01.选用嵌套for循环</h3><p>匹配的时候不一定是一一对应，有时候正则表达式里的一个字符可以匹配字符串里的多个字符，存在一对多的关系，应该使用一对多的方式</p>
+<h1 id="2021-03-11"><a href="#2021-03-11" class="headerlink" title="2021-03-11"></a>2021-03-11</h1><h2 id="双指针反转链表、找链表中倒数第k个节点"><a href="#双指针反转链表、找链表中倒数第k个节点" class="headerlink" title="双指针反转链表、找链表中倒数第k个节点"></a>双指针反转链表、找链表中倒数第k个节点</h2><h3 id="01-continue关键字"><a href="#01-continue关键字" class="headerlink" title="01.continue关键字"></a>01.continue关键字</h3><p>用于中止当前循环，直接进入下一次循环，常与if连用。</p>
+<h3 id="02-3-Ways-To-Fix-“Illegal-Start-Of-Expression”-Error-In-Java"><a href="#02-3-Ways-To-Fix-“Illegal-Start-Of-Expression”-Error-In-Java" class="headerlink" title="02.3 Ways To Fix “Illegal Start Of Expression” Error In Java"></a>02.3 Ways To Fix “Illegal Start Of Expression” Error In Java</h3><ol>
+<li>Missing curly braces</li>
+<li>Method inside Method</li>
+<li>Public, private or protected access modifier inside method</li>
+</ol>
+<h3 id="03-Error-Found-cycle-in-the-ListNode"><a href="#03-Error-Found-cycle-in-the-ListNode" class="headerlink" title="03.Error - Found cycle in the ListNode"></a>03.Error - Found cycle in the ListNode</h3><p>链表中发现循环</p>
+<h3 id="04-ArrayList的初始容量"><a href="#04-ArrayList的初始容量" class="headerlink" title="04.ArrayList的初始容量"></a>04.ArrayList的初始容量</h3><p>ArrayList的初始容量现在为0，等到第一次add的时候再初始化为10。想查看容量capacity需要用到反射，size（）方法是查询元素数量。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/12/23/%E3%80%8C%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98%E3%80%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="温文焕">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenhuan Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/23/%E3%80%8C%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98%E3%80%8D/" class="post-title-link" itemprop="url">岛屿问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-23 10:00:00" itemprop="dateCreated datePublished" datetime="2020-12-23T10:00:00+08:00">2020-12-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-28 16:56:44" itemprop="dateModified" datetime="2021-02-28T16:56:44+08:00">2021-02-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="岛屿类问题的通用解法、DFS-遍历框架"><a href="#岛屿类问题的通用解法、DFS-遍历框架" class="headerlink" title="岛屿类问题的通用解法、DFS 遍历框架"></a>岛屿类问题的通用解法、DFS 遍历框架</h2><p>我们所熟悉的 DFS（深度优先搜索）问题通常是在树或者图结构上进行的。而我们今天要讨论的 DFS 问题，是在一种「网格」结构中进行的。岛屿问题是这类网格 DFS 问题的典型代表。网格结构遍历起来要比二叉树复杂一些，如果没有掌握一定的方法，DFS 代码容易写得冗长繁杂。</p>
+<p>本文将以岛屿问题为例，展示网格类问题 DFS 通用思路，以及如何让代码变得简洁。</p>
+<p><strong>网格问题的基本概念</strong><br>我们首先明确一下岛屿问题中的网格结构是如何定义的，以方便我们后面的讨论。</p>
+<p>网格问题是由m×n 个小方格组成一个网格，每个小方格与其上下左右四个方格认为是相邻的，要在这样的网格上进行某种搜索。</p>
+<p>岛屿问题是一类典型的网格问题。每个格子中的数字可能是 0 或者 1。我们把数字为 0 的格子看成海洋格子，数字为 1 的格子看成陆地格子，这样相邻的陆地格子就连接成一个岛屿。</p>
+<h3 id="DFS-的基本结构"><a href="#DFS-的基本结构" class="headerlink" title="DFS 的基本结构"></a>DFS 的基本结构</h3><p>网格结构要比二叉树结构稍微复杂一些，它其实是一种简化版的图结构。要写好网格上的 DFS 遍历，我们首先要理解二叉树上的 DFS 遍历方法，再类比写出网格结构上的 DFS 遍历。我们写的二叉树 DFS 遍历一般是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 base case</span></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 访问两个相邻结点：左子结点、右子结点</span></span><br><span class="line">    traverse(root.left);</span><br><span class="line">    traverse(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，二叉树的 DFS 有两个要素：「==访问相邻结点」和「判断 base case」==。</p>
+<p>第一个要素是访问相邻结点。二叉树的相邻结点非常简单，只有左子结点和右子结点两个。二叉树本身就是一个递归定义的结构：一棵二叉树，它的左子树和右子树也是一棵二叉树。那么我们的 DFS 遍历只需要递归调用左子树和右子树即可。</p>
+<p>第二个要素是 判断 base case。一般来说，二叉树遍历的 base case 是 root == null。这样一个条件判断其实有两个含义：一方面，这表示 root 指向的子树为空，不需要再往下遍历了。另一方面，在 root == null 的时候==及时返回==，可以让后面的 root.left 和 root.right 操作不会出现空指针异常。</p>
+<p>对于网格上的 DFS，我们完全可以参考二叉树的 DFS，写出网格 DFS 的两个要素：</p>
+<p>首先，网格结构中的格子有多少相邻结点？答案是上下左右四个。对于格子 (r, c) 来说（r 和 c 分别代表行坐标和列坐标），四个相邻的格子分别是 (r-1, c)、(r+1, c)、(r, c-1)、(r, c+1)。换句话说，==网格结构是「四叉」的。==</p>
+<p>其次，网格 DFS 中的 base case 是什么？从二叉树的 base case 对应过来，应该是网格中不需要继续遍历、grid[r][c] 会出现数组下标越界异常的格子，也就是那些超出网格范围的格子。</p>
+<p>这一点稍微有些反直觉，坐标竟然可以临时超出网格的范围？这种方法我称为==「先污染后治理」==—— 甭管当前是在哪个格子，先往四个方向走一步再说，如果发现走出了网格范围再赶紧返回。这跟二叉树的遍历方法是一样的，先递归调用，发现 root == null 再返回。</p>
+<p>这样，我们得到了网格 DFS 遍历的框架代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 base case</span></span><br><span class="line">    <span class="comment">// 如果坐标 (r, c) 超出了网格范围，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (!inArea(grid, r, c)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 访问上、下、左、右四个相邻结点</span></span><br><span class="line">    dfs(grid, r - <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r + <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r, c - <span class="number">1</span>);</span><br><span class="line">    dfs(grid, r, c + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断坐标 (r, c) 是否在网格中</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> &lt;= r &amp;&amp; r &lt; grid.length </span><br><span class="line">        	&amp;&amp; <span class="number">0</span> &lt;= c &amp;&amp; c &lt; grid[<span class="number">0</span>].length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何避免重复遍历"><a href="#如何避免重复遍历" class="headerlink" title="如何避免重复遍历"></a>如何避免重复遍历</h3><p>网格结构的 DFS 与二叉树的 DFS 最大的不同之处在于，遍历中可能遇到遍历过的结点。这是因为，网格结构本质上是一个「图」，我们可以把每个格子看成图中的结点，每个结点有向上下左右的四条边。在图中遍历时，自然可能遇到重复遍历结点。</p>
+<p>这时候，DFS 可能会不停地「兜圈子」，永远停不下来。</p>
+<p>如何避免这样的重复遍历呢？答案是标记已经遍历过的格子。以岛屿问题为例，我们需要在所有值为 1 的陆地格子上做 DFS 遍历。每走过一个陆地格子，就把格子的值改为 2，这样当我们遇到 2 的时候，就知道这是遍历过的格子了。也就是说，每个格子可能取三个值：</p>
+<p>0 —— 海洋格子<br>1 —— 陆地格子（未遍历过）<br>2 —— 陆地格子（已遍历过）<br>我们在框架代码中加入避免重复遍历的语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断 base case</span></span><br><span class="line">    <span class="keyword">if</span> (!inArea(grid, r, c)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果这个格子不是岛屿，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> (grid[r][c] != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    grid[r][c] = <span class="number">2</span>; <span class="comment">// 将格子标记为「已遍历过」</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 访问上、下、左、右四个相邻结点</span></span><br><span class="line">    dfs(grid, r - <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r + <span class="number">1</span>, c);</span><br><span class="line">    dfs(grid, r, c - <span class="number">1</span>);</span><br><span class="line">    dfs(grid, r, c + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断坐标 (r, c) 是否在网格中</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> &lt;= r &amp;&amp; r &lt; grid.length </span><br><span class="line">        	&amp;&amp; <span class="number">0</span> &lt;= c &amp;&amp; c &lt; grid[<span class="number">0</span>].length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就得到了一个岛屿问题、乃至各种网格问题的通用 DFS 遍历方法。以下所讲的几个例题，其实都只需要在 DFS 遍历框架上稍加修改而已。</p>
+<blockquote>
+<p>小贴士：</p>
+</blockquote>
+<blockquote>
+<p>在一些题解中，可能会把「已遍历过的陆地格子」标记为和海洋格子一样的 0，美其名曰「陆地沉没方法」，即遍历完一个陆地格子就让陆地「沉没」为海洋。这种方法看似很巧妙，但实际上有很大隐患，因为这样我们就无法区分「海洋格子」和「已遍历过的陆地格子」了。如果题目更复杂一点，这很容易出 bug。</p>
+</blockquote>
+<h3 id="岛屿问题的解法"><a href="#岛屿问题的解法" class="headerlink" title="岛屿问题的解法"></a>岛屿问题的解法</h3><h4 id="例题-1：岛屿的最大面积"><a href="#例题-1：岛屿的最大面积" class="headerlink" title="例题 1：岛屿的最大面积"></a>例题 1：岛屿的最大面积</h4><h4 id="例题-2：填海造陆问题"><a href="#例题-2：填海造陆问题" class="headerlink" title="例题 2：填海造陆问题"></a>例题 2：填海造陆问题</h4><h4 id="例题-3：岛屿的周长"><a href="#例题-3：岛屿的周长" class="headerlink" title="例题 3：岛屿的周长"></a>例题 3：岛屿的周长</h4><h4 id="例题-4：岛屿的数量"><a href="#例题-4：岛屿的数量" class="headerlink" title="例题 4：岛屿的数量"></a>例题 4：岛屿的数量</h4><p>给你一个由 ‘1’（陆地）和 ‘0’（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> nr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> nc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (r &lt; <span class="number">0</span> || c &lt; <span class="number">0</span> || r &gt;= nr || c &gt;= nc || grid[r][c] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        dfs(grid, r - <span class="number">1</span>, c);</span><br><span class="line">        dfs(grid, r + <span class="number">1</span>, c);</span><br><span class="line">        dfs(grid, r, c - <span class="number">1</span>);</span><br><span class="line">        dfs(grid, r, c + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> nr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> nc = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> num_islands = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; nr; ++r) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; nc; ++c) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[r][c] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    ++num_islands;</span><br><span class="line">                    dfs(grid, c, r);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> num_islands;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(MN)，其中 MM 和 NN 分别为行数和列数。</p>
+</li>
+<li><p>空间复杂度：O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到 MN。</p>
+</li>
+</ul>
+<blockquote>
+<p>作者：LeetCode<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/">https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1252,420 +1562,6 @@
 <ul>
 <li>是一个动作，把通知应用到切入点的过程</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/10/20/List%E6%8E%A5%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/20/List%E6%8E%A5%E5%8F%A3/" class="post-title-link" itemprop="url">List接口</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-20 11:00:00" itemprop="dateCreated datePublished" datetime="2020-10-20T11:00:00+08:00">2020-10-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-03-07 15:57:18" itemprop="dateModified" datetime="2021-03-07T15:57:18+08:00">2021-03-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="List的性质"><a href="#List的性质" class="headerlink" title="List的性质"></a>List的性质</h2><p><strong>有序的 collection（也称为序列）</strong>。此接口的用户可以对列表中每个元素的插入位置进行精确地控制。用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素。</p>
-<p>与 set 不同，列表通常允许重复的元素。更确切地讲，列表通常允许满足 e1.equals(e2) 的元素对 e1 和 e2，并且如果列表本身允许 null 元素的话，通常它们允许多个 null 元素。难免有人希望通过在用户尝试插入重复元素时抛出运行时异常的方法来禁止重复的列表，但我们希望这种用法越少越好。</p>
-<p>List 接口提供了 4 种对列表元素进行定位（索引）访问方法。列表（像 Java 数组一样）是基于 0 的。注意，这些操作可能在和某些实现（例如 LinkedList 类）的索引值成比例的时间内执行。因此，如果调用者不知道实现，那么<strong>在列表元素上迭代通常优于用索引遍历列表。</strong></p>
-<p>List 接口提供了两种搜索指定对象的方法。从性能的观点来看，应该小心使用这些方法。在很多实现中，它们将执行高开销的线性搜索。</p>
-<p>List 接口提供了两种在列表的任意位置高效插入和移除多个元素的方法。</p>
-<p>注意：尽管列表允许把自身作为元素包含在内，但建议要特别小心：在这样的列表上，equals 和 hashCode 方法不再是定义良好的。 </p>
-<p>某些列表实现对列表可能包含的元素有限制。例如，某些实现禁止 null 元素，而某些实现则对元素的类型有限制。试图添加不合格的元素会抛出未经检查的异常，通常是 NullPointerException 或 ClassCastException。试图查询不合格的元素是否存在可能会抛出异常，也可能简单地返回 false；某些实现会采用前一种行为，而某些则采用后者。概括地说，试图对不合格元素执行操作时，如果完成该操作后不会导致在列表中插入不合格的元素，则该操作可能抛出一个异常，也可能成功，这取决于实现的选择。此接口的规范中将这样的异常标记为“可选”。 </p>
-<h2 id="Java-中初始化-List-的五种方法"><a href="#Java-中初始化-List-的五种方法" class="headerlink" title="Java 中初始化 List 的五种方法"></a>Java 中初始化 List 的五种方法</h2><p>在 Java 中初始化 List 的五种方法</p>
-<ol>
-<li>构造 List 后使用 List.add 初始化</li>
-<li>使用<code>&#123;&#123;&#125;&#125;`双括号语法
-3. 使用 Arrays.asList
-4. 使用 Stream (JDK8)
-5. 使用 Lists （JDK9）
-
-### 1.构造 `List` 后使用 `List.add` 初始化
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">stringList.add(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;c&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-### 2.使用 `&#123;&#123;&#125;&#125;</code> 双括号语法</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> LinkedList&lt;String&gt;()&#123;&#123;</span><br><span class="line">    add(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    add(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">    add(<span class="string">&quot;c&quot;</span>);</span><br><span class="line">&#125;&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>外层的 <code>&#123;&#125;</code> 定义了一个 LinkedList 的匿名内部类。内层的 <code>&#123;&#125;</code> 的定义了一个实例初始化代码块。 这个代码块在初始化内部类时执行。所以这里相当于定义了一个匿名内部类，并使用 <code>add</code> 添加元素来初始化。</p>
-<p>这种方式有几个缺点：</p>
-<ul>
-<li>使用匿名内部类，会有效率上的损失。当然在大多数情况下，这点效率都是可接受的。</li>
-<li>静态内部类持有所在外部类的引用。如果需要将 List 返回给到其他地方使用，可能造成内存泄漏。</li>
-</ul>
-<h3 id="3-使用-Arrays-asList"><a href="#3-使用-Arrays-asList" class="headerlink" title="3.使用 Arrays.asList"></a>3.使用 <code>Arrays.asList</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这种方式使用了 <code>java.util.Arrays</code> 的静态方法。写法上比之前的两种都更简洁，也没有构造匿名内部类的效率问题。</p>
-<p>但也有几点需要注意：</p>
-<ul>
-<li><code>Arrays.asList</code> 返回的是 <code>Arrays</code> 的静态内部类（静态内部类不持有所在外部类的引用）。</li>
-</ul>
-<p>这个内部类继承自 <code>AbstractList</code>，实现了 <code>RandomAccess</code>，内部使用了一个数组来存储元素。但是不支持增删元素。这点需要注意。如果只是使用 <code>Arrays.asList</code> 来初始化常量，那么这点就不算什么问题了。</p>
-<ul>
-<li><code>Arrays.asList</code> 的参数如果是基本类型的数组时，需要留意返回值可能和你预期的不同。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">Integer[] integerArray = <span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"> </span><br><span class="line">List&lt;<span class="keyword">int</span>[] &gt; intArrayList = Arrays.asList(intArray);</span><br><span class="line">List&lt;Integer&gt; integerList = Arrays.asList(integerArray);</span><br><span class="line">List&lt;Integer&gt; integerList2 = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这里 <code>Arrays.asList(intArray)</code> 的返回值是 <code>List&lt;int[]&gt;</code> 而不是 <code>List&lt;Integer&gt;</code>。这一点也算不上问题，只是使用时需要留意。如果能在 Java 中做到尽量使用 List 和 Integer，尽量避免使用 int 等基本类型和 <code>[]</code> 这种较为底层的数据结构即可避免。</p>
-<h3 id="4-使用-Stream-JDK8"><a href="#4-使用-Stream-JDK8" class="headerlink" title="4. 使用 Stream (JDK8)"></a>4. 使用 <code>Stream</code> (JDK8)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = Stream.of(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
-
-<p>使用了 JDK8 的 Stream 来初始化。 单纯初始化 List，使用 Stream 有点大材小用了。</p>
-<h3 id="5-使用-Lists-（JDK9）"><a href="#5-使用-Lists-（JDK9）" class="headerlink" title="5. 使用 Lists （JDK9）"></a>5. 使用 <code>Lists</code> （JDK9）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = Lists.newArrayList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这个和 <code>Arrays.asList</code> 一样简洁清晰。</p>
-<h2 id="方法摘要"><a href="#方法摘要" class="headerlink" title="方法摘要"></a>方法摘要</h2><p><strong>add</strong></p>
-<p>boolean add(E e)<br>向列表的尾部添加指定的元素（可选操作）。  </p>
-<p>参数：<br>e - 要添加到列表的元素   </p>
-<p>返回：<br>true（根据 Collection.add(E) 的规定） </p>
-<p><strong>add</strong><br>void add(int index, E element)<br>在列表的指定位置插入指定元素（可选操作）。将当前处于该位置的元素（如果有的话）和所有后续元素向右移动（在其索引中加 1）。 </p>
-<p>参数：<br>index - 要在其中插入指定元素处的索引<br>element - 要插入的元素 </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/10/17/%E9%80%92%E5%BD%92%E5%92%8C%E8%BF%AD%E4%BB%A3%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E8%81%94%E7%B3%BB%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/17/%E9%80%92%E5%BD%92%E5%92%8C%E8%BF%AD%E4%BB%A3%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E8%81%94%E7%B3%BB%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9/" class="post-title-link" itemprop="url">递归和迭代的区别、联系、优缺点及实例对比</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-17 17:16:00" itemprop="dateCreated datePublished" datetime="2020-10-17T17:16:00+08:00">2020-10-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-05-12 12:10:20" itemprop="dateModified" datetime="2021-05-12T12:10:20+08:00">2021-05-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="1-概念区分"><a href="#1-概念区分" class="headerlink" title="1.概念区分"></a>1.概念区分</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>程序调用自身的编程技巧称为递归,是函数自己调用自己</p>
-<p>一个函数在其定义中直接或间接调用自身的一种方法,它通常把一个大型的复杂的问题转化为一个与原问题相似的规模较小的问题来解决,可以极大的减少代码量.递归的能力在于用有限的语句来定义对象的无限集合</p>
-<p>使用递归要注意的有两点:</p>
-<ol>
-<li><p>递归就是在过程或函数里面调用自身</p>
-</li>
-<li><p>在使用递归时,必须有一个明确的递归结束条件,称为<strong>递归出口</strong></p>
-</li>
-</ol>
-<p>递归分为两个阶段:</p>
-<p>1)递推:把复杂的问题的求解推到比原问题简单一些的问题的求解;</p>
-<p>2)回归:当获得最简单的情况后,逐步返回,依次得到复杂的解.</p>
-<p>利用递归可以解决很多问题:如背包问题,汉诺塔问题,…等.</p>
-<p>斐波那契数列为:0,1,1,2,3,5…</p>
-<p><strong>由于递归引起一系列的函数调用,并且有可能会有一系列的重复计算,递归算法的执行效率相对较低.</strong></p>
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>利用变量的原值推算出变量的一个新值,如果递归是自己调用自己的话,迭代就是A不停的调用B</p>
-<h2 id="2-辩证看递归和迭代"><a href="#2-辩证看递归和迭代" class="headerlink" title="2.辩证看递归和迭代"></a>2.辩证看递归和迭代</h2><p>递归的使用可以使代码更简洁清晰，可读性更好，但由于递归需要系统堆栈，所以空间消耗要比非递归代码要大很多，而且，如果递归深度太大，可能系统资源会不够用。</p>
-<p><strong>往往有这样的观点：能不用递归就不用递归，递归都可以用迭代来代替。</strong></p>
-<p>在理论上，递归和迭代在时间复杂度方面是等价的（在不考虑函数调用开销和函数调用产生的堆栈开销），但实际上递归确实效率比迭代低，递归没有任何优势，是不是就没有使用递归的必要了，那递归的存在有何意义呢？</p>
-<p>从算法结构来说，递归声明的结构并不总能够转换为迭代结构，原因在于结构的引申本身属于递归的概念，<strong>用迭代的方法在设计初期根本无法实现</strong>。这也是为什么在结构设计时，通常采用递归的方式而不是采用迭代的方式的原因，一个极典型的例子类似于链表，使用递归定义及其简单，但对于内存定义(数组方式)其定义及调用处理说明就变得很晦涩，尤其是在遇到环链、图、网格等问题时，使用迭代方式从描述到实现上都变得不现实。因而可以从实际上说，所有的迭代可以转换为递归，但递归不一定可以转换为迭代。</p>
-<p>递归其实是方便了程序员难为了机器，递归可以通过数学公式很方便的转换为程序。其优点就是易理解，容易编程。但<strong>递归是用栈机制实现的，每深入一层，都要占去一块栈数据区域，对嵌套层数深的一些算法，递归会力不从心，空间上会以内存崩溃而告终，而且递归也带来了大量的函数调用，这也有许多额外的时间开销。所以在深度大时，它的时空性就不好了。</strong></p>
-<p>而迭代虽然效率高，运行时间只因循环次数增加而增加，没什么额外开销，空间上也没有什么增加，但缺点就是不容易理解，编写复杂问题时困难。</p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><table>
-<thead>
-<tr>
-<th>-</th>
-<th align="left">定义</th>
-<th align="left">优点</th>
-<th align="left">缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>递归</td>
-<td align="left">程序调用自身的编程技巧称为递归</td>
-<td align="left">1）大问题化为小问题,可以极大的减少代码量；<br>2）用有限的语句来定义对象的无限集合<br>3）代码更简洁清晰，可读性更好</td>
-<td align="left">1）递归调用函数,浪费空间<br>2）递归太深容易造成堆栈的溢出；</td>
-</tr>
-<tr>
-<td>迭代</td>
-<td align="left">利用变量的原值推算出变量的一个新值，迭代就是A不停的调用B</td>
-<td align="left">1）迭代效率高，运行时间只因循环次数增加而增加<br>2）没什么额外开销，空间上也没有什么增加，</td>
-<td align="left">1） 不容易理解<br>2） 代码不如递归简洁<br>3） 编写复杂问题时困难。</td>
-</tr>
-</tbody></table>
-<p><strong>二者关系</strong></p>
-<ol>
-<li><p>递归中一定有迭代,但是迭代中不一定有递归,大部分可以相互转换</p>
-</li>
-<li><p>能用迭代的不用递归,递归调用函数,浪费空间,并且递归太深容易造成堆栈的溢出</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wenwenhuan.gitee.io/2020/10/17/static%E5%85%B3%E9%94%AE%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="温文焕">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenhuan Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/17/static%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-title-link" itemprop="url">static关键字</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-17 10:00:00" itemprop="dateCreated datePublished" datetime="2020-10-17T10:00:00+08:00">2020-10-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-05-18 00:21:48" itemprop="dateModified" datetime="2021-05-18T00:21:48+08:00">2021-05-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a><strong>概念</strong></h2><hr>
-<p>java中的<code>static</code>关键字主要用于内存管理。</p>
-<p>静态(<code>static</code>)可以是：</p>
-<ol>
-<li>变量(也称为类变量)</li>
-<li>方法(也称为类方法)</li>
-<li>代码块</li>
-<li>嵌套类</li>
-</ol>
-<h2 id="1-Java静态变量"><a href="#1-Java静态变量" class="headerlink" title="1. Java静态变量"></a>1. Java静态变量</h2><p>将一个变量声明为<code>static</code>。</p>
-<ul>
-<li>静态变量可以用于引用所有对象的公共属性(对于每个对象不是唯一的)。如：员工公司名称，学生所在的大学名称。</li>
-</ul>
-<p><strong>静态变量的优点：</strong></p>
-<ul>
-<li>它能使程序存储器高效(即它节省内存)。</li>
-</ul>
-<p><strong>理解不使用静态变量的问题</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;  </span><br><span class="line">     <span class="keyword">int</span> rollno;  </span><br><span class="line">     String name;  </span><br><span class="line">     String college=<span class="string">&quot;ITS&quot;</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>假设在一所学校有<code>500</code>名学生，现在所有实例数据成员将在每次创建对象时获取内存。所有学生都有其唯一的注册ID：<code>rollno</code>和　<code>name</code> ，因此实例数据成员没有什么问题。<code>college</code> 指的是所有对象的共同属性。如果使它静态化(使用<code>static</code>关键字修饲)，这个字段将只获得内存一次。</p>
-<blockquote>
-<p>Java静态属性被共享给所有对象。</p>
-</blockquote>
-<p><strong>静态变量的示例</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Program of static variable  </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student8</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rollno;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">static</span> String college = <span class="string">&quot;ITS&quot;</span>;</span><br><span class="line"></span><br><span class="line">    Student8(<span class="keyword">int</span> r, String n) &#123;</span><br><span class="line">        rollno = r;</span><br><span class="line">        name = n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(rollno + <span class="string">&quot; &quot;</span> + name + <span class="string">&quot; &quot;</span> + college);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        Student8 s1 = <span class="keyword">new</span> Student8(<span class="number">111</span>, <span class="string">&quot;Karan&quot;</span>);</span><br><span class="line">        Student8 s2 = <span class="keyword">new</span> Student8(<span class="number">222</span>, <span class="string">&quot;Aryan&quot;</span>);</span><br><span class="line"></span><br><span class="line">        s1.display();</span><br><span class="line">        s2.display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行结果如下 -</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">111</span> Karan ITS</span><br><span class="line"><span class="number">222</span> Aryan ITS</span><br></pre></td></tr></table></figure>
-
-<p>创建对象示例图如下所示 -</p>
-<img src="/2020/10/17/static%E5%85%B3%E9%94%AE%E5%AD%97/117100301_14333.jpg" class="" title="img">
-
-<p><strong>不使用静态变量的计数器程序</strong></p>
-<p>在这个例子中，我们创建了一个名为<code>count</code>的实例变量用来统计创建对象的数目，它在构造函数中执行递增。 由于实例变量在创建对象时要获取内存，每个对象都将具有实例变量的副本，如果它被递增了，它也不会反映到其他对象中。所以每个对象在<code>count</code>变量中的值还是<code>1</code>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">// will get memory when instance is created</span></span><br><span class="line"></span><br><span class="line">    Counter() &#123;</span><br><span class="line">        count++;</span><br><span class="line">        System.out.println(count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Counter c1 = <span class="keyword">new</span> Counter();</span><br><span class="line">        Counter c2 = <span class="keyword">new</span> Counter();</span><br><span class="line">        Counter c3 = <span class="keyword">new</span> Counter();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Java</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行结果如下 -</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">Java</span><br></pre></td></tr></table></figure>
-
-<p><strong>计数器静态变量的程序</strong><br>如上所述，静态变量将只获取一次内存，如果任何对象更改静态变量的值，它将保留其值，所有实例均可访问同一变量值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">// will get memory only once and retain its value</span></span><br><span class="line"></span><br><span class="line">    Counter2() &#123;</span><br><span class="line">        count++;</span><br><span class="line">        System.out.println(count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Counter2 c1 = <span class="keyword">new</span> Counter2();</span><br><span class="line">        Counter2 c2 = <span class="keyword">new</span> Counter2();</span><br><span class="line">        Counter2 c3 = <span class="keyword">new</span> Counter2();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Java</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行结果如下 -</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-Java静态方法（无需创建实例、访问静态变量）"><a href="#2-Java静态方法（无需创建实例、访问静态变量）" class="headerlink" title="2. Java静态方法（无需创建实例、访问静态变量）"></a>2. Java静态方法（无需创建实例、访问静态变量）</h2><p>如果在任何方法上应用<code>static</code>关键字，此方法称为静态方法。</p>
-<ul>
-<li>静态方法属于类，而不属于类的对象。</li>
-<li><strong>可以直接调用静态方法，而无需创建类的实例。</strong></li>
-<li>静态方法<strong>可以访问静态数据成员，并可以更改静态数据成员的值。</strong></li>
-</ul>
-<p><strong>静态方法的示例</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Program of changing the common property of all objects(static field).  </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student9</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rollno;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">static</span> String college = <span class="string">&quot;ITS&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        college = <span class="string">&quot;BBDIT&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Student9(<span class="keyword">int</span> r, String n) &#123;</span><br><span class="line">        rollno = r;</span><br><span class="line">        name = n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(rollno + <span class="string">&quot; &quot;</span> + name + <span class="string">&quot; &quot;</span> + college);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        Student9.change();</span><br><span class="line"></span><br><span class="line">        Student9 s1 = <span class="keyword">new</span> Student9(<span class="number">111</span>, <span class="string">&quot;Karan&quot;</span>);</span><br><span class="line">        Student9 s2 = <span class="keyword">new</span> Student9(<span class="number">222</span>, <span class="string">&quot;Aryan&quot;</span>);</span><br><span class="line">        Student9 s3 = <span class="keyword">new</span> Student9(<span class="number">333</span>, <span class="string">&quot;Sonoo&quot;</span>);</span><br><span class="line"></span><br><span class="line">        s1.display();</span><br><span class="line">        s2.display();</span><br><span class="line">        s3.display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行输出以下结果 - </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">111</span> Karan BBDIT</span><br><span class="line"><span class="number">222</span> Aryan BBDIT</span><br><span class="line"><span class="number">333</span> Sonoo BBDIT</span><br></pre></td></tr></table></figure>
-
-<p><strong>执行正常计算的静态方法的另一个示例:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Program to get cube of a given number by static method  </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cube</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x * x * x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = Calculate.cube(<span class="number">5</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行输出以下结果 - </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">125</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>静态方法的限制</strong></p>
-<p>静态方法有两个主要限制。它们分别是：</p>
-<ul>
-<li>静态方法<strong>不能直接使用非静态数据成员或调用非静态方法</strong>。</li>
-<li><code>this</code>和<code>super</code>两个关键字不能在静态上下文中使用。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">40</span>;<span class="comment">// non static</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行输出以下结果 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[编译错误！]Compile Time Error</span><br></pre></td></tr></table></figure>
-
-<p><strong>为什么java main方法是静态的？</strong></p>
-<p>这是因为对象不需要调用静态方法，如果它是非静态方法，jvm首先要创建对象，然后调用main()方法，这将导致额外的内存分配的问题。</p>
-<p>main方法是JVM执行的入口，为了方便JVM调用，所以需要将他的访问权限设置为public，并且静态方法可以方便JVM直接调用，无需实例化对象。</p>
-<h2 id="3-Java静态块（在类加载时在main方法之前执行）"><a href="#3-Java静态块（在类加载时在main方法之前执行）" class="headerlink" title="3. Java静态块（在类加载时在main方法之前执行）"></a>3. Java静态块（在类加载时在main方法之前执行）</h2><p>Java中的静态块主要有两个作用：</p>
-<ul>
-<li>用于初始化静态数据成员。</li>
-<li>它在类加载时在main方法之前执行。</li>
-</ul>
-<p><strong>静态块的示例</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;static block is invoked&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello main&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行输出以下结果 - </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> block is invoked</span><br><span class="line">Hello main</span><br></pre></td></tr></table></figure>
-
-<p><strong>可以执行程序没有main()方法吗？</strong><br><strong>答：</strong>是的，一种方式是静态块，但在以前旧的JDK版本中，不是在JDK 1.7。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;static block is invoked&quot;</span>);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行输出以下结果 - </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> block is invoked</span><br></pre></td></tr></table></figure>
-
-<p>在JDK7及以上版本中，输出将为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">错误: 在类 Main 中找不到 main 方法, 请将 main 方法定义为:</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
