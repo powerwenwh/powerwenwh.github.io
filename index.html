@@ -195,7 +195,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-01-07 14:31:50 / 修改时间：14:50:23" itemprop="dateCreated datePublished" datetime="2022-01-07T14:31:50+08:00">2022-01-07</time>
+      <time title="创建时间：2022-01-07 14:31:50 / 修改时间：18:09:05" itemprop="dateCreated datePublished" datetime="2022-01-07T14:31:50+08:00">2022-01-07</time>
     </span>
 
   
@@ -265,7 +265,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-01-07 11:07:15 / 修改时间：14:15:32" itemprop="dateCreated datePublished" datetime="2022-01-07T11:07:15+08:00">2022-01-07</time>
+      <time title="创建时间：2022-01-07 11:07:15 / 修改时间：17:40:58" itemprop="dateCreated datePublished" datetime="2022-01-07T11:07:15+08:00">2022-01-07</time>
     </span>
 
   
@@ -278,7 +278,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>各平台（UNIX/Linux/Windows/Mac OS）的文本文件使用的换行符是不一样的。UNIX/Linux 使用的是 <code>0x0A（LF）</code>，早期的 Mac OS 使用的是 <code>0x0D（CR）</code>，后来的 OS X 在更换内核后与 UNIX 保持一致了。但 DOS/Windows 一直使用 <code>0x0D0A（CRLF）</code> 作为换行符。</p>
+          <p>各平台（UNIX/Linux/Windows/Mac OS）的文本文件使用的换行符是不一样的。UNIX/Linux 使用的是 <code>0x0A（LF）</code>，早期的 Mac OS 使用的是 <code>0x0D（CR）</code>，后来的 OS X 在更换内核后与 UNIX 保持一致了。但 DOS/Windows 一直使用 <code>0x0D0A（CRLF）</code> 作为换行符。git可以对是否检测和是否转换换行符进行配置。</p>
+<p>换行符发生改变时，Git 会认为整个文件被修改，这就造成我们没法 <code>diff</code>，不能正确反映本次的修改。还好 Git 在设计时就考虑了这一点，其提供了一个 <code>autocrlf</code> 的配置项，用于在提交和检出时自动转换换行符，该配置有三个可选项：</p>
+<ul>
+<li><strong>true:</strong> 提交时转换为 LF，检出时转换为 CRLF</li>
+<li><strong>false:</strong> 提交检出均不转换</li>
+<li><strong>input:</strong> 提交时转换为LF，检出时不转换</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提交时转换为LF，检出时转换为CRLF</span></span><br><span class="line">git config --global core.autocrlf true</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交时转换为LF，检出时不转换</span></span><br><span class="line">git config --global core.autocrlf input</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交检出均不转换</span></span><br><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
+
+<p>如果把 autocrlf 设置为 false 时，那另一个配置项 <code>safecrlf</code> 最好设置为 <strong>ture</strong>。该选项用于检查文件是否包含混合换行符，其有三个可选项：</p>
+<ul>
+<li><strong>true:</strong> 拒绝提交包含混合换行符的文件</li>
+<li><strong>false:</strong> 允许提交包含混合换行符的文件</li>
+<li><strong>warn:</strong> 提交包含混合换行符的文件时给出警告</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拒绝提交包含混合换行符的文件</span></span><br><span class="line">git config --global core.safecrlf true</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许提交包含混合换行符的文件</span></span><br><span class="line">git config --global core.safecrlf false</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交包含混合换行符的文件时给出警告</span></span><br><span class="line">git config --global core.safecrlf warn</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -330,7 +346,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-01-07 10:43:29 / 修改时间：10:47:02" itemprop="dateCreated datePublished" datetime="2022-01-07T10:43:29+08:00">2022-01-07</time>
+      <time title="创建时间：2022-01-07 10:43:29 / 修改时间：18:09:00" itemprop="dateCreated datePublished" datetime="2022-01-07T10:43:29+08:00">2022-01-07</time>
     </span>
 
   
@@ -344,7 +360,11 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>最近重装系统后使用hexo突然报错<code>can not read a block mapping entry</code></p>
-<p>在网上查了一下发现主要有两个原因</p>
+<p>在网上查了一下主要有两个原因</p>
+<ol>
+<li>配置文件yaml语法不正确，没有在配置项后面加空格</li>
+<li>配置文件中出现了<code>&quot;&quot;</code>，导致文章无法按照正确yaml语法解析出错，把英文双引号改成中文双引号即可。</li>
+</ol>
 
       
     </div>
